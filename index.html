@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATG Airport Transfer Melbourne | Fixed Price Airport Transfers</title>
+<meta name="description" content="ATG Airport Transfer Melbourne. Fixed price airport transfers from Melbourne Airport to all suburbs. No surge, no hidden fees. Multi-language drivers. Book now.">
+
+<style>
+:root{--navy:#0f1b2d;--gold:#d4a843;--dark:#1a1a2e;--green:#25D366;--light:#f8f9fa;--gray:#666;--border:#e0e0e0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;color:#1a1a2e;background:#fff}
+
+/* Language toggle */
+.lang-en,html[data-lang="en"] .lang-zh{display:inline}
+html[data-lang="en"] .lang-en-only,[lang|="en"] .lang-en{display:inline}
+html[data-lang="zh"] .lang-en,html[data-lang="zh"] .lang-en-only,[lang|="zh"] .lang-zh{display:none}
+html[data-lang="zh"] .lang-zh{display:inline}
+html[data-lang="en"] .lang-block-en{display:block}
+html[data-lang="en"] .lang-block-zh,.lang-block-zh{display:none}
+html[data-lang="zh"] .lang-block-zh{display:block}
+html[data-lang="zh"] .lang-block-en{display:none}
+
+/* Utility */
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;font-weight:600;font-size:.95rem;text-decoration:none;border:none;cursor:pointer;transition:all .25s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,168,67,.3)}
+.btn-outline-light{background:transparent;border:2px solid rgba(255,255,255,.35);color:#fff}
+.btn-outline-light:hover{border-color:var(--gold);color:var(--gold)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,211,102,.3)}
+section{padding:5rem 0}
+.section-title{font-size:clamp(1.6rem,3vw,2.2rem);color:var(--navy);margin-bottom:.5rem;font-weight:700}
+.section-sub{color:var(--gray);margin-bottom:3rem;font-size:1.05rem}
+
+/* ===== NAVBAR ===== */
+.navbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(15,27,45,.97);padding:0 1.5rem;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;font-weight:700;font-size:1rem}
+.nav-logo img{height:36px;width:auto}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.85rem;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--gold)}
+.lang-toggle{padding:.35rem .7rem;border:1px solid rgba(255,255,255,.3);border-radius:20px;background:transparent;color:#fff;cursor:pointer;font-size:.8rem;font-weight:600}
+.lang-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px}
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(15,27,45,.98);flex-direction:column;padding:1.5rem;gap:1.2rem;align-items:flex-start}
+  .nav-links.active{display:flex}
+  .hamburger{display:flex}
+}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0f1b2d,#1a2a4a);padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.06) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:1;max-width:850px}
+.hero-badge{display:inline-block;background:rgba(212,168,67,.15);color:var(--gold);padding:.35rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(212,168,67,.25)}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);color:#fff;line-height:1.15;margin-bottom:.75rem}
+.hero h1 .hl{color:var(--gold)}
+.hero .tagline{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.75);margin-bottom:.5rem;line-height:1.5}
+.hero .trust-line{font-size:1rem;color:var(--gold);font-weight:600;margin-bottom:2rem}
+.hero-strip{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.hero-strip span{color:rgba(255,255,255,.85);font-size:.9rem;display:flex;align-items:center;gap:.4rem}
+.hero-strip span::before{content:"\2713";color:var(--gold);font-weight:700}
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+
+/* Hot suburbs */
+.hot-suburbs h3{color:rgba(255,255,255,.6);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem;font-weight:600}
+.hot-tags{display:flex;gap:.6rem;flex-wrap:wrap}
+.hot-tag{background:rgba(255,255,255,.08);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.8rem;text-decoration:none;border:1px solid rgba(255,255,255,.12);transition:all .2s}
+.hot-tag:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.price-from{font-size:2.5rem;font-weight:800;color:var(--gold);display:inline-block;margin-right:.3rem}
+.price-label{color:rgba(255,255,255,.5);font-size:.85rem}
+
+/* ===== TRUST BANNER ===== */
+.trust-banner{background:var(--navy);padding:1.5rem 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.trust-grid{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500}
+.trust-item svg{width:20px;height:20px;fill:var(--gold);flex-shrink:0}
+
+/* ===== FLEET ===== */
+.fleet{background:var(--light)}
+.fleet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.fleet-card{background:#fff;border-radius:16px;padding:2.5rem 2rem;text-align:center;border:1px solid var(--border);transition:all .3s}
+.fleet-card.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,168,67,.15)}
+.fleet-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.08)}
+.fleet-icon{font-size:2.5rem;margin-bottom:.8rem}
+.fleet-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:.3rem}
+.fleet-card .capacity{color:var(--gray);font-size:.85rem;margin-bottom:.5rem}
+.fleet-card .fleet-price{font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:.3rem}
+.fleet-card .fleet-price small{font-size:.85rem;font-weight:400;color:var(--gray)}
+.fleet-card .fleet-badge{display:inline-block;background:rgba(212,168,67,.12);color:var(--gold);font-size:.7rem;padding:.2rem .6rem;border-radius:4px;font-weight:600;margin-bottom:.8rem}
+.fleet-card p{color:var(--gray);font-size:.85rem;line-height:1.5}
+.fleet-card .contact-cta{display:inline-block;margin-top:.8rem;color:var(--gold);font-weight:600;font-size:.85rem;text-decoration:none}
+.fleet-card .contact-cta:hover{text-decoration:underline}
+
+/* ===== PRICING ===== */
+.pricing .container{max-width:1100px}
+.price-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.price-intro-text{flex:1;min-width:280px}
+.price-highlight{background:var(--light);border-radius:16px;padding:1.5rem 2rem;border:1px solid var(--border)}
+.price-highlight .big{font-size:2.2rem;font-weight:800;color:var(--navy)}
+.price-highlight small{color:var(--gray);font-size:.85rem}
+.price-toggle{display:flex;gap:.5rem;margin-bottom:2rem}
+.price-toggle button{padding:.5rem 1.2rem;border-radius:50px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:.85rem;transition:all .2s}
+.price-toggle button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pricing-table{display:none}
+.pricing-table.active{display:block}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem}
+.price-item{display:flex;justify-content:space-between;padding:.55rem 1rem;background:var(--light);border-radius:8px;font-size:.85rem}
+.price-item .suburb{font-weight:500}
+.price-item .cost{font-weight:700;color:var(--navy)}
+.price-footnote{margin-top:1.5rem;padding:1.5rem 2rem;background:#fff8e1;border:1px solid #ffe082;border-radius:12px;font-size:.85rem;color:#555}
+.price-footnote strong{color:var(--navy)}
+
+/* ===== SURCHARGES ===== */
+.surcharges{background:var(--light)}
+.surcharge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.surcharge-card{background:#fff;border-radius:12px;padding:1.5rem 2rem;border:1px solid var(--border)}
+.surcharge-card h4{color:var(--navy);margin-bottom:.5rem;font-size:.95rem;display:flex;align-items:center;gap:.5rem}
+.surcharge-card p{color:var(--gray);font-size:.85rem;line-height:1.5}
+.surcharge-card .tag{display:inline-block;background:rgba(212,168,67,.12);color:var(--gold);font-size:.7rem;padding:.2rem .6rem;border-radius:4px;font-weight:600}
+.surcharge-note{margin-top:2rem;text-align:center;color:var(--gray);font-size:.85rem}
+.surcharge-note strong{color:var(--navy)}
+
+/* ===== ABOUT ===== */
+.about{background:#fff}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+.about-card{text-align:center;padding:2rem}
+.about-card .icon{font-size:2.5rem;margin-bottom:1rem}
+.about-card h3{color:var(--navy);font-size:1rem;margin-bottom:.5rem}
+.about-card p{color:var(--gray);font-size:.85rem;line-height:1.5}
+
+/* ===== BOOKING ===== */
+.booking{background:linear-gradient(135deg,#0f1b2d,#1a2a4a);color:#fff}
+.booking .section-title{color:#fff}
+.booking .section-sub{color:rgba(255,255,255,.6)}
+.booking-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media(max-width:768px){.booking-wrap{grid-template-columns:1fr}}
+.booking-info h3{color:var(--gold);margin-bottom:1rem}
+.booking-info ul{list-style:none;padding:0}
+.booking-info li{padding:.5rem 0;color:rgba(255,255,255,.75);font-size:.9rem;padding-left:1.5rem;position:relative}
+.booking-info li::before{content:"\2713";position:absolute;left:0;color:var(--gold);font-weight:700}
+.booking-form{background:rgba(255,255,255,.08);border-radius:16px;padding:2rem;border:1px solid rgba(255,255,255,.12)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-group{margin-bottom:.8rem}
+.form-group label{display:block;margin-bottom:.3rem;font-size:.8rem;color:rgba(255,255,255,.7)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem;transition:all .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.1)}
+.form-group select option{background:var(--navy);color:#fff}
+.form-submit{width:100%;padding:.9rem;border-radius:50px;background:var(--gold);color:var(--navy);font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all .3s}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,168,67,.3)}
+.submit-row{display:flex;gap:.8rem;margin-top:.5rem}
+.submit-row .btn{flex:1;justify-content:center}
+
+/* ===== FOOTER ===== */
+footer{background:#0a0f1a;color:rgba(255,255,255,.5);padding:3rem 1.5rem;text-align:center}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;max-width:900px;margin:0 auto 2rem;text-align:left}
+footer h4{color:var(--gold);margin-bottom:.8rem;font-size:.9rem}
+footer p,footer a{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.8;text-decoration:none}
+footer a:hover{color:var(--gold)}
+.copyright{border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;font-size:.75rem}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;background:var(--green);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.35);text-decoration:none;transition:all .3s}
+.whatsapp-float:hover{transform:scale(1.1)}
+.whatsapp-float svg{width:28px;height:28px;fill:#fff}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fadeUp .6s ease forwards;opacity:0}
+.anim-d1{animation-delay:.1s}
+.anim-d2{animation-delay:.2s}
+.anim-d3{animation-delay:.3s}
+</style>
+</head>
+<body>
+
+<script defer>
+// ===== INITIAL SETUP =====
+(function(){
+  const saved = localStorage.getItem('atg_lang');
+  if(saved === 'zh') document.documentElement.setAttribute('data-lang','zh');
+})();
+
+function toggleLang(){
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-lang');
+  const next = cur === 'zh' ? 'en' : 'zh';
+  html.setAttribute('data-lang', next);
+  localStorage.setItem('atg_lang', next);
+  document.getElementById('langBtn').textContent = next === 'zh' ? 'EN' : '\u4e2d\u6587';
+}
+
+function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+function toggleMobileMenu(){
+  document.querySelector('.nav-links').classList.toggle('active');
+}
+
+function toggleFullPrice(){
+  const table = document.getElementById('fullPriceTable');
+  const btn = document.getElementById('priceToggleBtn');
+  const isHidden = table.style.display === 'none' || table.style.display === '';
+  table.style.display = isHidden ? 'block' : 'none';
+  btn.textContent = isHidden
+    ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u6536\u8d77\u4ef7\u683c\u8868 \u25b2' : 'Hide full price list \u25b2')
+    : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 \u25bc' : 'View full price list \u25bc');
+  // Also update the lang-aware text
+  btn.langUpdate = function(){
+    const visible = table.style.display !== 'none' && table.style.display !== '';
+    btn.textContent = visible
+      ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u6536\u8d77\u4ef7\u683c\u8868 \u25b2' : 'Hide full price list \u25b2')
+      : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 \u25bc' : 'View full price list \u25bc');
+  };
+}
+
+function submitWhatsApp(){
+  const n = document.getElementById('w_name').value;
+  const p = document.getElementById('w_phone').value;
+  const a = document.getElementById('w_address').value;
+  if(!n||!p||!a){ alert(document.documentElement.getAttribute('data-lang')==='zh'?'\u8bf7\u586b\u5199\u59d3\u540d\u3001\u7535\u8bdd\u548c\u5730\u5740':'Please fill in name, phone and address'); return; }
+  const dt = document.getElementById('w_date').value;
+  const tm = document.getElementById('w_time').value;
+  const dir = document.getElementById('w_dir').value;
+  const fl = document.getElementById('w_flight').value;
+  const pass = document.getElementById('w_pass').value;
+  const lug = document.getElementById('w_lug').value;
+  const notes = document.getElementById('w_notes').value;
+  const msg = `\u2605 ATG Airport Transfer \u2605
+Name: ${n}
+Phone: ${p}
+Direction: ${dir}
+Date: ${dt}
+Time: ${tm}
+Address: ${a}
+Flight: ${fl||'-'}
+Passengers: ${pass}
+Luggage: ${lug}
+Notes: ${notes||'-'}`;
+  window.open('https://wa.me/61430595120?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+
+
+<body>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="ATG" style="height:32px" onerror="this.style.display='none'">
+    <span>ATG Airport Transfer</span>
+  </a>
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a onclick="scrollTo('fleet')"><span class="lang-en">Fleet</span><span class="lang-zh">车型</span></a></li>
+    <li><a onclick="scrollTo('pricing')"><span class="lang-en">Pricing</span><span class="lang-zh">价格</span></a></li>
+    <li><a onclick="scrollTo('about')"><span class="lang-en">Why Us</span><span class="lang-zh">优势</span></a></li>
+    <li><a onclick="scrollTo('booking')"><span class="lang-en">Book Now</span><span class="lang-zh">预订</span></a></li>
+    <li><button class="lang-toggle" id="langBtn" onclick="toggleLang()">中文</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge anim anim-d1">
+      <span class="lang-en">Melbourne Airport Transfers</span>
+      <span class="lang-zh">墨尔本机场专车接送</span>
+    </div>
+    <h1 class="anim anim-d1">
+      <span class="lang-en">Your Ride, <span class="hl">Fixed.</span></span>
+      <span class="lang-zh">您的行程，<span class="hl">一口价。</span></span>
+    </h1>
+    <p class="tagline anim anim-d2">
+      <span class="lang-en">Professional airport transfers across all Melbourne suburbs. Fixed price, no surprises.</span>
+      <span class="lang-zh">覆盖墨尔本全城区的专业机场接送。固定价格，没有意外。</span>
+    </p>
+    <p class="trust-line anim anim-d2">
+      <span class="lang-en">Fixed price &bull; No surge &bull; All tolls included &bull; GST included &bull; No hidden fees</span>
+      <span class="lang-zh">明码实价 &bull; 不动态加价 &bull; 含过路费 &bull; 含GST &bull; 无隐藏费用</span>
+    </p>
+    <div class="hero-strip anim anim-d3">
+      <span class="lang-en">Multi-language drivers</span>
+      <span class="lang-zh">多语言司机</span>
+      <span class="lang-en">Flight monitoring</span>
+      <span class="lang-zh">航班监控</span>
+      <span class="lang-en">Family friendly</span>
+      <span class="lang-zh">家庭友好</span>
+      <span class="lang-en">Meet &amp; greet</span>
+      <span class="lang-zh">到达厅举牌接机</span>
+    </div>
+    <div class="cta-row anim anim-d3">
+      <a class="btn btn-primary" href="#booking"><span class="lang-en">Book Now</span><span class="lang-zh">立即预订</span></a>
+      <a class="btn btn-green" href="https://wa.me/61430595120" target="_blank"><span class="lang-en">WhatsApp Us</span><span class="lang-zh">WhatsApp咨询</span></a>
+    </div>
+    <div class="hot-suburbs anim anim-d3">
+      <h3><span class="lang-en">Popular routes from</span><span class="lang-zh">热门路线 从</span> <span class="price-from">$80</span></h3>
+      <div class="hot-tags">
+        <a class="hot-tag" href="#booking">CBD $80</a>
+        <a class="hot-tag" href="#booking">St Kilda $90</a>
+        <a class="hot-tag" href="#booking">Brighton $110</a>
+        <a class="hot-tag" href="#booking">Toorak $90</a>
+        <a class="hot-tag" href="#booking">Doncaster $90</a>
+        <a class="hot-tag" href="#booking">Box Hill $90</a>
+        <a class="hot-tag" href="#booking">Glen Waverley $100</a>
+      </div>
+      <p class="price-label" style="margin-top:.5rem">
+        <span class="lang-en">All prices include 10% GST &amp; tolls</span>
+        <span class="lang-zh">所有价格已含10% GST及过路费</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BANNER -->
+<section class="trust-banner">
+  <div class="trust-grid">
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">Fixed Price</span><span class="lang-zh">一口价</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">No Surge Pricing</span><span class="lang-zh">不动态加价</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">All Tolls Included</span><span class="lang-zh">含所有过路费</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">GST Included</span><span class="lang-zh">已含GST</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">No Hidden Fees</span><span class="lang-zh">无隐藏费用</span></div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="fleet" id="fleet">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Our Fleet</span><span class="lang-zh">我们的车队</span></h2>
+    <p class="section-sub"><span class="lang-en">Choose the perfect vehicle for your journey</span><span class="lang-zh">为您的旅程选择最合适的车型</span></p>
+    <div class="fleet-grid">
+      <div class="fleet-card featured">
+        <div class="fleet-icon">\U0001f697</div>
+        <h3><span class="lang-en">Sedan</span><span class="lang-zh">轿车</span></h3>
+        <p class="capacity"><span class="lang-en">Up to 4 passengers &bull; 2 suitcases</span><span class="lang-zh">4座 &bull; 2件行李</span></p>
+        <div class="fleet-price">$80 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
+        <p><span class="lang-en">Perfect for solo travellers and couples. Comfortable, efficient.</span><span class="lang-zh">适合单人或情侣出行，舒适快捷。</span></p>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-icon">\U0001f698</div>
+        <h3>SUV</h3>
+        <p class="capacity"><span class="lang-en">Up to 6 passengers &bull; 3 suitcases</span><span class="lang-zh">6座 &bull; 3件行李</span></p>
+        <div class="fleet-price">$90 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
+        <p><span class="lang-en">Extra space for families and groups. Comfortable ride.</span><span class="lang-zh">适合家庭出行，空间宽敞舒适。</span></p>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-icon">\U0001f3ce\ufe0f</div>
+        <h3><span class="lang-en">Luxury Sedan</span><span class="lang-zh">豪华轿车</span></h3>
+        <p class="capacity"><span class="lang-en">Up to 4 passengers &bull; 2 suitcases</span><span class="lang-zh">4座 &bull; 2件行李</span></p>
+        <div class="fleet-price">$100 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
+        <p><span class="lang-en">Premium vehicles for business travel and special occasions.</span><span class="lang-zh">商务出行和特殊场合的首选，高端体验。</span></p>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-icon">\U0001f699</div>
+        <h3><span class="lang-en">Luxury SUV</span><span class="lang-zh">豪华SUV</span></h3>
+        <p class="capacity"><span class="lang-en">Up to 6 passengers &bull; 3 suitcases</span><span class="lang-zh">6座 &bull; 3件行李</span></p>
+        <div class="fleet-price">$105 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
+        <p><span class="lang-en">Premium SUVs combining space with executive comfort.</span><span class="lang-zh">豪华SUV，空间与舒适兼得。</span></p>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-icon">\U0001f690</div>
+        <h3><span class="lang-en">Van</span><span class="lang-zh">商务车 Van</span></h3>
+        <p class="capacity"><span class="lang-en">Up to 11 passengers &bull; 7-10 suitcases</span><span class="lang-zh">11座 &bull; 7-10件行李</span></p>
+        <div class="fleet-price">$100 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
+        <p><span class="lang-en">Ideal for groups, sports teams, and large families.</span><span class="lang-zh">适合团体出游、运动队和大家庭。</span></p>
+      </div>
+      <div class="fleet-card">
+        <div class="fleet-icon">\U0001f690</div>
+        <h3><span class="lang-en">Luxury Van</span><span class="lang-zh">豪华 Van</span></h3>
+        <p class="capacity"><span class="lang-en">Up to 7 passengers &bull; 6-8 suitcases</span><span class="lang-zh">7座 &bull; 6-8件行李</span></p>
+        <div class="fleet-price">$110 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
+        <p><span class="lang-en">Premium people mover with leather seats and extra comfort.</span><span class="lang-zh">豪华商务车，真皮座椅，舒适升级。</span></p>
+      </div>
+      <div class="fleet-card" style="grid-column:1/-1;max-width:500px;margin:0 auto">
+        <div class="fleet-icon">\U0001f68c</div>
+        <h3><span class="lang-en">Bus (12/24/54 Seats)</span><span class="lang-zh">巴士（12/24/54座）</span></h3>
+        <p><span class="lang-en">Need a bus for your group? Contact us for a custom quote.</span><span class="lang-zh">需要巴士？请联系我们获取定制报价。</span></p>
+        <a class="contact-cta" href="https://wa.me/61430595120" target="_blank"><span class="lang-en">Contact us \u2192</span><span class="lang-zh">联系我们 \u2192</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Transparent Pricing</span><span class="lang-zh">透明价格</span></h2>
+    <p class="section-sub"><span class="lang-en">What you see is what you pay. All prices include GST and tolls.</span><span class="lang-zh">所见即所付。所有价格已含GST和过路费。</span></p>
+
+    <div class="price-intro">
+      <div class="price-intro-text">
+        <div class="price-highlight">
+          <span class="lang-en">Sedan transfers from</span><span class="lang-zh">轿车接送 从</span>
+          <div class="big">$80</div>
+          <small><span class="lang-en">Melbourne Airport to most suburbs &bull; per vehicle</span><span class="lang-zh">墨尔本机场至大部分区域 &bull; 每车</span></small>
+        </div>
+      </div>
+      <div class="price-intro-text">
+        <h3 style="color:var(--navy);margin-bottom:.5rem;font-size:1rem">
+          <span class="lang-en">Popular Destinations</span><span class="lang-zh">热门目的地</span>
+        </h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;font-size:.85rem">
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>CBD</span><strong>$80</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>St Kilda</span><strong>$90</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Brighton</span><strong>$110</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Toorak</span><strong>$90</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Doncaster</span><strong>$90</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Box Hill</span><strong>$90</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Glen Waverley</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Clayton</span><strong>$110</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Frankston</span><strong>$150</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Point Cook</span><strong>$70</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-bottom:2rem">
+      <button id="priceToggleBtn" class="btn btn-primary" onclick="toggleFullPrice()" style="font-size:.85rem;padding:.6rem 1.5rem">
+        <span class="lang-en">View full price list \u25bc</span><span class="lang-zh">查看完整价格表 \u25bc</span>
+      </button>
+    </div>
+
+    <div id="fullPriceTable" style="display:none">
+      <div class="price-grid" id="priceGrid"></div>
+      <div class="price-footnote">
+        <strong><span class="lang-en">Notes:</span><span class="lang-zh">说明：</span></strong>
+        <ul style="margin-top:.5rem;list-style:none">
+          <li style="padding:.25rem 0">\u2022 <span class="lang-en">Prices shown are sedan base rates from Melbourne Airport (T1-4). SUV +$10, Luxury Sedan +$20, Luxury SUV +$25, Van +$20, Luxury Van +$30.</span><span class="lang-zh">以上为轿车基础价（墨尔本机场出发）。SUV +$10，豪华轿车 +$20，豪华SUV +$25，商务车 +$20，豪华Van +$30。</span></li>
+          <li style="padding:.25rem 0">\u2022 <span class="lang-en">All prices include 10% GST and all tolls.</span><span class="lang-zh">所有价格含10% GST及所有过路费。</span></li>
+          <li style="padding:.25rem 0">\u2022 <span class="lang-en">For 12/24/54 seat buses, please contact us for pricing.</span><span class="lang-zh">12/24/54座巴士请联系客服询价。</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SURCHARGES -->
+<section class="surcharges" id="surcharges">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Clear &amp; Transparent Surcharges</span><span class="lang-zh">透明附加费说明</span></h2>
+    <p class="section-sub"><span class="lang-en">We believe in telling you everything upfront. These are all possible extras \u2014 nothing will surprise you.</span><span class="lang-zh">我们相信提前告知一切。以下是所有可能的附加费 \u2014 不会有任何意外。</span></p>
+    <div class="surcharge-grid">
+      <div class="surcharge-card">
+        <h4>\U0001f31f <span class="lang-en">Early / Late Hours</span><span class="lang-zh">早晚服务</span></h4>
+        <p><span class="lang-en">Before 6:00am or after 10:00pm</span><span class="lang-zh">早上6:00前或晚上10:00后</span></p>
+        <strong style="color:var(--navy);font-size:1.1rem">+$30</strong>
+      </div>
+      <div class="surcharge-card">
+        <h4>\U0001f4cb <span class="lang-en">Meet &amp; Greet (Optional)</span><span class="lang-zh">接机举牌（可选）</span></h4>
+        <p><span class="lang-en">Driver meets you at arrivals with a name sign</span><span class="lang-zh">司机在到达厅举牌接机</span></p>
+        <strong style="color:var(--navy);font-size:1.1rem">+$30</strong>
+      </div>
+      <div class="surcharge-card">
+        <h4>\U0001f476 <span class="lang-en">Child Seats</span><span class="lang-zh">儿童座椅</span> <span class="tag"><span class="lang-en">Family Friendly</span><span class="lang-zh">家庭友好</span></span></h4>
+        <p><span class="lang-en">First child seat FREE, then +$20 each additional</span><span class="lang-zh">第一个免费，之后每个+$20</span></p>
+        <strong style="color:var(--navy);font-size:1.1rem"><span class="lang-en">1st Free</span><span class="lang-zh">第一个免费</span></strong>
+      </div>
+      <div class="surcharge-card">
+        <h4>\u23f1\ufe0f <span class="lang-en">Excess Waiting Time</span><span class="lang-zh">超时等待</span></h4>
+        <p><span class="lang-en">After free waiting period expires</span><span class="lang-zh">免费等待时间结束后</span></p>
+        <strong style="color:var(--navy);font-size:1.1rem">$1 <small><span class="lang-en">/ min</span><span class="lang-zh">/分钟</span></small></strong>
+      </div>
+    </div>
+    <div class="surcharge-note">
+      <strong><span class="lang-en">Free waiting:</span><span class="lang-zh">免费等待时间：</span></strong>
+      <span class="lang-en">International flights \u2014 90 min from actual landing. Domestic \u2014 60 min. Drop-offs \u2014 15 min.</span>
+      <span class="lang-zh">国际航班 \u2014 从实际落地算90分钟。国内 \u2014 60分钟。送机 \u2014 15分钟。</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="about" id="about">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Why Choose ATG?</span><span class="lang-zh">为什么选择ATG？</span></h2>
+    <p class="section-sub"><span class="lang-en">What makes us different</span><span class="lang-zh">我们的与众不同</span></p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon">\U0001f1e6\U0001f1fa\U0001f1f0\U0001f1f3</div>
+        <h3><span class="lang-en">Multi-Language Drivers</span><span class="lang-zh">多语言司机</span></h3>
+        <p><span class="lang-en">Our team speaks English, Mandarin, Cantonese and Malay \u2014 so travellers from many backgrounds feel right at home.</span>
+           <span class="lang-zh">我们的司机会讲英文、普通话、粤语和马来语，让来自不同地方的客人都倍感亲切。</span></p>
+      </div>
+      <div class="about-card">
+        <div class="icon">\u2708\ufe0f</div>
+        <h3><span class="lang-en">Flight Monitoring</span><span class="lang-zh">航班监控</span></h3>
+        <p><span class="lang-en">We track your flight in real time. Delays? No problem \u2014 we adjust automatically.</span>
+           <span class="lang-zh">我们实时追踪您的航班。晚点？没问题 \u2014 我们自动调整接机时间。</span></p>
+      </div>
+      <div class="about-card">
+        <div class="icon">\U0001f91d</div>
+        <h3><span class="lang-en">Meet &amp; Greet Service</span><span class="lang-zh">举牌接机</span></h3>
+        <p><span class="lang-en">Your driver will be waiting at arrivals with a name sign. No searching, no stress.</span>
+           <span class="lang-zh">司机在到达厅举牌等候。不用找，不焦虑。</span></p>
+      </div>
+      <div class="about-card">
+        <div class="icon">\U0001f4b0</div>
+        <h3><span class="lang-en">Fixed Price Promise</span><span class="lang-zh">一口价承诺</span></h3>
+        <p><span class="lang-en">What you book is what you pay. No surge pricing, no hidden fees, no surprises.</span>
+           <span class="lang-zh">预订时看到的价格就是最终价格。不加价，无隐藏费用。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Book Your Transfer</span><span class="lang-zh">预订您的行程</span></h2>
+    <p class="section-sub"><span class="lang-en">Fill in the form and we'll confirm your booking shortly</span><span class="lang-zh">填写以下信息，我们将尽快确认您的预订</span></p>
+    <div class="booking-wrap">
+      <div class="booking-info">
+        <h3><span class="lang-en">Why book with us?</span><span class="lang-zh">为什么选择我们？</span></h3>
+        <ul>
+          <li><span class="lang-en">Fixed price \u2014 no surge, no surprises</span><span class="lang-zh">一口价 \u2014 不加价，无意外</span></li>
+          <li><span class="lang-en">All tolls &amp; GST included</span><span class="lang-zh">含所有过路费及GST</span></li>
+          <li><span class="lang-en">Multi-language drivers available</span><span class="lang-zh">多语言司机可选</span></li>
+          <li><span class="lang-en">Free flight waiting (intl 90min / domestic 60min)</span><span class="lang-zh">免费等待（国际90分钟/国内60分钟）</span></li>
+          <li><span class="lang-en">Family friendly \u2014 free child seat</span><span class="lang-zh">家庭友好 \u2014 儿童座椅免费</span></li>
+          <li><span class="lang-en">Meet &amp; greet service available</span><span class="lang-zh">可选举牌接机服务</span></li>
+        </ul>
+        <div style="margin-top:2rem;padding:1.5rem;background:rgba(255,255,255,.06);border-radius:12px">
+          <p style="color:var(--gold);font-weight:600;margin-bottom:.3rem">\U0001f4de <span class="lang-en">Call / WhatsApp</span><span class="lang-zh">电话 / WhatsApp</span></p>
+          <p style="color:#fff;font-size:1.2rem;font-weight:700"><a href="tel:+61430595120" style="color:#fff;text-decoration:none">+61 430 595 120</a></p>
+        </div>
+      </div>
+      <form class="booking-form" id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="lang-en">Name *</span><span class="lang-zh">姓名 *</span></label>
+            <input type="text" id="w_name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label><span class="lang-en">Phone *</span><span class="lang-zh">电话 *</span></label>
+            <input type="tel" id="w_phone" required placeholder="04XX XXX XXX">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="lang-en">Direction *</span><span class="lang-zh">方向 *</span></label>
+            <select id="w_dir">
+              <option value="Airport Pickup" class="lang-en">Airport Pickup</option><option value="Airport Pickup" class="lang-zh">接机</option>
+              <option value="Drop off to Airport" class="lang-en">Drop off to Airport</option><option value="Drop off to Airport" class="lang-zh">送机</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><span class="lang-en">Flight No.</span><span class="lang-zh">航班号</span></label>
+            <input type="text" id="w_flight" placeholder="e.g. CA 177">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="lang-en">Date *</span><span class="lang-zh">日期 *</span></label>
+            <input type="date" id="w_date" required>
+          </div>
+          <div class="form-group">
+            <label><span class="lang-en">Time *</span><span class="lang-zh">时间 *</span></label>
+            <input type="time" id="w_time" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><span class="lang-en">Pickup / Address *</span><span class="lang-zh">接送地址 *</span></label>
+          <input type="text" id="w_address" required placeholder="Street address / Suburb">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="lang-en">Passengers</span><span class="lang-zh">人数</span></label>
+            <select id="w_pass"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11+</option></select>
+          </div>
+          <div class="form-group">
+            <label><span class="lang-en">Luggage</span><span class="lang-zh">行李数</span></label>
+            <select id="w_lug"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><span class="lang-en">Notes</span><span class="lang-zh">备注</span></label>
+          <textarea id="w_notes" placeholder="e.g. Child seat needed, wheelchair access, extra luggage..." class="lang-en-only" style="display:block"></textarea>
+          <textarea placeholder="例如：需要儿童座椅、轮椅、大件行李..." class="lang-zh" style="display:none"></textarea>
+        </div>
+        <div class="submit-row">
+          <button type="button" class="btn btn-green" onclick="submitWhatsApp()" style="flex:1;justify-content:center">\u200d WhatsApp <span class="lang-en">Send Booking</span><span class="lang-zh">发送预订</span></button>
+          <a class="btn btn-outline-light" href="tel:+61430595120" style="flex:1;justify-content:center">\U0001f4de <span class="lang-en">Call Us</span><span class="lang-zh">打电话</span></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>ATG Airport Transfer</h4>
+      <p><span class="lang-en">Part of Australia Travelling GROUP</span><span class="lang-zh">Australia Travelling GROUP 旗下品牌</span></p>
+      <p style="margin-top:.5rem;color:rgba(255,255,255,.4);font-size:.75rem">
+        <span class="lang-en">Multi-language drivers: English, Mandarin, Cantonese, Malay</span>
+        <span class="lang-zh">多语言司机：英文、普通话、粤语、马来语</span>
+      </p>
+    </div>
+    <div>
+      <h4><span class="lang-en">Contact</span><span class="lang-zh">联系我们</span></h4>
+      <p>\U0001f4de <a href="tel:+61430595120">+61 430 595 120</a></p>
+      <p>\U0001f4ac <a href="https://wa.me/61430595120" target="_blank">WhatsApp</a></p>
+      <p>\U0001f4e7 <a href="mailto:info@atgtravelgroup.com.au">info@atgtravelgroup.com.au</a></p>
+    </div>
+    <div>
+      <h4><span class="lang-en">Services</span><span class="lang-zh">服务</span></h4>
+      <p><span class="lang-en">Airport Transfer</span><span class="lang-zh">机场接送</span></p>
+      <p><span class="lang-en">City Chauffeur</span><span class="lang-zh">市内用车</span></p>
+      <p><span class="lang-en">Tour Charter</span><span class="lang-zh">旅游包车</span></p>
+    </div>
+    <div>
+      <h4><span class="lang-en">Quick Links</span><span class="lang-zh">快速链接</span></h4>
+      <p><a onclick="scrollTo('fleet')" style="cursor:pointer"><span class="lang-en">Our Fleet</span><span class="lang-zh">车型介绍</span></a></p>
+      <p><a onclick="scrollTo('pricing')" style="cursor:pointer"><span class="lang-en">Pricing</span><span class="lang-zh">价格查询</span></a></p>
+      <p><a onclick="scrollTo('booking')" style="cursor:pointer"><span class="lang-en">Book Now</span><span class="lang-zh">立即预订</span></a></p>
+    </div>
+  </div>
+  <div class="copyright">
+    &copy; 2026 ATG Airport Transfer. Australia Travelling GROUP.
+    <span class="lang-en">All rights reserved.</span><span class="lang-zh">保留所有权利。</span>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a class="whatsapp-float" href="https://wa.me/61430595120" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ===== PRICE DATA =====
+const priceData = {
+  "A":{"Abbotsford":80,"Albert Park":90},
+  "B":{"Balwyn":90,"Bentleigh":110,"Box Hill":90,"Brighton":110,"Brunswick":80,"Bulleen":90,"Burwood":90},
+  "C":{"Carlton":80,"Carnegie":100,"Caulfield":100,"Chadstone":100,"Clayton":110,"Coburg":80,"Cranbourne":160},
+  "D":{"Dandenong":130,"Doncaster":90},
+  "E":{"Elsternwick":100,"Eltham":100},
+  "F G":{"Ferntree Gully":120,"Fitzroy":80,"Frankston":150,"Glen Iris":90,"Glen Waverley":100},
+  "H":{"Hawthorn":80,"Heidelberg":80},
+  "K":{"Kew":80,"Keysborough":130},
+  "M":{"Malvern":90,"Mordialloc":140,"Mount Waverley":100,"Mulgrave":110},
+  "N":{"Nunawading":90},
+  "P":{"Preston":80,"Point Cook":70},
+  "R":{"Reservoir":80,"Richmond":80,"Ringwood":100},
+  "S":{"Sandringham":110,"South Melbourne":90,"South Yarra":90,"Springvale":120,"St Kilda":90,"Sunshine":70},
+  "V":{"Vermont":100},
+  "W":{"Wantirna":110},
+  "Y":{"Yallambie":100,"Yarraville":90,"Yarra Glen":200}
+};
+
+// Render price grid
+function renderPrices(){
+  const grid = document.getElementById('priceGrid');
+  if(!grid) return;
+  let html = '';
+  for(const [letter, suburbs] of Object.entries(priceData)){
+    html += '<div class="price-cat" style="background:#f8f9fa;border-radius:8px;overflow:hidden;border:1px solid #e0e0e0">';
+    html += '<h3 style="padding:.6rem 1rem;background:linear-gradient(135deg,#0f1b2d,#1a2a4a);color:#d4a843;font-size:.85rem;margin:0">'+letter+'</h3><ul style="list-style:none;padding:.3rem 0;margin:0">';
+    for(const [suburb, price] of Object.entries(suburbs)){
+      html += '<li style="display:flex;justify-content:space-between;padding:.45rem 1rem;border-bottom:1px solid #eee;font-size:.82rem">';
+      html += '<span>'+suburb+'</span><strong style="color:#0f1b2d">$'+price+'</strong></li>';
+    }
+    html += '</ul></div>';
+  }
+  grid.innerHTML = html;
+}
+renderPrices();
+
+// Intersection Observer for fade-in
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.style.opacity='1';});
+},{threshold:.1});
+document.querySelectorAll('section').forEach(s=>{s.style.opacity='0';s.style.transition='opacity .6s ease';observer.observe(s);});
+document.querySelector('.hero').style.opacity='1';
+</script>
+</body>
+</html>
