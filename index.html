@@ -192,7 +192,7 @@ function toggleLang(){
   const next = cur === 'zh' ? 'en' : 'zh';
   html.setAttribute('data-lang', next);
   localStorage.setItem('atg_lang', next);
-  document.getElementById('langBtn').textContent = next === 'zh' ? 'EN' : '\u4e2d\u6587';
+  document.getElementById('langBtn').textContent = next === 'zh' ? 'EN' : '中文';
 }
 
 function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
@@ -207,14 +207,14 @@ function toggleFullPrice(){
   const isHidden = table.style.display === 'none' || table.style.display === '';
   table.style.display = isHidden ? 'block' : 'none';
   btn.textContent = isHidden
-    ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u6536\u8d77\u4ef7\u683c\u8868 \u25b2' : 'Hide full price list \u25b2')
-    : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 ▼' : 'View full price list ▼');
+    ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '收起价格表 ▲' : 'Hide full price list ▲')
+    : (document.documentElement.getAttribute('data-lang') === 'zh' ? '查看完整价格表 ▼' : 'View full price list ▼');
   // Also update the lang-aware text
   btn.langUpdate = function(){
     const visible = table.style.display !== 'none' && table.style.display !== '';
     btn.textContent = visible
-      ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u6536\u8d77\u4ef7\u683c\u8868 \u25b2' : 'Hide full price list \u25b2')
-      : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 ▼' : 'View full price list ▼');
+      ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '收起价格表 ▲' : 'Hide full price list ▲')
+      : (document.documentElement.getAttribute('data-lang') === 'zh' ? '查看完整价格表 ▼' : 'View full price list ▼');
   };
 }
 
@@ -222,7 +222,7 @@ function submitWhatsApp(){
   const n = document.getElementById('w_name').value;
   const p = document.getElementById('w_phone').value;
   const a = document.getElementById('w_address').value;
-  if(!n||!p||!a){ alert(document.documentElement.getAttribute('data-lang')==='zh'?'\u8bf7\u586b\u5199\u59d3\u540d\u3001\u7535\u8bdd\u548c\u5730\u5740':'Please fill in name, phone and address'); return; }
+  if(!n||!p||!a){ alert(document.documentElement.getAttribute('data-lang')==='zh'?'请填写姓名、电话和地址':'Please fill in name, phone and address'); return; }
   const dt = document.getElementById('w_date').value;
   const tm = document.getElementById('w_time').value;
   const dir = document.getElementById('w_dir').value;
@@ -230,7 +230,7 @@ function submitWhatsApp(){
   const pass = document.getElementById('w_pass').value;
   const lug = document.getElementById('w_lug').value;
   const notes = document.getElementById('w_notes').value;
-  const msg = `\u2605 ATG Airport Transfer \u2605
+  const msg = `★ ATG Airport Transfer ★
 Name: ${n}
 Phone: ${p}
 Direction: ${dir}
