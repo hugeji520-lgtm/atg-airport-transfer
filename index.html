@@ -53,7 +53,7 @@ section{padding:5rem 0}
 }
 
 /* ===== HERO ===== */
-.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0f1b2d,#1a2a4a);padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center/cover fixed;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.06) 0%,transparent 60%)}
 .hero-content{position:relative;z-index:1;max-width:850px}
 .hero-badge{display:inline-block;background:rgba(212,168,67,.15);color:var(--gold);padding:.35rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(212,168,67,.25)}
@@ -208,13 +208,13 @@ function toggleFullPrice(){
   table.style.display = isHidden ? 'block' : 'none';
   btn.textContent = isHidden
     ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u6536\u8d77\u4ef7\u683c\u8868 \u25b2' : 'Hide full price list \u25b2')
-    : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 \u25bc' : 'View full price list \u25bc');
+    : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 ▼' : 'View full price list ▼');
   // Also update the lang-aware text
   btn.langUpdate = function(){
     const visible = table.style.display !== 'none' && table.style.display !== '';
     btn.textContent = visible
       ? (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u6536\u8d77\u4ef7\u683c\u8868 \u25b2' : 'Hide full price list \u25b2')
-      : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 \u25bc' : 'View full price list \u25bc');
+      : (document.documentElement.getAttribute('data-lang') === 'zh' ? '\u67e5\u770b\u5b8c\u6574\u4ef7\u683c\u8868 ▼' : 'View full price list ▼');
   };
 }
 
@@ -380,7 +380,7 @@ Notes: ${notes||'-'}`;
         <div class="fleet-icon"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#d4a843"><rect x="2" y="4" width="20" height="14" rx="2"/><rect x="4" y="6" width="16" height="8" rx="1" opacity="0.3"/><circle cx="7" cy="18" r="1.5" fill="#d4a843"/><circle cx="17" cy="18" r="1.5" fill="#d4a843"/></svg></div>
         <h3><span class="lang-en">Bus (12/24/54 Seats)</span><span class="lang-zh">巴士（12/24/54座）</span></h3>
         <p><span class="lang-en">Need a bus for your group? Contact us for a custom quote.</span><span class="lang-zh">需要巴士？请联系我们获取定制报价。</span></p>
-        <a class="contact-cta" href="https://wa.me/61430595120" target="_blank"><span class="lang-en">Contact us \u2192</span><span class="lang-zh">联系我们 \u2192</span></a>
+        <a class="contact-cta" href="https://wa.me/61430595120" target="_blank"><span class="lang-en">Contact us →</span><span class="lang-zh">联系我们 →</span></a>
       </div>
     </div>
   </div>
@@ -420,7 +420,7 @@ Notes: ${notes||'-'}`;
 
     <div style="text-align:center;margin-bottom:2rem">
       <button id="priceToggleBtn" class="btn btn-primary" onclick="toggleFullPrice()" style="font-size:.85rem;padding:.6rem 1.5rem">
-        <span class="lang-en">View full price list \u25bc</span><span class="lang-zh">查看完整价格表 \u25bc</span>
+        <span class="lang-en">View full price list ▼</span><span class="lang-zh">查看完整价格表 ▼</span>
       </button>
     </div>
 
@@ -460,7 +460,7 @@ Notes: ${notes||'-'}`;
         <strong style="color:var(--navy);font-size:1.1rem"><span class="lang-en">1st Free</span><span class="lang-zh">第一个免费</span></strong>
       </div>
       <div class="surcharge-card">
-        <h4>\u23f1\ufe0f <span class="lang-en">Excess Waiting Time</span><span class="lang-zh">超时等待</span></h4>
+        <h4>⏱️ <span class="lang-en">Excess Waiting Time</span><span class="lang-zh">超时等待</span></h4>
         <p><span class="lang-en">After free waiting period expires</span><span class="lang-zh">免费等待时间结束后</span></p>
         <strong style="color:var(--navy);font-size:1.1rem">$1 <small><span class="lang-en">/ min</span><span class="lang-zh">/分钟</span></small></strong>
       </div>
@@ -486,7 +486,7 @@ Notes: ${notes||'-'}`;
            <span class="lang-zh">我们的司机会讲英文、普通话、粤语和马来语，让来自不同地方的客人都倍感亲切。</span></p>
       </div>
       <div class="about-card">
-        <div class="icon">\u2708\ufe0f</div>
+        <div class="icon">\u2708</div>
         <h3><span class="lang-en">Flight Monitoring</span><span class="lang-zh">航班监控</span></h3>
         <p><span class="lang-en">We track your flight in real time. Delays? No problem \u2014 we adjust automatically.</span>
            <span class="lang-zh">我们实时追踪您的航班。晚点？没问题 \u2014 我们自动调整接机时间。</span></p>
@@ -582,7 +582,7 @@ Notes: ${notes||'-'}`;
           <textarea placeholder="例如：需要儿童座椅、轮椅、大件行李..." class="lang-zh" style="display:none"></textarea>
         </div>
         <div class="submit-row">
-          <button type="button" class="btn btn-green" onclick="submitWhatsApp()" style="flex:1;justify-content:center">\u200d WhatsApp <span class="lang-en">Send Booking</span><span class="lang-zh">发送预订</span></button>
+          <button type="button" class="btn btn-green" onclick="submitWhatsApp()" style="flex:1;justify-content:center"> WhatsApp <span class="lang-en">Send Booking</span><span class="lang-zh">发送预订</span></button>
           <a class="btn btn-outline-light" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call Us</span><span class="lang-zh">打电话</span></a>
         </div>
       </form>
