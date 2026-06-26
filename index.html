@@ -407,6 +407,14 @@ Notes: ${notes||'-'}`;
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;font-size:.85rem">
           <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>CBD</span><strong>$80</strong></div>
           <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>St Kilda</span><strong>$90</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Box Hill</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Glen Waverley</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Doncaster</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Brighton</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Point Cook</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Clayton</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Toorak</span><strong>$100</strong></div>
+          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Frankston</span><strong>$160</strong></div></div>
           <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Brighton</span><strong>$100</strong></div>
           <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Toorak</span><strong>$100</strong></div>
           <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Doncaster</span><strong>$100</strong></div>
@@ -636,25 +644,25 @@ Notes: ${notes||'-'}`;
 const priceData = {
   "A":{"Abbotsford":80,"Albert Park":90,"Altona":100,"Armadale":100,"Ascot Vale":80,"Ashwood":100,"Ashburton":100,"Alphington":90,"Aspendale":140,"Avalon Airport":160},
   "B":{"Balwyn":100,"Bentleigh":100,"Berwick":150,"Box Hill":100,"Brighton":100,"Bulleen":90,"Burwood":100,"Bundoora":90,"Blackburn":100,"Bayswater":120},
-  "C":{"Camberwell":100,"Canterbury":100,"Carlton":80,"Carnegie":100,"Caulfield":100,"Chadstone":100,"Clayton":100,"Clayton South":100,"Clifton Hill":80,"Coburg":90,"Collingwood":80,"Cranbourne":150,"Croydon":130},
-  "D":{"Dandenong":130,"Deepdene":100,"Diamond Creek":100,"Dingley Village":130,"Docklands":90,"Doncaster":100,"Doncaster East":100,"Donvale":100},
-  "E":{"East Melbourne":80,"Eltham":100,"Elwood":100,"Epping":100,"Elsternwick":100,"Endeavour Hills":130,"Eaglemont":100,"Edithvale":140},
-  "F":{"Ferntree Gully":120,"Fitzroy":80,"Flemington":80,"Footscray":90,"Forest Hill":100,"Frankston":160},
-  "G":{"Glen Waverley":100,"Greensborough":100,"Glen Huntly":100,"Glen Iris":100},
-  "H":{"Hawthorn":100,"Heatherton":100,"Heidelberg":90,"Heathmont":120,"Hoppers Crossing":120,"Hughesdale":100,"Huntingdale":100},
+  "C":{"Camberwell":100,"Canterbury":100,"Carnegie":100,"Caulfield":100,"Chadstone":100,"Clayton":100,"Clifton Hill":80,"Collingwood":80,"Cranbourne":150,"Croydon":130},
+  "D":{"Dandenong":130,"Deepdene":100,"Diamond Creek":100,"Dingley Village":130,"Docklands":90,"Doncaster":100,"Doncaster East":100,"Donvale":110,"Dromana":180,"Doreen":110},
+  "E":{"East Melbourne":80,"Eltham":100,"Elwood":100,"Epping":100,"Elsternwick":100,"Endeavour Hills":130,"Eaglemont":100,"Edithvale":140,"Emerald":200,"Essendon":80},
+  "F":{"Ferntree Gully":120,"Fitzroy":80,"Flemington":80,"Footscray":90,"Forest Hill":100,"Frankston":160,"Flinders":250,"Fawkner":80,"Flagstaff":80,"Ferny Creek":160},
+  "G":{"Glen Waverley":100,"Greensborough":100,"Greenvale":80,"Glen Huntly":100,"Glen Iris":100,"Glenroy":80,"Gisborne":110,"Gardenvale":100,"Grantville":300,"Gowanbrae":80},
+  "H":{"Hawthorn":100,"Heatherton":100,"Heidelberg":90,"Heathmont":120,"Hoppers Crossing":120,"Hughesdale":100,"Huntingdale":100,"Hampton":110,"Hampton Park":140,"Hastings":250},
   "I":{"Ivanhoe":90},
-  "K":{"Kensington":80,"Kew":100,"Keysborough":130,"Kooyong":100,"Knoxfield":120},
-  "L":{"Laverton":100,"Lilydale":150,"Lower Plenty":90,"Lysterfield":130,"Lyndhurst":140,"Langwarrin":160},
-  "M":{"Mordialloc":140,"Mount Waverley":100,"Mulgrave":110,"Murrumbeena":100,"McKinnon":100,"Mooroolbark":140,"Mornington":200,"Montmorency":100,"Middle Park":90,"Macleod":100,"Maidstone":90,"Maribyrnong":90,"Mentone":120,"Mill Park":100,"Mitcham":110,"Mont Albert":100,"Moorabbin":110},
-  "N":{"Narre Warren":150,"Newport":100,"Noble Park":120,"North Melbourne":80,"Northcote":80,"Notting Hill":100,"Nunawading":100},
-  "O":{"Oakleigh":100,"Ormond":100,"Officer":180,"Olinda":140},
-  "P":{"Parkville":80,"Point Cook":100,"Port Melbourne":90,"Prahran":90,"Preston":90,"Pakenham":200,"Parkdale":140,"Park Orchards":130,"Patterson Lakes":150},
-  "R":{"Reservoir":90,"Richmond":90,"Ringwood":120,"Rosanna":90,"Rowville":120},
-  "S":{"Sandringham":110,"South Melbourne":90,"South Yarra":90,"Southbank":90,"Springvale":110,"St Kilda":90,"Sunshine":90,"Surrey Hills":100},
-  "T":{"Templestowe":100,"Toorak":100,"Tooronga":100,"The Basin":150,"Thornbury":100},
+  "K":{"Kensington":80,"Kew":100,"Keysborough":130,"Kooyong":100,"Knoxfield":120,"Keilor":80,"Kilmore":200,"Kingsbury":90},
+  "L":{"Laverton":100,"Lalor":90,"Lilydale":150,"Lower Plenty":90,"Lorne":400,"Lysterfield":130,"Lyndhurst":140,"Lynbrook":90,"Langwarrin":160,"Lancefield":150},
+  "M":{"Mordialloc":140,"Mount Waverley":100,"Mulgrave":110,"Murrumbeena":100,"McKinnon":100,"Mooroolbark":140,"Mont Albert":100,"Mentone":120,"Mornington":200,"Montmorency":100},
+  "N":{"Narre Warren":150,"Newport":100,"Noble Park":120,"North Melbourne":80,"Northcote":90,"Notting Hill":100,"Nunawading":100,"Niddrie":80,"North Warrandyte":130,"North Richmond":90},
+  "O":{"Oakleigh":100,"Oakleigh South":100,"Oakleigh East":100,"Ormond":100,"Officer":200,"Olinda":150,"Oak Park":80,"Oaklands Junction":80,"Ocean Grove":180,"Ormond":170},
+  "P":{"Parkville":80,"Point Cook":100,"Port Melbourne":90,"Prahran":90,"Preston":90,"Pakenham":200,"Parkdale":140,"Park Orchards":130,"Patterson Lakes":150,"Portsea":200},
+  "R":{"Reservoir":90,"Richmond":90,"Ringwood":120,"Rosanna":90,"Rowville":120,"Research":100,"Red Hill":200,"Ravenhall":90,"Rockbank":120,"Rosebud":190},
+  "S":{"Sandringham":110,"South Melbourne":90,"South Yarra":90,"Southbank":90,"Springvale":110,"St Kilda":90,"Sunshine":90,"Surrey Hills":100,"St Albans":90,"South Morang":100},
+  "T":{"Templestowe":100,"Toorak":100,"Tooronga":100,"The Basin":150,"Thornbury":100,"Tarneit":100,"Truganina":100,"Taylors Lakes":90,"Tynong":170,"Tullamarine":80},
   "V":{"Vermont":110,"Vermont South":110,"Viewbank":100},
-  "W":{"Wantirna":120,"West Melbourne":80,"Wheelers Hill":110,"Williams Landing":100,"Whittlesea":100,"Williamstown":90,"Windsor":90,"Werribee":120,"Wollert":100,"Watsonia":100,"Warrandyte":130,"Wantirna South":120},
-  "Y":{"Yallambie":100,"Yarraville":90,"Yarra Glen":200}
+  "W":{"West Melbourne":80,"Wheelers Hill":110,"Williams Landing":100,"Whittlesea":100,"Williamstown":90,"Windsor":90,"Werribee":120,"Wollert":100,"Watsonia":100,"Warrandyte":130},
+  "Y":{"Yallambie":100,"Yarraville":90,"Yarra Glen":200,"Yarra Junction":200}
 };
 
 // Render price grid
