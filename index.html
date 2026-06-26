@@ -108,7 +108,7 @@ section{padding:5rem 0}
 .price-toggle button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .pricing-table{display:none}
 .pricing-table.active{display:block}
-.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem}
+.price-grid{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:flex-start}.price-cat{flex:0 0 calc(16.66% - .8rem);min-width:170px}
 .price-item{display:flex;justify-content:space-between;padding:.55rem 1rem;background:var(--light);border-radius:8px;font-size:.85rem}
 .price-item .suburb{font-weight:500}
 .price-item .cost{font-weight:700;color:var(--navy)}
