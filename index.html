@@ -183,7 +183,10 @@ footer a:hover{color:var(--gold)}
 // ===== INITIAL SETUP =====
 (function(){
   const saved = localStorage.getItem('atg_lang');
-  if(saved === 'zh') document.documentElement.setAttribute('data-lang','zh');
+  if(saved === 'zh') {
+    document.documentElement.setAttribute('data-lang','zh');
+    document.getElementById('langBtn').textContent = 'EN';
+  }
 })();
 
 function toggleLang(){
@@ -315,7 +318,7 @@ Notes: ${notes||'-'}`;
 
   <div style="position:absolute;bottom:1.5rem;left:0;right:0;text-align:center">
     <span style="font-size:1.8rem;font-weight:800;color:var(--gold)">$80</span>
-    <span style="color:rgba(255,255,255,.45);font-size:.8rem;margin-left:.3rem"><span class="lang-en">from · sedan to most suburbs</span><span class="lang-zh">起 · 轿车至大部分区域</span></span>
+    <span style="color:rgba(255,255,255,.45);font-size:.8rem;margin-left:.3rem"><span class="lang-en">from · sedan to selected suburbs</span><span class="lang-zh">起 · 轿车至部分区域</span></span>
     <div style="display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem">
       <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">CBD $80</a>
       <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">Box Hill $100</a>
@@ -397,7 +400,7 @@ Notes: ${notes||'-'}`;
         <div class="price-highlight">
           <span class="lang-en">Sedan transfers from</span><span class="lang-zh">轿车接送 从</span>
           <div class="big">$80</div>
-          <small><span class="lang-en">Melbourne Airport to most suburbs &bull; per vehicle</span><span class="lang-zh">墨尔本机场至大部分区域 &bull; 每车</span></small>
+          <small><span class="lang-en">Melbourne Airport to selected suburbs &bull; per vehicle</span><span class="lang-zh">墨尔本机场至部分区域 &bull; 每车</span></small>
         </div>
       </div>
       <div class="price-intro-text">
@@ -631,6 +634,8 @@ Notes: ${notes||'-'}`;
     <div>
       <h4><span class="lang-en">Services</span><span class="lang-zh">服务</span></h4>
       <p><span class="lang-en">Airport Transfer</span><span class="lang-zh">机场接送</span></p>
+      <p><span class="lang-en">Business / Corporate</span><span class="lang-zh">商务用车</span></p>
+      <p><span class="lang-en">Wedding Chauffeur</span><span class="lang-zh">婚礼用车</span></p>
       <p><span class="lang-en">City Chauffeur</span><span class="lang-zh">市内用车</span></p>
       <p><span class="lang-en">Tour Charter</span><span class="lang-zh">旅游包车</span></p>
     </div>
