@@ -53,7 +53,7 @@ section{padding:5rem 0}
 }
 
 /* ===== HERO ===== */
-.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center/cover fixed;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero{min-height:85vh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center/cover fixed;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.06) 0%,transparent 60%)}
 .hero-content{position:relative;z-index:1;max-width:850px}
 .hero-badge{display:inline-block;background:rgba(212,168,67,.15);color:var(--gold);padding:.35rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(212,168,67,.25)}
@@ -284,11 +284,11 @@ Notes: ${notes||'-'}`;
       <span class="lang-en">Fixed price &bull; No surge &bull; All tolls included &bull; GST included &bull; No hidden fees</span>
       <span class="lang-zh">明码实价 &bull; 不动态加价 &bull; 含过路费 &bull; 含GST &bull; 无隐藏费用</span>
     </p>
-    <div class="hero-strip anim anim-d3">
-      <span>✅ <span class="lang-en">Multi-language drivers</span><span class="lang-zh">多语言司机</span></span>
-      <span>✅ <span class="lang-en">Flight monitoring</span><span class="lang-zh">航班监控</span></span>
-      <span>✅ <span class="lang-en">Family friendly</span><span class="lang-zh">家庭友好</span></span>
-      <span>✅ <span class="lang-en">Meet &amp; greet</span><span class="lang-zh">举牌接机</span></span>
+    <div class="hero-strip anim anim-d3" style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem">
+      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">🌐 <span class="lang-en">Multi-language</span><span class="lang-zh">多语言</span></span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">✈️ <span class="lang-en">Flight monitor</span><span class="lang-zh">航班监控</span></span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">👨‍👩‍👧 <span class="lang-en">Family friendly</span><span class="lang-zh">家庭友好</span></span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">🪧 <span class="lang-en">Meet &amp; greet</span><span class="lang-zh">举牌接机</span></span>
     </div>
     <div class="cta-row anim anim-d3">
       <a class="btn btn-primary" href="#booking"><span class="lang-en">Book Now</span><span class="lang-zh">立即预订</span></a>
@@ -296,41 +296,36 @@ Notes: ${notes||'-'}`;
     </div>
 
   </div>
-</section>
-
-<!-- TRUST BANNER -->
-<section class="trust-banner">
-  <div class="trust-grid">
-    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">Fixed Price</span><span class="lang-zh">一口价</span></div>
-    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">No Surge Pricing</span><span class="lang-zh">不动态加价</span></div>
-    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">All Tolls Included</span><span class="lang-zh">含所有过路费</span></div>
-    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">GST Included</span><span class="lang-zh">已含GST</span></div>
-    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">No Hidden Fees</span><span class="lang-zh">无隐藏费用</span></div>
-  </div>
-</section>
-
-<section style="padding:2rem 1.5rem;background:#fff">
-  <div class="container">
-    <div class="hot-suburbs" style="text-align:center">
-      <h3 style="color:var(--gray);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem;font-weight:600">
-        <span class="lang-en">Popular routes from</span><span class="lang-zh">热门路线 从</span> <span class="price-from" style="font-size:2rem;font-weight:800;color:var(--gold)">$80</span>
-      </h3>
-      <div class="hot-tags" style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
-        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">CBD $80</a>
-        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">St Kilda $90</a>
-        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Brighton $100</a>
-        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Toorak $100</a>
-        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Doncaster $100</a>
-        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Box Hill $100</a>
-        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Glen Waverley $100</a>
+  <!-- Stats + Price anchor -->
+    <div style="display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:1.5rem;padding:.7rem 1.2rem;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08)">
+      <div style="text-align:center">
+        <div style="font-size:1.2rem;font-weight:800;color:var(--gold)">5,000+</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px"><span class="lang-en">Trips</span><span class="lang-zh">行程</span></div>
       </div>
-      <p style="margin-top:.8rem;color:var(--gray);font-size:.8rem">
-        <span class="lang-en">All prices include 10% GST &amp; tolls &bull; Sedan base rate</span>
-        <span class="lang-zh">所有价格已含10% GST及过路费 &bull; 轿车基础价</span>
-      </p>
+      <div style="text-align:center">
+        <div style="font-size:1.2rem;font-weight:800;color:var(--gold)">5★</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px"><span class="lang-en">Ctrip</span><span class="lang-zh">携程评分</span></div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:1.2rem;font-weight:800;color:var(--gold)">🌐</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px"><span class="lang-en">Multi-lang</span><span class="lang-zh">多语言</span></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.2rem">
+      <span style="font-size:1.8rem;font-weight:800;color:var(--gold)">$80</span>
+      <span style="color:rgba(255,255,255,.45);font-size:.8rem;margin-left:.3rem"><span class="lang-en">from · sedan to most suburbs</span><span class="lang-zh">起 · 轿车至大部分区域</span></span>
+      <div style="display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem">
+        <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">CBD $80</a>
+        <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">Box Hill $100</a>
+        <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">Glen Waverley $100</a>
+        <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">Brighton $100</a>
+        <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">Frankston $160</a>
+      </div>
+      <p style="margin-top:.4rem;color:rgba(255,255,255,.35);font-size:.65rem"><span class="lang-en">All prices include 10% GST &amp; tolls</span><span class="lang-zh">含GST及过路费</span></p>
     </div>
   </div>
-</section></section>
+</section>
 
 <!-- FLEET -->
 <section class="fleet" id="fleet">
