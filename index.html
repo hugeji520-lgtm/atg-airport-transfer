@@ -63,7 +63,7 @@ section{padding:5rem 0}
 .hero .trust-line{font-size:1rem;color:var(--gold);font-weight:600;margin-bottom:2rem}
 .hero-strip{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
 .hero-strip span{color:rgba(255,255,255,.85);font-size:.9rem;display:flex;align-items:center;gap:.4rem}
-.hero-strip span::before{content:"\2713";color:var(--gold);font-weight:700}
+
 .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
 
 /* Hot suburbs */
@@ -285,35 +285,16 @@ Notes: ${notes||'-'}`;
       <span class="lang-zh">明码实价 &bull; 不动态加价 &bull; 含过路费 &bull; 含GST &bull; 无隐藏费用</span>
     </p>
     <div class="hero-strip anim anim-d3">
-      <span class="lang-en">Multi-language drivers</span>
-      <span class="lang-zh">多语言司机</span>
-      <span class="lang-en">Flight monitoring</span>
-      <span class="lang-zh">航班监控</span>
-      <span class="lang-en">Family friendly</span>
-      <span class="lang-zh">家庭友好</span>
-      <span class="lang-en">Meet &amp; greet</span>
-      <span class="lang-zh">到达厅举牌接机</span>
+      <span>✅ <span class="lang-en">Multi-language drivers</span><span class="lang-zh">多语言司机</span></span>
+      <span>✅ <span class="lang-en">Flight monitoring</span><span class="lang-zh">航班监控</span></span>
+      <span>✅ <span class="lang-en">Family friendly</span><span class="lang-zh">家庭友好</span></span>
+      <span>✅ <span class="lang-en">Meet &amp; greet</span><span class="lang-zh">举牌接机</span></span>
     </div>
     <div class="cta-row anim anim-d3">
       <a class="btn btn-primary" href="#booking"><span class="lang-en">Book Now</span><span class="lang-zh">立即预订</span></a>
       <a class="btn btn-green" href="https://wa.me/61430595120" target="_blank"><span class="lang-en">WhatsApp Us</span><span class="lang-zh">WhatsApp咨询</span></a>
     </div>
-    <div class="hot-suburbs anim anim-d3">
-      <h3><span class="lang-en">Popular routes from</span><span class="lang-zh">热门路线 从</span> <span class="price-from">$80</span></h3>
-      <div class="hot-tags">
-        <a class="hot-tag" href="#booking">CBD $80</a>
-        <a class="hot-tag" href="#booking">St Kilda $90</a>
-        <a class="hot-tag" href="#booking">Brighton $100</a>
-        <a class="hot-tag" href="#booking">Toorak $100</a>
-        <a class="hot-tag" href="#booking">Doncaster $100</a>
-        <a class="hot-tag" href="#booking">Box Hill $100</a>
-        <a class="hot-tag" href="#booking">Glen Waverley $100</a>
-      </div>
-      <p class="price-label" style="margin-top:.5rem">
-        <span class="lang-en">All prices include 10% GST &amp; tolls</span>
-        <span class="lang-zh">所有价格已含10% GST及过路费</span>
-      </p>
-    </div>
+
   </div>
 </section>
 
@@ -327,6 +308,29 @@ Notes: ${notes||'-'}`;
     <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg><span class="lang-en">No Hidden Fees</span><span class="lang-zh">无隐藏费用</span></div>
   </div>
 </section>
+
+<section style="padding:2rem 1.5rem;background:#fff">
+  <div class="container">
+    <div class="hot-suburbs" style="text-align:center">
+      <h3 style="color:var(--gray);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem;font-weight:600">
+        <span class="lang-en">Popular routes from</span><span class="lang-zh">热门路线 从</span> <span class="price-from" style="font-size:2rem;font-weight:800;color:var(--gold)">$80</span>
+      </h3>
+      <div class="hot-tags" style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">CBD $80</a>
+        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">St Kilda $90</a>
+        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Brighton $100</a>
+        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Toorak $100</a>
+        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Doncaster $100</a>
+        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Box Hill $100</a>
+        <a class="hot-tag" href="#booking" style="display:inline-block;background:var(--light);color:var(--navy);padding:.5rem 1.2rem;border-radius:50px;font-size:.85rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;font-weight:500">Glen Waverley $100</a>
+      </div>
+      <p style="margin-top:.8rem;color:var(--gray);font-size:.8rem">
+        <span class="lang-en">All prices include 10% GST &amp; tolls &bull; Sedan base rate</span>
+        <span class="lang-zh">所有价格已含10% GST及过路费 &bull; 轿车基础价</span>
+      </p>
+    </div>
+  </div>
+</section></section>
 
 <!-- FLEET -->
 <section class="fleet" id="fleet">
