@@ -442,37 +442,33 @@ Notes: ${notes||'-'}`;
   <div class="container">
     <h2 class="section-title"><span class="lang-en">Clear &amp; Transparent Surcharges</span><span class="lang-zh">透明附加费说明</span></h2>
     <p class="section-sub"><span class="lang-en">We believe in telling you everything upfront. These are all possible extras — nothing will surprise you.</span><span class="lang-zh">我们相信提前告知一切。以下是所有可能的附加费 — 不会有任何意外。</span></p>
-    <div class="surcharge-grid">
-      <div class="surcharge-card">
-        <h4>🌇 <span class="lang-en">Early / Late Hours</span><span class="lang-zh">早晚服务</span></h4>
-        <p><span class="lang-en">Before 6:00am or after 10:00pm</span><span class="lang-zh">早上6:00前或晚上10:00后</span></p>
-        <strong style="color:var(--navy);font-size:1.1rem">+$30</strong>
+
+    <div style="max-width:700px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--light)">
+        <span style="font-weight:600;color:var(--navy);font-size:.9rem"><span class="lang-en">🌇 Early / Late Hours</span><span class="lang-zh">🌇 早晚服务</span></span>
+        <span style="font-weight:700;color:var(--navy);font-size:1rem">+$30</span>
       </div>
-      <div class="surcharge-card">
-        <h4>📋 <span class="lang-en">Meet &amp; Greet (Optional)</span><span class="lang-zh">接机举牌（可选）</span></h4>
-        <p><span class="lang-en">Driver meets you at arrivals with a name sign</span><span class="lang-zh">司机在到达厅举牌接机</span></p>
-        <strong style="color:var(--navy);font-size:1.1rem">+$30</strong>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--border)">
+        <span style="font-weight:600;color:var(--navy);font-size:.9rem"><span class="lang-en">📋 Meet &amp; Greet <span style="font-weight:400;color:var(--gray);font-size:.8rem">(Optional)</span></span><span class="lang-zh">📋 接机举牌 <span style="font-weight:400;color:var(--gray);font-size:.8rem">（可选）</span></span></span>
+        <span style="font-weight:700;color:var(--navy);font-size:1rem">+$30</span>
       </div>
-      <div class="surcharge-card">
-        <h4>👶 <span class="lang-en">Child Seats</span><span class="lang-zh">儿童座椅</span> <span class="tag"><span class="lang-en">Family Friendly</span><span class="lang-zh">家庭友好</span></span></h4>
-        <p><span class="lang-en">First child seat FREE, then +$20 each additional</span><span class="lang-zh">第一个免费，之后每个+$20</span></p>
-        <strong style="color:var(--navy);font-size:1.1rem"><span class="lang-en">1st Free</span><span class="lang-zh">第一个免费</span></strong>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--border)">
+        <span style="font-weight:600;color:var(--navy);font-size:.9rem"><span class="lang-en">👶 Child Seats</span><span class="lang-zh">👶 儿童座椅</span> <span style="display:inline-block;background:rgba(212,168,67,.12);color:var(--gold);font-size:.7rem;padding:.15rem .5rem;border-radius:4px;font-weight:600;margin-left:.3rem"><span class="lang-en">1st Free</span><span class="lang-zh">首个免费</span></span></span>
+        <span style="font-weight:700;color:var(--navy);font-size:1rem"><span class="lang-en">Free then +$20</span><span class="lang-zh">免费后+$20</span></span>
       </div>
-      <div class="surcharge-card">
-        <h4>⏱️ <span class="lang-en">Excess Waiting Time</span><span class="lang-zh">超时等待</span></h4>
-        <p><span class="lang-en">After free waiting period expires</span><span class="lang-zh">免费等待时间结束后</span></p>
-        <strong style="color:var(--navy);font-size:1.1rem">$1 <small><span class="lang-en">/ min</span><span class="lang-zh">/分钟</span></small></strong>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;">
+        <span style="font-weight:600;color:var(--navy);font-size:.9rem"><span class="lang-en">⏱️ Excess Waiting Time</span><span class="lang-zh">⏱️ 超时等待</span></span>
+        <span style="font-weight:700;color:var(--navy);font-size:1rem">$1 <small style="font-weight:400;color:var(--gray);font-size:.8rem"><span class="lang-en">/ min</span><span class="lang-zh">/分钟</span></small></span>
       </div>
     </div>
-    <div class="surcharge-note">
-      <strong><span class="lang-en">Free waiting:</span><span class="lang-zh">免费等待时间：</span></strong>
-      <span class="lang-en">International flights — 90 min from actual landing. Domestic — 45 min. Drop-offs — 15 min.</span>
-      <span class="lang-zh">国际航班 — 从实际落地算90分钟。国内 — 45分钟。送机 — 15分钟。</span>
+
+    <div style="max-width:700px;margin:.8rem auto 0;text-align:center;color:var(--gray);font-size:.85rem;padding:.8rem;background:#fff8e1;border:1px solid #ffe082;border-radius:8px">
+      <strong><span class="lang-en">Free waiting:</span><span class="lang-zh">免费等待：</span></strong>
+      <span class="lang-en">Airport pickup — 90 min intl / 45 min domestic from actual landing. Drop-off — 15 min.</span>
+      <span class="lang-zh">接机 — 国际90分钟/国内45分钟，从落地算。送机 — 15分钟。</span>
     </div>
   </div>
-</section>
-
-<!-- WHY US -->
+</section><!-- WHY US -->
 <section class="about" id="about">
   <div class="container">
     <h2 class="section-title"><span class="lang-en">Why Choose ATG?</span><span class="lang-zh">为什么选择ATG？</span></h2>
