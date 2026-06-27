@@ -7,8 +7,7 @@
 <meta name="description" content="ATG Airport Transfer Melbourne. Fixed price airport transfers from Melbourne Airport to all suburbs. No surge, no hidden fees. Multilingual drivers. Book now.">
 
 <style>
-:root{--navy:#0f1b2d;--gold:#d4a843;--dark:#1a1a2e;--green:#25D366;--light:#f8f9fa;--gray:#666;--border:#e0e0e0
-.hero{min-height:85vh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center 30%/cover;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}}
+:root{--navy:#0f1b2d;--gold:#d4a843;--dark:#1a1a2e;--green:#25D366;--light:#f8f9fa;--gray:#666;--border:#e0e0e0}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;color:#1a1a2e;background:#fff}
@@ -48,43 +47,169 @@ section{padding:5rem 0}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
 .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px}
 @media(max-width:768px){
-  .hero{min-height:auto;padding:5rem 1rem 1.5rem}
-  .hero h1{font-size:1.5rem}
-  .hero .tagline,.hero .trust-line{font-size:.85rem}
-  .hero-content{max-width:100%}
-  .hero-strip{gap:.35rem;margin-bottom:.8rem}
-  .hero-strip span{font-size:.68rem;padding:.2rem .5rem}
-  .hero-price{position:static;margin-top:1rem}
-  .hero-price span{font-size:1.4rem}
-  .cta-row{gap:.4rem}
-  .cta-row .btn{font-size:.8rem;padding:.6rem 1rem}
-  .stats-bar{gap:.8rem;padding:.5rem}
-  .stats-bar div{font-size:.9rem}
-  section{padding:2.5rem 1rem}
-  .fleet-grid{grid-template-columns:1fr 1fr;gap:.8rem}
-  .fleet-card{padding:1.2rem .8rem}
-  .fleet-card img{height:100px}
-  .fleet-price{font-size:1.1rem}
-  .price-intro{flex-direction:column}
-  .price-grid{grid-template-columns:1fr 1fr}
-  .about-grid{grid-template-columns:1fr}
-  .booking-wrap{grid-template-columns:minmax(0,1fr)}
-  .form-row{grid-template-columns:minmax(0,1fr)}
-  .submit-row{flex-direction:column}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(15,27,45,.98);flex-direction:column;padding:1.5rem;gap:1.2rem;align-items:flex-start}
+  .nav-links.active{display:flex}
+  .hamburger{display:flex}
+}
+
+/* ===== HERO ===== */
+.hero{min-height:85vh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center 70%/cover fixed;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.06) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:1;max-width:850px}
+.hero-badge{display:inline-block;background:rgba(212,168,67,.15);color:var(--gold);padding:.35rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(212,168,67,.25)}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);color:#fff;line-height:1.15;margin-bottom:.75rem}
+.hero h1 .hl{color:var(--gold)}
+.hero .tagline{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.75);margin-bottom:.5rem;line-height:1.5}
+.hero .trust-line{font-size:1rem;color:var(--gold);font-weight:600;margin-bottom:2rem}
+.hero-strip{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.hero-strip span{color:rgba(255,255,255,.85);font-size:.9rem;display:flex;align-items:center;gap:.4rem}
+
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+
+/* Hot suburbs */
+.hot-suburbs h3{color:rgba(255,255,255,.6);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem;font-weight:600}
+.hot-tags{display:flex;gap:.6rem;flex-wrap:wrap}
+.hot-tag{background:rgba(255,255,255,.08);color:#fff;padding:.4rem 1rem;border-radius:50px;font-size:.8rem;text-decoration:none;border:1px solid rgba(255,255,255,.12);transition:all .2s}
+.hot-tag:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.price-from{font-size:2.5rem;font-weight:800;color:var(--gold);display:inline-block;margin-right:.3rem}
+.price-label{color:rgba(255,255,255,.5);font-size:.85rem}
+
+/* ===== TRUST BANNER ===== */
+.trust-banner{background:var(--navy);padding:1.5rem 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.trust-grid{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500}
+.trust-item svg{width:20px;height:20px;fill:var(--gold);flex-shrink:0}
+
+/* ===== FLEET ===== */
+.fleet{background:var(--light)}
+.fleet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.fleet-card{background:#fff;border-radius:16px;padding:2.5rem 2rem;text-align:center;border:1px solid var(--border);transition:all .3s}
+.fleet-card.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,168,67,.15)}
+.fleet-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.08)}
+.fleet-icon{font-size:2.5rem;margin-bottom:.8rem}
+.fleet-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:.3rem}
+.fleet-card .capacity{color:var(--gray);font-size:.85rem;margin-bottom:.5rem}
+.fleet-card .fleet-price{font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:.3rem}
+.fleet-card .fleet-price small{font-size:.85rem;font-weight:400;color:var(--gray)}
+.fleet-card .fleet-badge{display:inline-block;background:rgba(212,168,67,.12);color:var(--gold);font-size:.7rem;padding:.2rem .6rem;border-radius:4px;font-weight:600;margin-bottom:.8rem}
+.fleet-card p{color:var(--gray);font-size:.85rem;line-height:1.5}
+.fleet-card .contact-cta{display:inline-block;margin-top:.8rem;color:var(--gold);font-weight:600;font-size:.85rem;text-decoration:none}
+.fleet-card .contact-cta:hover{text-decoration:underline}
+
+/* ===== PRICING ===== */
+.pricing .container{max-width:1100px}
+.price-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.price-intro-text{flex:1;min-width:280px}
+.price-highlight{background:var(--light);border-radius:16px;padding:1.5rem 2rem;border:1px solid var(--border)}
+.price-highlight .big{font-size:2.2rem;font-weight:800;color:var(--navy)}
+.price-highlight small{color:var(--gray);font-size:.85rem}
+.price-toggle{display:flex;gap:.5rem;margin-bottom:2rem}
+.price-toggle button{padding:.5rem 1.2rem;border-radius:50px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:.85rem;transition:all .2s}
+.price-toggle button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pricing-table{display:none}
+.pricing-table.active{display:block}
+.price-grid{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:flex-start}.price-cat{flex:0 0 calc(16.66% - .8rem);min-width:170px}
+.price-item{display:flex;justify-content:space-between;padding:.55rem 1rem;background:var(--light);border-radius:8px;font-size:.85rem}
+.price-item .suburb{font-weight:500}
+.price-item .cost{font-weight:700;color:var(--navy)}
+.price-footnote{margin-top:1.5rem;padding:1.5rem 2rem;background:#fff8e1;border:1px solid #ffe082;border-radius:12px;font-size:.85rem;color:#555}
+.price-footnote strong{color:var(--navy)}
+
+/* ===== SURCHARGES ===== */
+.surcharges{background:var(--light)}
+.surcharge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.surcharge-card{background:#fff;border-radius:12px;padding:1.5rem 2rem;border:1px solid var(--border)}
+.surcharge-card h4{color:var(--navy);margin-bottom:.5rem;font-size:.95rem;display:flex;align-items:center;gap:.5rem}
+.surcharge-card p{color:var(--gray);font-size:.85rem;line-height:1.5}
+.surcharge-card .tag{display:inline-block;background:rgba(212,168,67,.12);color:var(--gold);font-size:.7rem;padding:.2rem .6rem;border-radius:4px;font-weight:600}
+.surcharge-note{margin-top:2rem;text-align:center;color:var(--gray);font-size:.85rem}
+.surcharge-note strong{color:var(--navy)}
+
+/* ===== ABOUT ===== */
+.about{background:#fff}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+.about-card{text-align:center;padding:2rem}
+.about-card .icon{font-size:2.5rem;margin-bottom:1rem}
+.about-card h3{color:var(--navy);font-size:1rem;margin-bottom:.5rem}
+.about-card p{color:var(--gray);font-size:.85rem;line-height:1.5}
+
+/* ===== BOOKING ===== */
+.booking{background:linear-gradient(135deg,#0f1b2d,#1a2a4a);color:#fff}
+.booking .section-title{color:#fff}
+.booking .section-sub{color:rgba(255,255,255,.6)}
+.booking-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:start}
+@media(max-width:768px){.booking-wrap{grid-template-columns:minmax(0,1fr)}}
+.booking-info h3{color:var(--gold);margin-bottom:1rem}
+.booking-info ul{list-style:none;padding:0}
+.booking-info li{padding:.5rem 0;color:rgba(255,255,255,.75);font-size:.9rem;padding-left:1.5rem;position:relative}
+.booking-info li::before{content:"\2713";position:absolute;left:0;color:var(--gold);font-weight:700}
+.booking-form{background:rgba(255,255,255,.08);border-radius:16px;padding:2rem;border:1px solid rgba(255,255,255,.12)}
+.form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.8rem;margin-bottom:.8rem}
+@media(max-width:500px){.form-row{grid-template-columns:minmax(0,1fr)}}
+.form-group{margin-bottom:.8rem}
+.form-group label{display:block;margin-bottom:.3rem;font-size:.8rem;color:rgba(255,255,255,.7)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem;transition:all .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.1)}
+.form-group select option{background:var(--navy);color:#fff}
+.form-submit{width:100%;padding:.9rem;border-radius:50px;background:var(--gold);color:var(--navy);font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all .3s}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,168,67,.3)}
+.submit-row{display:flex;gap:.8rem;margin-top:.5rem;flex-wrap:wrap}
+.submit-row .btn{flex:1 1 140px;justify-content:center;min-width:0}
+
+/* ===== FOOTER ===== */
+footer{background:#0a0f1a;color:rgba(255,255,255,.5);padding:3rem 1.5rem;text-align:center}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;max-width:900px;margin:0 auto 2rem;text-align:left}
+footer h4{color:var(--gold);margin-bottom:.8rem;font-size:.9rem}
+footer p,footer a{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.8;text-decoration:none}
+footer a:hover{color:var(--gold)}
+.copyright{border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;font-size:.75rem}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;background:var(--green);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.35);text-decoration:none;transition:all .3s}
+.whatsapp-float:hover{transform:scale(1.1)}
+.whatsapp-float svg{width:28px;height:28px;fill:#fff}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fadeUp .6s ease forwards;opacity:0}
+.anim-d1{animation-delay:.1s}
+.anim-d2{animation-delay:.2s}
+.anim-d3{animation-delay:.3s}
+
+@media(max-width:768px){
+  .hero{min-height:auto!important;padding:5rem 1rem 2rem!important}
+  .hero-price{position:static!important;margin-top:1.5rem}
+  .hero h1{font-size:1.6rem!important}
+  .hero .tagline,.hero .trust-line{font-size:.9rem!important}
+  .hero-content{max-width:100%!important}
+  .hero-strip{gap:.4rem!important;margin-bottom:1rem!important}
+  .hero-strip span{font-size:.7rem!important;padding:.2rem .6rem!important}
+  .cta-row{gap:.5rem!important}
+  .cta-row .btn{font-size:.85rem!important;padding:.7rem 1.2rem!important}
+  .price-from{font-size:2rem!important}
+  .stats-bar{gap:1rem!important;padding:.5rem!important}
+  .stats-bar div{font-size:1rem!important}
+  section{padding:3rem 1rem!important}
+  .fleet-grid{grid-template-columns:1fr 1fr!important;gap:1rem!important}
+  .fleet-card{padding:1.5rem 1rem!important}
+  .fleet-card img{height:120px!important}
+  .fleet-price{font-size:1.2rem!important}
+  .price-intro{flex-direction:column!important}
+  .price-grid{grid-template-columns:1fr 1fr!important}
+  .surcharge-grid{grid-template-columns:1fr!important}
+  .about-grid{grid-template-columns:1fr!important}
+  .booking-wrap{grid-template-columns:1fr!important}
+  .form-row{grid-template-columns:1fr!important}
+  .submit-row{flex-direction:column!important}
+  .footer-grid{grid-template-columns:1fr 1fr!important;gap:1rem!important}
   .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(15,27,45,.98);flex-direction:column;padding:1.5rem;gap:1.2rem;align-items:flex-start;z-index:999}
   .nav-links.active{display:flex}
   .hamburger{display:flex}
-  .whatsapp-float{width:44px;height:44px;bottom:.8rem;right:.8rem}
-  .whatsapp-float svg{width:22px;height:22px}
+  .whatsapp-float{width:48px;height:48px;bottom:1rem;right:1rem}
+  .whatsapp-float svg{width:24px;height:24px}
 }
 @media(max-width:480px){
-  .fleet-grid{grid-template-columns:1fr}
-  .price-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr;text-align:center}
-  .hot-tags{gap:.25rem}
-  .hot-tags a{font-size:.65rem;padding:.15rem .5rem}
-}
+  .fleet-grid{grid-template-columns:1fr!important}
   .price-grid{grid-template-columns:1fr!important}
   .footer-grid{grid-template-columns:1fr!important;text-align:center!important}
   .hot-tags{gap:.3rem!important}
@@ -93,6 +218,38 @@ section{padding:5rem 0}
 }
 .hero-price{position:absolute;bottom:1.5rem;left:0;right:0;text-align:center}
 .booking-info{min-width:0;overflow-wrap:anywhere}
+
+/* ===== MOBILE ONLY ===== */
+@media(max-width:768px){
+  .hero{min-height:auto!important;padding:5rem 1rem 2rem!important;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center 70%/cover!important}
+  .hero h1{font-size:1.5rem!important}
+  .hero .tagline,.hero .trust-line{font-size:.85rem!important}
+  .hero-content{max-width:100%!important}
+  .hero-strip{gap:.35rem!important;margin-bottom:.8rem!important}
+  .hero-strip span{font-size:.68rem!important;padding:.2rem .5rem!important}
+  .hero-price{position:static!important;margin-top:1rem!important}
+  .cta-row{gap:.5rem!important}
+  .cta-row .btn{font-size:.8rem!important;padding:.6rem 1rem!important}
+  section{padding:2.5rem 1rem!important}
+  .fleet-grid{grid-template-columns:1fr 1fr!important;gap:.8rem!important}
+  .fleet-card{padding:1.2rem .8rem!important}
+  .fleet-card img{height:100px!important}
+  .price-intro{flex-direction:column!important}
+  .price-grid{grid-template-columns:1fr 1fr!important}
+  .about-grid{grid-template-columns:1fr!important}
+  .booking-wrap{grid-template-columns:minmax(0,1fr)!important}
+  .form-row{grid-template-columns:minmax(0,1fr)!important}
+  .submit-row{flex-direction:column!important}
+  .footer-grid{grid-template-columns:1fr 1fr!important;gap:1rem!important}
+  .nav-links{display:none!important;position:fixed;top:68px;left:0;right:0;background:rgba(15,27,45,.98);flex-direction:column;padding:1.5rem;gap:1.2rem;align-items:flex-start;z-index:999}
+  .nav-links.active{display:flex!important}
+  .whatsapp-float{width:44px!important;height:44px!important;bottom:.8rem!important;right:.8rem!important}
+}
+@media(max-width:480px){
+  .fleet-grid{grid-template-columns:1fr!important}
+  .price-grid{grid-template-columns:1fr!important}
+  .footer-grid{grid-template-columns:1fr!important;text-align:center!important}
+}
 </style>
 <meta property="og:title" content="ATG Airport Transfer Melbourne | Fixed Price Airport Transfers">
 <meta property="og:description" content="Fixed price airport transfers from Melbourne Airport. No surge, no hidden fees. Multilingual drivers. Book now.">
