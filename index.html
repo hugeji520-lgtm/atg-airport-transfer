@@ -137,15 +137,15 @@ section{padding:5rem 0}
 .booking{background:linear-gradient(135deg,#0f1b2d,#1a2a4a);color:#fff}
 .booking .section-title{color:#fff}
 .booking .section-sub{color:rgba(255,255,255,.6)}
-.booking-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-@media(max-width:768px){.booking-wrap{grid-template-columns:1fr}}
+.booking-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:start}
+@media(max-width:768px){.booking-wrap{grid-template-columns:minmax(0,1fr)}}
 .booking-info h3{color:var(--gold);margin-bottom:1rem}
 .booking-info ul{list-style:none;padding:0}
 .booking-info li{padding:.5rem 0;color:rgba(255,255,255,.75);font-size:.9rem;padding-left:1.5rem;position:relative}
 .booking-info li::before{content:"\2713";position:absolute;left:0;color:var(--gold);font-weight:700}
 .booking-form{background:rgba(255,255,255,.08);border-radius:16px;padding:2rem;border:1px solid rgba(255,255,255,.12)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
-@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.8rem;margin-bottom:.8rem}
+@media(max-width:500px){.form-row{grid-template-columns:minmax(0,1fr)}}
 .form-group{margin-bottom:.8rem}
 .form-group label{display:block;margin-bottom:.3rem;font-size:.8rem;color:rgba(255,255,255,.7)}
 .form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem;transition:all .2s}
@@ -153,8 +153,8 @@ section{padding:5rem 0}
 .form-group select option{background:var(--navy);color:#fff}
 .form-submit{width:100%;padding:.9rem;border-radius:50px;background:var(--gold);color:var(--navy);font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all .3s}
 .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,168,67,.3)}
-.submit-row{display:flex;gap:.8rem;margin-top:.5rem}
-.submit-row .btn{flex:1;justify-content:center}
+.submit-row{display:flex;gap:.8rem;margin-top:.5rem;flex-wrap:wrap}
+.submit-row .btn{flex:1 1 140px;justify-content:center;min-width:0}
 
 /* ===== FOOTER ===== */
 footer{background:#0a0f1a;color:rgba(255,255,255,.5);padding:3rem 1.5rem;text-align:center}
@@ -178,6 +178,7 @@ footer a:hover{color:var(--gold)}
 
 @media(max-width:768px){
   .hero{min-height:auto!important;padding:5rem 1rem 2rem!important}
+  .hero-price{position:static!important;margin-top:1.5rem}
   .hero h1{font-size:1.6rem!important}
   .hero .tagline,.hero .trust-line{font-size:.9rem!important}
   .hero-content{max-width:100%!important}
@@ -215,6 +216,8 @@ footer a:hover{color:var(--gold)}
   .hot-tags a{font-size:.7rem!important;padding:.2rem .6rem!important}
   .hot-suburbs h3{font-size:.7rem!important}
 }
+.hero-price{position:absolute;bottom:1.5rem;left:0;right:0;text-align:center}
+.booking-info{min-width:0;overflow-wrap:anywhere}
 </style>
 <meta property="og:title" content="ATG Airport Transfer Melbourne | Fixed Price Airport Transfers">
 <meta property="og:description" content="Fixed price airport transfers from Melbourne Airport. No surge, no hidden fees. Multilingual drivers. Book now.">
@@ -364,7 +367,7 @@ Notes: ${notes||'-'}`;
 
   </div>
 
-  <div style="position:absolute;bottom:1.5rem;left:0;right:0;text-align:center">
+  <div class="hero-price">
     <span style="font-size:1.8rem;font-weight:800;color:var(--gold)">$80</span>
     <span style="color:rgba(255,255,255,.45);font-size:.8rem;margin-left:.3rem"><span class="lang-en">from · sedan to selected suburbs</span><span class="lang-zh">起 · 轿车至部分区域</span></span>
     <div style="display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem">
@@ -544,7 +547,7 @@ Notes: ${notes||'-'}`;
       <div class="about-card">
         <div class="icon">🌏</div>
         <h3><span class="lang-en">Multilingual Drivers</span><span class="lang-zh">多语言司机</span></h3>
-        <p><span class="lang-en">Our team speaks English, Mandarin, Cantonese, Malay and more and more — so travellers from many backgrounds feel right at home.</span>
+        <p><span class="lang-en">Our team speaks English, Mandarin, Cantonese, Malay and more — so travellers from many backgrounds feel right at home.</span>
            <span class="lang-zh">我们的司机会讲英文、普通话、粤语、马来语等等，让来自不同地方的客人都倍感亲切。</span></p>
       </div>
       <div class="about-card">
