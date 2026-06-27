@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ATG Airport Transfer Melbourne | Fixed Price Airport Transfers</title>
-<meta name="description" content="ATG Airport Transfer Melbourne. Fixed price airport transfers from Melbourne Airport to all suburbs. No surge, no hidden fees. Multi-language drivers. Book now.">
+<meta name="description" content="ATG Airport Transfer Melbourne. Fixed price airport transfers from Melbourne Airport to all suburbs. No surge, no hidden fees. Multilingual drivers. Book now.">
 
 <style>
 :root{--navy:#0f1b2d;--gold:#d4a843;--dark:#1a1a2e;--green:#25D366;--light:#f8f9fa;--gray:#666;--border:#e0e0e0}
@@ -53,7 +53,7 @@ section{padding:5rem 0}
 }
 
 /* ===== HERO ===== */
-.hero{min-height:85vh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center/cover fixed;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero{min-height:85vh;display:flex;align-items:center;background:linear-gradient(135deg,rgba(15,27,45,.85),rgba(26,42,74,.7)),url('hero-car.jpg') center 80%/cover fixed;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.06) 0%,transparent 60%)}
 .hero-content{position:relative;z-index:1;max-width:850px}
 .hero-badge{display:inline-block;background:rgba(212,168,67,.15);color:var(--gold);padding:.35rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(212,168,67,.25)}
@@ -176,7 +176,15 @@ footer a:hover{color:var(--gold)}
 .anim-d2{animation-delay:.2s}
 .anim-d3{animation-delay:.3s}
 </style>
-</head>
+<meta property="og:title" content="ATG Airport Transfer Melbourne | Fixed Price Airport Transfers">
+<meta property="og:description" content="Fixed price airport transfers from Melbourne Airport. No surge, no hidden fees. Multilingual drivers. Book now.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://atgairporttransfer.com.au">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"ATG Airport Transfer","description":"Melbourne airport transfer service. Fixed price, no surge, no hidden fees.","url":"https://atgairporttransfer.com.au","telephone":"+614****5120","areaServed":{"@type":"City","name":"Melbourne"},"priceRange":"$$"}
+</script></head>
 <body>
 
 <script defer>
@@ -226,7 +234,7 @@ function submitWhatsApp(){
   const p = document.getElementById('w_phone').value;
   const a = document.getElementById('w_address').value;
   if(!n||!p||!a){ alert(document.documentElement.getAttribute('data-lang')==='zh'?'请填写姓名、电话和地址':'Please fill in name, phone and address'); return; }
-  const dt = document.getElementById('w_date').value;
+  const dt = document.getElementById('w_year').value + '-' + document.getElementById('w_month').value.padStart(2,'0') + '-' + document.getElementById('w_day').value.padStart(2,'0');
   const tm = document.getElementById('w_time').value;
   const dir = document.getElementById('w_dir').value;
   const fl = document.getElementById('w_flight').value;
@@ -276,7 +284,7 @@ Notes: ${notes||'-'}`;
       <span class="lang-zh">墨尔本机场专车接送</span>
     </div>
     <h1 class="anim anim-d1">
-      <span class="lang-en">Your Ride, <span class="hl">Fixed.</span></span>
+      <span class="lang-en">Your Ride. <span class="hl">One Fixed Price.</span></span>
       <span class="lang-zh">您的行程，<span class="hl">一口价。</span></span>
     </h1>
     <p class="tagline anim anim-d2">
@@ -288,8 +296,8 @@ Notes: ${notes||'-'}`;
       <span class="lang-zh">明码实价 &bull; 不动态加价 &bull; 含过路费 &bull; 含GST &bull; 无隐藏费用</span>
     </p>
     <div class="hero-strip anim anim-d3" style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem">
-      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">🌐 <span class="lang-en">Multi-language</span><span class="lang-zh">多语言</span></span>
-      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">✈️ <span class="lang-en">Flight monitor</span><span class="lang-zh">航班监控</span></span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">🌐 <span class="lang-en">Multilingual</span><span class="lang-zh">多语言</span></span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">✈️ <span class="lang-en">Flight Monitoring</span><span class="lang-zh">航班监控</span></span>
       <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">👨‍👩‍👧 <span class="lang-en">Family friendly</span><span class="lang-zh">家庭友好</span></span>
       <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:50px;font-size:.78rem;color:rgba(255,255,255,.85)">🪧 <span class="lang-en">Meet &amp; greet</span><span class="lang-zh">举牌接机</span></span>
     </div>
@@ -310,7 +318,7 @@ Notes: ${notes||'-'}`;
       </div>
       <div style="text-align:center">
         <div style="font-size:1.2rem;font-weight:800;color:var(--gold)">🌐</div>
-        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px"><span class="lang-en">Multi-lang</span><span class="lang-zh">多语言</span></div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px"><span class="lang-en">Multilingual</span><span class="lang-zh">多语言</span></div>
       </div>
     </div>
 
@@ -318,7 +326,7 @@ Notes: ${notes||'-'}`;
 
   <div style="position:absolute;bottom:1.5rem;left:0;right:0;text-align:center">
     <span style="font-size:1.8rem;font-weight:800;color:var(--gold)">$80</span>
-    <span style="color:rgba(255,255,255,.45);font-size:.8rem;margin-left:.3rem"><span class="lang-en">from · sedan to selected suburbs</span><span class="lang-zh">起 · 轿车至部分区域</span></span>
+    <span style="color:rgba(255,255,255,.45);font-size:.8rem;margin-left:.3rem"><span class="lang-en">From $80 — sedan to selected suburbs</span><span class="lang-zh">起 · 轿车至部分区域</span></span>
     <div style="display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem">
       <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">CBD $80</a>
       <a href="#booking" style="display:inline-block;background:rgba(255,255,255,.06);color:#fff;padding:.25rem .8rem;border-radius:50px;font-size:.75rem;text-decoration:none;border:1px solid rgba(255,255,255,.1)">Box Hill $100</a>
@@ -338,49 +346,49 @@ Notes: ${notes||'-'}`;
     <p class="section-sub"><span class="lang-en">Choose the perfect vehicle for your journey</span><span class="lang-zh">为您的旅程选择最合适的车型</span></p>
     <div class="fleet-grid">
       <div class="fleet-card featured">
-        <div class="fleet-icon"><svg viewBox="0 0 24 24" width="40" height="40" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><path d="M5 17a2 2 0 0 1-2-2V9l2-3h3l1 2h6l1-2h3l2 3v6a2 2 0 0 1-2 2"/><circle cx="7" cy="17" r="1.5"/><circle cx="17" cy="17" r="1.5"/><path d="M6 12h4"/></svg></div>
+        <div class="fleet-icon"><img src="sedan.png" alt="Sedan" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
         <h3><span class="lang-en">Sedan</span><span class="lang-zh">轿车</span></h3>
         <p class="capacity"><span class="lang-en">Up to 4 passengers &bull; 2 suitcases</span><span class="lang-zh">4座 &bull; 2件行李</span></p>
         <div class="fleet-price">$80 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Perfect for solo travellers and couples. Comfortable, efficient.</span><span class="lang-zh">适合单人或情侣出行，舒适快捷。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><svg viewBox="0 0 24 24" width="42" height="42" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><path d="M4 17a2 2 0 0 1-2-2V9l3-4h2l2 3h5l2 3h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2"/><circle cx="6" cy="17" r="1.5"/><circle cx="18" cy="17" r="1.5"/></svg></div>
-        <h3>SUV</h3>
+        <div class="fleet-icon"><img src="suv.png" alt="SUV" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+        <h3><span class="lang-en">SUV</span><span class="lang-zh">SUV</span></h3>
         <p class="capacity"><span class="lang-en">Up to 6 passengers &bull; 3 suitcases</span><span class="lang-zh">6座 &bull; 3件行李</span></p>
         <div class="fleet-price">$90 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Spacious and comfortable. Great for extra luggage.</span><span class="lang-zh">空间宽敞，适合行李较多的旅客。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><svg viewBox="0 0 24 24" width="40" height="40" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><path d="M5 17a2 2 0 0 1-2-2V9l2-3h3l1 2h6l1-2h3l2 3v6a2 2 0 0 1-2 2"/><circle cx="7" cy="17" r="1.5"/><circle cx="17" cy="17" r="1.5"/><path d="M12 4l1 2h-2z" fill="var(--gold)"/></svg></div>
+        <div class="fleet-icon"><img src="luxury-sedan.png" alt="Luxury Sedan" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
         <h3><span class="lang-en">Luxury Sedan</span><span class="lang-zh">豪华轿车</span></h3>
         <p class="capacity"><span class="lang-en">Up to 4 passengers &bull; 2 suitcases</span><span class="lang-zh">4座 &bull; 2件行李</span></p>
         <div class="fleet-price">$100 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Premium vehicles for business travel and special occasions.</span><span class="lang-zh">商务出行和特殊场合的首选，高端体验。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><svg viewBox="0 0 24 24" width="42" height="42" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><path d="M4 17a2 2 0 0 1-2-2V9l3-4h2l2 3h5l2 3h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2"/><circle cx="6" cy="17" r="1.5"/><circle cx="18" cy="17" r="1.5"/><path d="M12 4l1 2h-2z" fill="var(--gold)"/></svg></div>
+        <div class="fleet-icon"><img src="luxury-suv.png" alt="Luxury SUV" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
         <h3><span class="lang-en">Luxury SUV</span><span class="lang-zh">豪华SUV</span></h3>
         <p class="capacity"><span class="lang-en">Up to 6 passengers &bull; 3 suitcases</span><span class="lang-zh">6座 &bull; 3件行李</span></p>
         <div class="fleet-price">$105 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Premium SUV with executive comfort and extra luggage space.</span><span class="lang-zh">豪华SUV，行政级舒适，行李空间充足。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><rect x="2" y="8" width="20" height="9" rx="1"/><rect x="6" y="5" width="16" height="9" rx="1" opacity=".4"/><circle cx="6" cy="17" r="1.5"/><circle cx="18" cy="17" r="1.5"/></svg></div>
+        <div class="fleet-icon"><img src="van.png" alt="Van" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
         <h3><span class="lang-en">Van</span><span class="lang-zh">商务车 Van</span></h3>
         <p class="capacity"><span class="lang-en">Up to 7 passengers &bull; 5-6 suitcases</span><span class="lang-zh">7座 &bull; 5-6件行李</span></p>
         <div class="fleet-price">$100 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Ideal for groups, sports teams, and large families.</span><span class="lang-zh">适合团体出游、运动队和大家庭。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><rect x="2" y="8" width="20" height="9" rx="1"/><rect x="6" y="5" width="16" height="9" rx="1" opacity=".4"/><circle cx="6" cy="17" r="1.5"/><circle cx="18" cy="17" r="1.5"/><path d="M12 3l1 2h-2z" fill="var(--gold)"/></svg></div>
+        <div class="fleet-icon"><img src="luxury-van.png" alt="Luxury Van" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
         <h3><span class="lang-en">Luxury Van</span><span class="lang-zh">豪华 Van</span></h3>
         <p class="capacity"><span class="lang-en">Up to 7 passengers &bull; 5-6 suitcases</span><span class="lang-zh">7座 &bull; 5-6件行李</span></p>
         <div class="fleet-price">$110 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Premium people mover with leather seats and extra comfort.</span><span class="lang-zh">豪华商务车，真皮座椅，舒适升级。</span></p>
       </div>
       <div class="fleet-card" style="grid-column:1/-1;max-width:500px;margin:0 auto">
-        <div class="fleet-icon"><svg viewBox="0 0 24 24" width="44" height="44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><rect x="3" y="5" width="18" height="13" rx="2"/><rect x="5" y="7" width="14" height="6" rx="1" opacity=".3"/><circle cx="8" cy="18" r="1.5"/><circle cx="16" cy="18" r="1.5"/><line x1="3" y1="11" x2="21" y2="11" opacity=".3"/></svg></div>
+        <div class="fleet-icon"><img src="bus.png" alt="Bus" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
         <h3><span class="lang-en">Bus (12/24/54 Seats)</span><span class="lang-zh">巴士（12/24/54座）</span></h3>
         <p><span class="lang-en">Need a bus for your group? Contact us for a custom quote.</span><span class="lang-zh">需要巴士？请联系我们获取定制报价。</span></p>
         <a class="contact-cta" href="https://wa.me/61430595120" target="_blank"><span class="lang-en">Contact us →</span><span class="lang-zh">联系我们 →</span></a>
@@ -487,7 +495,7 @@ Notes: ${notes||'-'}`;
         <div style="font-size:.8rem;color:var(--gray)"><span class="lang-en">Ctrip Rating</span><span class="lang-zh">携程评分</span></div>
       </div>
       <div style="text-align:center">
-        <div style="font-size:1.6rem;font-weight:800;color:var(--navy)"><span class="lang-en">Multi-language</span><span class="lang-zh">多种语言</span></div>
+        <div style="font-size:1.6rem;font-weight:800;color:var(--navy)"><span class="lang-en">Multilingual</span><span class="lang-zh">多种语言</span></div>
         <div style="font-size:.8rem;color:var(--gray)"><span class="lang-en">Drivers available</span><span class="lang-zh">司机可选</span></div>
       </div>
     </div>
@@ -495,7 +503,7 @@ Notes: ${notes||'-'}`;
     <div class="about-grid">
       <div class="about-card">
         <div class="icon">🌏</div>
-        <h3><span class="lang-en">Multi-Language Drivers</span><span class="lang-zh">多语言司机</span></h3>
+        <h3><span class="lang-en">Multilingual Drivers</span><span class="lang-zh">多语言司机</span></h3>
         <p><span class="lang-en">Our team speaks English, Mandarin, Cantonese, Malay and more and more — so travellers from many backgrounds feel right at home.</span>
            <span class="lang-zh">我们的司机会讲英文、普通话、粤语、马来语等等，让来自不同地方的客人都倍感亲切。</span></p>
       </div>
@@ -506,10 +514,10 @@ Notes: ${notes||'-'}`;
            <span class="lang-zh">我们实时追踪您的航班。晚点？没问题 — 我们自动调整接机时间。</span></p>
       </div>
       <div class="about-card">
-        <div class="icon">🤝</div>
-        <h3><span class="lang-en">Meet &amp; Greet Service</span><span class="lang-zh">举牌接机</span></h3>
-        <p><span class="lang-en">Your driver will be waiting at arrivals with a name sign. No searching, no stress.</span>
-           <span class="lang-zh">司机在到达厅举牌等候。不用找，不焦虑。</span></p>
+        <div class="icon">🕐</div>
+        <h3><span class="lang-en">24/7 Availability</span><span class="lang-zh">全天候服务</span></h3>
+        <p><span class="lang-en">Early flight or midnight landing? We are available around the clock to get you there on time.</span>
+           <span class="lang-zh">清晨航班还是深夜落地？我们全天候待命，准时接送。</span></p>
       </div>
       <div class="about-card">
         <div class="icon">💰</div>
@@ -542,7 +550,7 @@ Notes: ${notes||'-'}`;
         <ul>
           <li><span class="lang-en">Fixed price — no surge, no surprises</span><span class="lang-zh">一口价 — 不加价，无意外</span></li>
           <li><span class="lang-en">All tolls &amp; GST included</span><span class="lang-zh">含所有过路费及GST</span></li>
-          <li><span class="lang-en">Multi-language drivers available</span><span class="lang-zh">多语言司机可选</span></li>
+          <li><span class="lang-en">Multilingual drivers available</span><span class="lang-zh">多语言司机可选</span></li>
           <li><span class="lang-en">Free flight waiting (intl 90min / domestic 45min)</span><span class="lang-zh">免费等待（国际90分钟/国内45分钟）</span></li>
           <li><span class="lang-en">Family friendly — free child seat</span><span class="lang-zh">家庭友好 — 儿童座椅免费</span></li>
           <li><span class="lang-en">Meet &amp; greet service available</span><span class="lang-zh">可选举牌接机服务</span></li>
@@ -568,7 +576,7 @@ Notes: ${notes||'-'}`;
             <label><span class="lang-en">Direction *</span><span class="lang-zh">方向 *</span></label>
             <select id="w_dir">
               <option value="Airport Pickup" class="lang-en">Airport Pickup</option><option value="Airport Pickup" class="lang-zh">接机</option>
-              <option value="Drop off to Airport" class="lang-en">Drop off to Airport</option><option value="Drop off to Airport" class="lang-zh">送机</option>
+              <option value="Airport Drop-off" class="lang-en">Airport Drop-off</option><option value="Airport Drop-off" class="lang-zh">送机</option>
             </select>
           </div>
           <div class="form-group">
@@ -579,7 +587,24 @@ Notes: ${notes||'-'}`;
         <div class="form-row">
           <div class="form-group">
             <label><span class="lang-en">Date *</span><span class="lang-zh">日期 *</span></label>
-            <input type="date" id="w_date" required>
+            <div style="display:flex;gap:.5rem">
+              <select id="w_day" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value=""><span class="lang-en">Day</span><span class="lang-zh">日</span></option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+              </select>
+              <select id="w_month" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value=""><span class="lang-en">Month</span><span class="lang-zh">月</span></option>
+                <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option>
+                <option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option>
+                <option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+              </select>
+              <select id="w_year" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value=""><span class="lang-en">Year</span><span class="lang-zh">年</span></option>
+                <option>2026</option><option>2027</option><option>2028</option>
+              </select>
+            </div>
           </div>
           <div class="form-group">
             <label><span class="lang-en">Time *</span><span class="lang-zh">时间 *</span></label>
@@ -593,11 +618,11 @@ Notes: ${notes||'-'}`;
         <div class="form-row">
           <div class="form-group">
             <label><span class="lang-en">Passengers</span><span class="lang-zh">人数</span></label>
-            <select id="w_pass"><option>1</option><option>2</option><option>3</option><option>多种</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11+</option></select>
+            <select id="w_pass"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11+</option></select>
           </div>
           <div class="form-group">
             <label><span class="lang-en">Luggage</span><span class="lang-zh">行李数</span></label>
-            <select id="w_lug"><option>0</option><option>1</option><option>2</option><option>3</option><option>多种</option><option>5</option><option>6</option><option>7+</option></select>
+            <select id="w_lug"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select>
           </div>
         </div>
         <div class="form-group">
@@ -621,7 +646,7 @@ Notes: ${notes||'-'}`;
       <h4>ATG Airport Transfer</h4>
       <p><span class="lang-en">Part of Australia Travelling GROUP</span><span class="lang-zh">Australia Travelling GROUP 旗下品牌</span></p>
       <p style="margin-top:.5rem;color:rgba(255,255,255,.4);font-size:.75rem">
-        <span class="lang-en">Multi-language drivers: English, Mandarin, Cantonese, Malay and more</span>
+        <span class="lang-en">Multilingual drivers: English, Mandarin, Cantonese, Malay and more</span>
         <span class="lang-zh">多语言司机：英文、普通话、粤语、马来语等</span>
       </p>
     </div>
@@ -641,9 +666,9 @@ Notes: ${notes||'-'}`;
     </div>
     <div>
       <h4><span class="lang-en">Quick Links</span><span class="lang-zh">快速链接</span></h4>
-      <p><a onclick="scrollTo('fleet')" style="cursor:pointer"><span class="lang-en">Our Fleet</span><span class="lang-zh">车型介绍</span></a></p>
-      <p><a onclick="scrollTo('pricing')" style="cursor:pointer"><span class="lang-en">Pricing</span><span class="lang-zh">价格查询</span></a></p>
-      <p><a onclick="scrollTo('booking')" style="cursor:pointer"><span class="lang-en">Book Now</span><span class="lang-zh">立即预订</span></a></p>
+      <p><a href="#fleet"><span class="lang-en">Our Fleet</span><span class="lang-zh">车型介绍</span></a></p>
+      <p><a href="#pricing"><span class="lang-en">Pricing</span><span class="lang-zh">价格查询</span></a></p>
+      <p><a href="#booking"><span class="lang-en">Book Now</span><span class="lang-zh">立即预订</span></a></p>
     </div>
   </div>
   <div class="copyright">
