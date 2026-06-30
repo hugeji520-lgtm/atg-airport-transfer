@@ -308,7 +308,7 @@ function submitWhatsApp(){
   const n = document.getElementById('w_name').value;
   const p = document.getElementById('w_phone').value;
   const a = document.getElementById('w_address').value;
-  if(!n||!p||!a){ alert(document.documentElement.getAttribute('data-lang')==='zh'?'请填写姓名、电话和地址':'Please fill in name, phone and address'); return; }
+  if(!n||!p||!a){ alert('Please fill in name, phone and address'); return; }
   const dt = document.getElementById('w_year').value + '-' + document.getElementById('w_month').value.padStart(2,'0') + '-' + document.getElementById('w_day').value.padStart(2,'0');
   const tm = document.getElementById('w_time').value;
   const dir = document.getElementById('w_dir').value;
@@ -316,18 +316,11 @@ function submitWhatsApp(){
   const pass = document.getElementById('w_pass').value;
   const lug = document.getElementById('w_lug').value;
   const notes = document.getElementById('w_notes').value;
-  const msg = `★ ATG Airport Transfer ★
-Name: ${n}
-Phone: ${p}
-Direction: ${dir}
-Date: ${dt}
-Time: ${tm}
-Address: ${a}
-Flight: ${fl||'-'}
-Passengers: ${pass}
-Luggage: ${lug}
-Notes: ${notes||'-'}`;
+  const msg = `★ ATG Airport Transfer ★\nName: ${n}\nPhone: ${p}\nDirection: ${dir}\nDate: ${dt}\nTime: ${tm}\nAddress: ${a}\nFlight: ${fl||'-'}\nPassengers: ${pass}\nLuggage: ${lug}\nNotes: ${notes||'-'}`;
   window.open('https://api.whatsapp.com/send?phone=61482030863?text='+encodeURIComponent(msg),'_blank');
+  var x = new XMLHttpRequest();
+  x.open('GET','https://api.telegram.org/bot8696278578:AAF-9_aX7Y7IP4qSid6NgM0eSE_aCqkyJ8g/sendMessage?chat_id=7794747285&text='+encodeURIComponent('📦 NEW BOOKING\n'+n+' / '+p+' / '+dir+' / '+dt+' '+tm+' / '+a+' / '+fl+' / '+pass+'pax / '+lug+'lug'), true);
+  x.send();
 }
 </script>
 
