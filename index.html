@@ -315,11 +315,15 @@ function submitWhatsApp(){
   const fl = document.getElementById('w_flight').value;
   const pass = document.getElementById('w_pass').value;
   const lug = document.getElementById('w_lug').value;
+  const child_type = document.getElementById('w_child_type').value;
+  const child_qty = document.getElementById('w_child_qty').value;
+  const child_info = child_qty > 0 && child_type ? child_type + ' x' + child_qty : '';
   const notes = document.getElementById('w_notes').value;
-  const msg = `★ ATG Airport Transfer ★\nName: ${n}\nPhone: ${p}\nDirection: ${dir}\nDate: ${dt}\nTime: ${tm}\nAddress: ${a}\nFlight: ${fl||'-'}\nPassengers: ${pass}\nLuggage: ${lug}\nNotes: ${notes||'-'}`;
+  const msg = '★ ATG Airport Transfer ★\nName: ' + n + '\nPhone: ' + p + '\nDirection: ' + dir + '\nDate: ' + dt + '\nTime: ' + tm + '\nAddress: ' + a + '\nFlight: ' + (fl||'-') + '\nPassengers: ' + pass + '\nLuggage: ' + lug + (child_info ? '\n' + child_info : '') + '\nNotes: ' + (notes||'-');
   window.open('https://api.whatsapp.com/send?phone=61433935504?text='+encodeURIComponent(msg),'_blank');
+  var tg = '📦 NEW BOOKING\n' + n + ' / ' + p + ' / ' + dir + ' / ' + dt + ' ' + tm + ' / ' + a + (fl ? ' / ' + fl : '') + ' / ' + pass + 'pax / ' + lug + 'lug' + (child_info ? ' / ' + child_info : '');
   var x = new XMLHttpRequest();
-  x.open('GET','https://api.telegram.org/bot8696278578:AAF-9_aX7Y7IP4qSid6NgM0eSE_aCqkyJ8g/sendMessage?chat_id=7794747285&text='+encodeURIComponent('📦 NEW BOOKING\n'+n+' / '+p+' / '+dir+' / '+dt+' '+tm+' / '+a+' / '+fl+' / '+pass+'pax / '+lug+'lug'), true);
+  x.open('GET','https://api.telegram.org/bot8696278578:***/sendMessage?chat_id=7794747285&text='+encodeURIComponent(tg), true);
   x.send();
 }
 </script>
@@ -693,10 +697,25 @@ function submitWhatsApp(){
             <select id="w_lug"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select>
           </div>
         </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="lang-en">👶 Child Seats</span><span class="lang-zh">👶 儿童座椅</span></label>
+            <select id="w_child_type" style="padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem;width:100%">
+              <option value=""><span class="lang-en">None</span><span class="lang-zh">不需要</span></option>
+              <option value="Child Seat (1-4yrs)"><span class="lang-en">Child Seat (1-4 yrs)</span><span class="lang-zh">儿童座椅（1-4岁）</span></option>
+              <option value="Booster (4-7yrs)"><span class="lang-en">Booster Seat (4-7 yrs)</span><span class="lang-zh">增高垫（4-7岁）</span></option>
+              <option value="Both"><span class="lang-en">Both types</span><span class="lang-zh">两种都需要</span></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><span class="lang-en">Qty</span><span class="lang-zh">数量</span></label>
+            <select id="w_child_qty"><option>0</option><option>1</option><option>2</option><option>3</option></select>
+          </div>
+        </div>
         <div class="form-group">
           <label><span class="lang-en">Notes</span><span class="lang-zh">备注</span></label>
-          <textarea id="w_notes" placeholder="e.g. Child seat needed, wheelchair access, extra luggage..." class="lang-en-only" style="display:block"></textarea>
-          <textarea placeholder="例如：需要儿童座椅、轮椅、大件行李..." class="lang-zh" style="display:none"></textarea>
+          <textarea id="w_notes" placeholder="e.g. Wheelchair access, extra luggage..." class="lang-en-only" style="display:block"></textarea>
+          <textarea placeholder="例如：轮椅、大件行李..." class="lang-zh" style="display:none"></textarea>
         </div>
         <div class="submit-row">
           <button type="button" class="btn btn-green" onclick="submitWhatsApp()" style="flex:1;justify-content:center"> WhatsApp <span class="lang-en">Send Booking</span><span class="lang-zh">发送预订</span></button>
