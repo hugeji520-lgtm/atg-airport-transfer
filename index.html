@@ -310,7 +310,10 @@ function submitWhatsApp(){
   const p = document.getElementById('w_phone').value;
   const a = document.getElementById('w_address').value;
   if(!n||!p||!a){ alert('Please fill in name, phone and address'); return; }
-  const dt = document.getElementById('w_year').value + '-' + document.getElementById('w_month').value.padStart(2,'0') + '-' + document.getElementById('w_day').value.padStart(2,'0');
+  const dayEl = document.getElementById('w_day').offsetParent !== null ? document.getElementById('w_day') : document.getElementById('w_day_zh');
+  const monthEl = document.getElementById('w_month').offsetParent !== null ? document.getElementById('w_month') : document.getElementById('w_month_zh');
+  const yearEl = document.getElementById('w_year').offsetParent !== null ? document.getElementById('w_year') : document.getElementById('w_year_zh');
+  const dt = yearEl.value + '-' + monthEl.value.padStart(2,'0') + '-' + dayEl.value.padStart(2,'0');
   const tm = document.getElementById('w_time').value;
   const dir = document.getElementById('w_dir').value;
   const fl = document.getElementById('w_flight').value;
@@ -664,20 +667,36 @@ function submitWhatsApp(){
           <div class="form-group">
             <label><span class="lang-en">Date *</span><span class="lang-zh">日期 *</span></label>
             <div style="display:flex;gap:.5rem">
-              <select id="w_day" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
-                <option value=""><span class="lang-en">Day</span><span class="lang-zh">日</span></option>
+              <select id="w_day" class="lang-en-only" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">Day</option>
                 <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
                 <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
                 <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
               </select>
-              <select id="w_month" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
-                <option value=""><span class="lang-en">Month</span><span class="lang-zh">月</span></option>
+              <select id="w_day_zh" class="lang-zh" style="display:none;flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">日</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+              </select>
+              <select id="w_month" class="lang-en-only" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">Month</option>
                 <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option>
                 <option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option>
                 <option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
               </select>
-              <select id="w_year" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
-                <option value=""><span class="lang-en">Year</span><span class="lang-zh">年</span></option>
+              <select id="w_month_zh" class="lang-zh" style="display:none;flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">月</option>
+                <option value="1">一月</option><option value="2">二月</option><option value="3">三月</option><option value="4">四月</option>
+                <option value="5">五月</option><option value="6">六月</option><option value="7">七月</option><option value="8">八月</option>
+                <option value="9">九月</option><option value="10">十月</option><option value="11">十一月</option><option value="12">十二月</option>
+              </select>
+              <select id="w_year" class="lang-en-only" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">Year</option>
+                <option>2026</option><option>2027</option><option>2028</option>
+              </select>
+              <select id="w_year_zh" class="lang-zh" style="display:none;flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">年</option>
                 <option>2026</option><option>2027</option><option>2028</option>
               </select>
             </div>
