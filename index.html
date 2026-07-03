@@ -251,6 +251,17 @@ footer a:hover{color:var(--gold)}
   .price-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;text-align:center}
 }
+/* FAQ */
+.faq{background:var(--light)}
+.faq-grid{max-width:800px;margin:0 auto}
+details.faq-item{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:1rem;overflow:hidden;transition:box-shadow .25s}
+details.faq-item[open]{box-shadow:0 4px 20px rgba(0,0,0,.06)}
+details.faq-item summary{list-style:none;cursor:pointer;padding:1.2rem 1.5rem;font-weight:600;font-size:1rem;color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+details.faq-item summary::-webkit-details-marker{display:none}
+details.faq-item summary::after{content:'+';font-size:1.4rem;color:var(--gold);font-weight:300;transition:transform .25s;flex-shrink:0}
+details.faq-item[open] summary::after{content:'−'}
+details.faq-item .faq-answer{padding:0 1.5rem 1.2rem;color:var(--gray);font-size:.95rem;line-height:1.6}
+details.faq-item .faq-answer p{margin-bottom:0}
 </style>
 <meta property="og:title" content="ATG Airport Transfer Melbourne | Fixed Price Airport Transfers">
 <meta property="og:description" content="Fixed price airport transfers from Melbourne Airport. No surge, no hidden fees. Multilingual drivers. Book now.">
@@ -259,7 +270,42 @@ footer a:hover{color:var(--gold)}
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"ATG Airport Transfer","description":"Melbourne airport transfer service. Fixed price, no surge, no hidden fees.","url":"https://atgairporttransfer.com.au","telephone":"+614****5120","areaServed":{"@type":"City","name":"Melbourne"},"priceRange":"$$"}
+{
+  "@context": "https://schema.org",
+  "@type": "TaxiService",
+  "name": "ATG Airport Transfer",
+  "description": "Professional fixed-price airport transfers across Melbourne. Flight monitoring, meet and greet, multilingual drivers (English, Mandarin, Cantonese, Malay).",
+  "url": "https://atgairporttransfer.com.au",
+  "telephone": "+61430595120",
+  "email": "info@atgairporttransfer.com.au",
+  "image": "https://atgairporttransfer.com.au/logo.png",
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "City",
+    "name": "Melbourne",
+    "containedInPlace": { "@type": "State", "name": "Victoria" }
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Australia Travelling Group Pty Ltd"
+  },
+  "availableLanguage": ["en", "zh", "yue", "ms"],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "serviceType": "Airport Transfer",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Airport Transfer Pricing",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Melbourne Airport to CBD (Sedan)" }, "price": "80", "priceCurrency": "AUD" },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Melbourne Airport to Box Hill (Sedan)" }, "price": "100", "priceCurrency": "AUD" }
+    ]
+  }
+}
 </script></head>
 <body>
 
@@ -556,6 +602,98 @@ function submitWhatsApp(){
     </div>
   </div>
 </section><!-- WHY US -->
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Frequently Asked Questions</span><span class="lang-zh">常见问题</span></h2>
+    <p class="section-sub"><span class="lang-en">Everything you need to know about your airport transfer</span><span class="lang-zh">关于机场接送您想知道的都在这里</span></p>
+    <div class="faq-grid">
+
+<details class="faq-item">
+  <summary><span class="lang-en">How much from Melbourne Airport to the CBD?</span><span class="lang-zh">墨尔本机场到市区(CBD)多少钱？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">A sedan transfer from Melbourne Airport to the CBD is a fixed $80, including GST and all tolls.</p>
+    <p class="lang-zh">轿车从墨尔本机场到市区固定 $80，已含 GST 和所有过路费。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">Do you track my flight? What if it's delayed?</span><span class="lang-zh">你们会追踪航班吗？晚点怎么办？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">Yes. We monitor your flight in real time and adjust the pickup time automatically if it's delayed — at no extra charge.</p>
+    <p class="lang-zh">会。我们实时追踪航班，如果晚点会自动调整接机时间，不额外收费。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">Can you pick up late at night or very early morning?</span><span class="lang-zh">深夜或清晨能接机吗？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">Yes, we operate 24/7. An early/late surcharge of $30 applies for pickups during early morning or late night hours.</p>
+    <p class="lang-zh">可以，我们全天候服务。早晚时段接送加收 $30。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">How long do you wait for free after landing?</span><span class="lang-zh">落地后免费等待多久？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">90 minutes for international arrivals and 45 minutes for domestic, counted from your actual landing time. Extra waiting is $1/min.</p>
+    <p class="lang-zh">国际航班免费等待90分钟，国内45分钟，从实际落地时间算起。超时 $1/分钟。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">Do you provide child seats?</span><span class="lang-zh">提供儿童座椅吗？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">Yes. Your first child seat or booster is free. Additional seats are $20 each. Please tell us your child's age when booking.</p>
+    <p class="lang-zh">提供。第一个儿童座椅或增高垫免费，额外每个 $20。预订时请告知孩子年龄。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">Do you have Mandarin/Cantonese speaking drivers?</span><span class="lang-zh">有会说中文/粤语的司机吗？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">Yes. Our drivers speak English, Mandarin, Cantonese, Malay and more.</p>
+    <p class="lang-zh">有。我们的司机会讲英文、普通话、粤语、马来语等。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">Is the price fixed or does it change?</span><span class="lang-zh">价格是固定的还是会变？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">The price is fixed. What you book is what you pay — no surge pricing, no hidden fees. Tolls and GST are already included.</p>
+    <p class="lang-zh">价格固定。预订价即最终价，不动态加价、无隐藏费用，已含过路费和 GST。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">How do I book?</span><span class="lang-zh">如何预订？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">Fill in the booking form on this page, or message us on WhatsApp. We'll confirm your driver and vehicle shortly.</p>
+    <p class="lang-zh">填写本页预订表单，或通过 WhatsApp 联系我们，我们会尽快确认司机和车辆。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">Do you offer larger vehicles for groups?</span><span class="lang-zh">有团体大车吗？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">Yes — vans for up to 7 passengers, and 12/24/54-seat buses for larger groups (contact us for a custom quote).</p>
+    <p class="lang-zh">有。7座商务车，以及12/24/54座巴士（大团请联系定制报价）。</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span class="lang-en">Which areas do you cover?</span><span class="lang-zh">服务哪些区域？</span></summary>
+  <div class="faq-answer">
+    <p class="lang-en">All Melbourne suburbs, plus Melbourne Airport (Tullamarine) and Avalon Airport.</p>
+    <p class="lang-zh">覆盖墨尔本所有区域，以及墨尔本机场(Tullamarine)和阿瓦隆机场。</p>
+  </div>
+</details>
+
+    </div>
+  </div>
+</section>
+
 <section class="about" id="about">
   <div class="container">
     <h2 class="section-title"><span class="lang-en">Why Choose ATG?</span><span class="lang-zh">为什么选择ATG？</span></h2>
