@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,6 +74,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;color:#1a1a2e;background:#fff}
+html[data-lang="en"] .lang-zh,
+html[data-lang="en"] .lang-block-zh,
+html[data-lang="zh"] .lang-en,
+html[data-lang="zh"] .lang-block-en,
+html[data-lang="zh"] .lang-en-only{display:none!important}
 .container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;font-weight:600;font-size:.95rem;text-decoration:none;border:none;cursor:pointer;transition:all .25s}
 .btn-green{background:var(--green);color:#fff}
@@ -89,6 +94,8 @@ section{padding:4.5rem 0}
 .nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
 .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.85rem;transition:color .2s}
 .nav-links a:hover{color:var(--gold)}
+.lang-toggle{padding:.35rem .7rem;border:1px solid rgba(255,255,255,.3);border-radius:20px;background:transparent;color:#fff;cursor:pointer;font-size:.8rem;font-weight:600}
+.lang-toggle:hover{border-color:var(--gold);color:var(--gold)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
 .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px}
 @media(max-width:768px){
@@ -160,6 +167,30 @@ footer a:hover{color:var(--gold)}
 </head>
 <body>
 
+<script defer>
+// ===== INITIAL SETUP =====
+(function(){
+  const saved = localStorage.getItem('atg_lang');
+  if(saved === 'zh') {
+    document.documentElement.setAttribute('data-lang','zh');
+    document.getElementById('langBtn').textContent = 'EN';
+  }
+})();
+
+function toggleLang(){
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-lang');
+  const next = cur === 'zh' ? 'en' : 'zh';
+  html.setAttribute('data-lang', next);
+  localStorage.setItem('atg_lang', next);
+  document.getElementById('langBtn').textContent = next === 'zh' ? 'EN' : '中文';
+}
+
+function toggleMobileMenu(){
+  document.querySelector('.nav-links').classList.toggle('active');
+}
+</script>
+
 <nav class="navbar">
   <a href="/" class="nav-logo">
     <img src="logo.png" alt="ATG" style="height:52px" onerror="this.style.display='none'">
@@ -169,74 +200,75 @@ footer a:hover{color:var(--gold)}
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#pricing">Pricing</a></li>
-    <li><a href="/#fleet">Fleet</a></li>
-    <li><a href="https://api.whatsapp.com/send?phone=61433935504" target="_blank">Book on WhatsApp</a></li>
+    <li><a href="/"><span class="lang-en">Home</span><span class="lang-zh">首页</span></a></li>
+    <li><a href="/#pricing"><span class="lang-en">Pricing</span><span class="lang-zh">价格</span></a></li>
+    <li><a href="/#fleet"><span class="lang-en">Fleet</span><span class="lang-zh">车型</span></a></li>
+    <li><a href="https://api.whatsapp.com/send?phone=61433935504" target="_blank"><span class="lang-en">Book on WhatsApp</span><span class="lang-zh">WhatsApp预订</span></a></li>
+    <li><button class="lang-toggle" id="langBtn" onclick="toggleLang()">中文</button></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge">Melbourne Airport → Box Hill</div>
-    <h1>Melbourne Airport to Box Hill — Fixed Price Private Transfer</h1>
-    <p>Travelling between Melbourne Airport (Tullamarine) and Box Hill? ATG Airport Transfer offers private door-to-door transfers at a fixed price — what you book is what you pay. No surge pricing, no meter, no hidden fees. All prices include 10% GST and all tolls. The drive takes around 35–45 minutes depending on traffic, and we track your flight in real time so your driver is there when you land — even if your flight is delayed.</p>
+    <div class="hero-badge"><span class="lang-en">Melbourne Airport → Box Hill</span><span class="lang-zh">墨尔本机场 → Box Hill</span></div>
+    <h1><span class="lang-en">Melbourne Airport to Box Hill — Fixed Price Private Transfer</span><span class="lang-zh">墨尔本机场到 Box Hill — 固定价格专车接送</span></h1>
+    <p><span class="lang-en">Travelling between Melbourne Airport (Tullamarine) and Box Hill? ATG Airport Transfer offers private door-to-door transfers at a fixed price — what you book is what you pay. No surge pricing, no meter, no hidden fees. All prices include 10% GST and all tolls. The drive takes around 35–45 minutes depending on traffic, and we track your flight in real time so your driver is there when you land — even if your flight is delayed.</span><span class="lang-zh">往返于墨尔本机场（Tullamarine）和 Box Hill 之间？ATG Airport Transfer 提供固定价格的私人门到门接送——预订多少就付多少。无动态加价、无计价器、无隐藏费用。所有价格已含 10% GST 和全部过路费。车程约 35–45 分钟（视交通状况而定），我们实时追踪您的航班，即使航班延误，司机也会按实际落地时间等您，无需担心。</span></p>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="pricing">
   <div class="container">
-    <h2 class="section-title">Fixed Prices — Melbourne Airport ⇄ Box Hill</h2>
-    <p class="section-sub">One-way private transfers. No surge, no meter, no hidden fees.</p>
+    <h2 class="section-title"><span class="lang-en">Fixed Prices — Melbourne Airport ⇄ Box Hill</span><span class="lang-zh">固定价格 — 墨尔本机场 ⇄ Box Hill</span></h2>
+    <p class="section-sub"><span class="lang-en">One-way private transfers. No surge, no meter, no hidden fees.</span><span class="lang-zh">单程私人接送。无动态加价、无计价器、无隐藏费用。</span></p>
     <div class="price-table-wrap">
       <table class="price-table">
         <thead>
-          <tr><th>Vehicle</th><th>Capacity</th><th>Fixed Price</th></tr>
+          <tr><th><span class="lang-en">Vehicle</span><span class="lang-zh">车型</span></th><th><span class="lang-en">Capacity</span><span class="lang-zh">载客量</span></th><th><span class="lang-en">Fixed Price</span><span class="lang-zh">固定价格</span></th></tr>
         </thead>
         <tbody>
-          <tr><td>Sedan</td><td>up to 3 passengers</td><td>$100</td></tr>
-          <tr><td>SUV</td><td>up to 4 passengers</td><td>$110</td></tr>
-          <tr><td>Luxury Sedan</td><td>up to 3 passengers</td><td>$120</td></tr>
-          <tr><td>Luxury SUV</td><td>up to 4 passengers</td><td>$125</td></tr>
-          <tr><td>Van (7 seats)</td><td>up to 7 passengers</td><td>$120</td></tr>
-          <tr><td>Luxury Van (Mercedes V-Class)</td><td>up to 7 passengers</td><td>$130</td></tr>
+          <tr><td><span class="lang-en">Sedan</span><span class="lang-zh">轿车</span></td><td><span class="lang-en">up to 3 passengers</span><span class="lang-zh">最多3人</span></td><td>$100</td></tr>
+          <tr><td><span class="lang-en">SUV</span><span class="lang-zh">SUV</span></td><td><span class="lang-en">up to 4 passengers</span><span class="lang-zh">最多4人</span></td><td>$110</td></tr>
+          <tr><td><span class="lang-en">Luxury Sedan</span><span class="lang-zh">豪华轿车</span></td><td><span class="lang-en">up to 3 passengers</span><span class="lang-zh">最多3人</span></td><td>$120</td></tr>
+          <tr><td><span class="lang-en">Luxury SUV</span><span class="lang-zh">豪华SUV</span></td><td><span class="lang-en">up to 4 passengers</span><span class="lang-zh">最多4人</span></td><td>$125</td></tr>
+          <tr><td><span class="lang-en">Van (7 seats)</span><span class="lang-zh">商务Van（7座）</span></td><td><span class="lang-en">up to 7 passengers</span><span class="lang-zh">最多7人</span></td><td>$120</td></tr>
+          <tr><td><span class="lang-en">Luxury Van (Mercedes V-Class)</span><span class="lang-zh">豪华Van（奔驰V-Class）</span></td><td><span class="lang-en">up to 7 passengers</span><span class="lang-zh">最多7人</span></td><td>$130</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="price-note">Prices are per vehicle (not per person), one way, including GST and all tolls. For 12/24/54-seat buses, contact us for a quote.</p>
+    <p class="price-note"><span class="lang-en">Prices are per vehicle (not per person), one way, including GST and all tolls. For 12/24/54-seat buses, contact us for a quote.</span><span class="lang-zh">价格按整车计（非按人），单程，含 GST 和全部过路费。12/24/54座大巴请联系我们询价。</span></p>
   </div>
 </section>
 
 <!-- WHAT'S INCLUDED -->
 <section id="included" style="background:var(--light)">
   <div class="container">
-    <h2 class="section-title">What's included</h2>
+    <h2 class="section-title"><span class="lang-en">What's included</span><span class="lang-zh">服务包含</span></h2>
     <ul class="check-list">
-      <li>Free waiting with real-time flight tracking</li>
-      <li>Free waiting time: 90 minutes for international arrivals, 45 minutes for domestic</li>
-      <li>First child seat or booster free (additional seats $20 each)</li>
-      <li>Professional drivers speaking English, Mandarin and Cantonese</li>
-      <li>Clean, late-model vehicles</li>
+      <li><span class="lang-en">Real-time flight tracking — no extra charge for delays</span><span class="lang-zh">实时航班追踪，延误不加价</span></li>
+      <li><span class="lang-en">Free waiting time: 90 minutes for international arrivals, 45 minutes for domestic</span><span class="lang-zh">免费等待时间：国际到达90分钟，国内45分钟</span></li>
+      <li><span class="lang-en">First child seat or booster free (additional seats $20 each)</span><span class="lang-zh">第一个儿童座椅或增高垫免费（额外每个$20）</span></li>
+      <li><span class="lang-en">Professional drivers speaking English, Mandarin and Cantonese</span><span class="lang-zh">专业司机，会讲英文、普通话和粤语</span></li>
+      <li><span class="lang-en">Clean, late-model vehicles</span><span class="lang-zh">干净、新款车辆</span></li>
     </ul>
-    <p style="margin-top:1.5rem;color:var(--gray);font-size:.85rem"><strong>Optional extras:</strong> Meet &amp; greet with name sign +$30 &middot; Additional child seats $20 each</p>
+    <p style="margin-top:1.5rem;color:var(--gray);font-size:.85rem"><span class="lang-en"><strong>Optional extras:</strong> Meet &amp; greet with name sign +$30 &middot; Additional child seats $20 each</span><span class="lang-zh"><strong>可选增值服务：</strong>举牌接机（姓名牌）+$30 · 额外儿童座椅每个$20</span></p>
   </div>
 </section>
 
 <!-- HOW TO BOOK -->
 <section id="how-to-book">
   <div class="container">
-    <h2 class="section-title">How to book</h2>
+    <h2 class="section-title"><span class="lang-en">How to book</span><span class="lang-zh">如何预订</span></h2>
     <ol class="steps">
-      <li><strong>Message us on WhatsApp</strong> — tell us your date, flight number and number of passengers</li>
-      <li><strong>Get an instant fixed quote</strong> — confirmed in writing, no surprises</li>
-      <li><strong>Meet your driver</strong> — driver details and car plate sent before pickup</li>
+      <li><span class="lang-en"><strong>Message us on WhatsApp</strong> — tell us your date, flight number and number of passengers</span><span class="lang-zh"><strong>在 WhatsApp 给我们发消息</strong> — 告诉我们日期、航班号和乘客人数</span></li>
+      <li><span class="lang-en"><strong>Get an instant fixed quote</strong> — confirmed in writing, no surprises</span><span class="lang-zh"><strong>获得即时固定报价</strong> — 书面确认，无意外</span></li>
+      <li><span class="lang-en"><strong>Meet your driver</strong> — driver details and car plate sent before pickup</span><span class="lang-zh"><strong>与司机见面</strong> — 司机信息和车牌号会在接机前发送</span></li>
     </ol>
     <div style="margin-top:2.5rem">
       <a class="btn btn-green" href="https://api.whatsapp.com/send?phone=61433935504" target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right:.3rem"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Book on WhatsApp
+        <span class="lang-en">Book on WhatsApp</span><span class="lang-zh">通过WhatsApp预订</span>
       </a>
     </div>
   </div>
@@ -245,31 +277,31 @@ footer a:hover{color:var(--gold)}
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
-    <h2 class="section-title">Frequently Asked Questions</h2>
+    <h2 class="section-title"><span class="lang-en">Frequently Asked Questions</span><span class="lang-zh">常见问题</span></h2>
     <div class="faq-grid">
       <details class="faq-item">
-        <summary class="faq-q">How long does the transfer from Melbourne Airport to Box Hill take?</summary>
-        <div class="faq-a">Around 35–45 minutes in normal traffic via the Eastern Freeway or EastLink. Allow extra time in weekday peak hours.</div>
+        <summary class="faq-q"><span class="lang-en">How long does the transfer from Melbourne Airport to Box Hill take?</span><span class="lang-zh">从墨尔本机场到 Box Hill 需要多长时间？</span></summary>
+        <div class="faq-a"><span class="lang-en">Around 35–45 minutes in normal traffic via the Eastern Freeway or EastLink. Allow extra time in weekday peak hours.</span><span class="lang-zh">正常交通情况下约35–45分钟，经 Eastern Freeway 或 EastLink。工作日高峰时段请预留更多时间。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">What happens if my flight is delayed?</summary>
-        <div class="faq-a">Nothing changes for you. We track your flight and your driver adjusts to the actual arrival time at no extra charge.</div>
+        <summary class="faq-q"><span class="lang-en">What happens if my flight is delayed?</span><span class="lang-zh">航班延误了怎么办？</span></summary>
+        <div class="faq-a"><span class="lang-en">Nothing changes for you. We track your flight and your driver adjusts to the actual arrival time at no extra charge.</span><span class="lang-zh">您无需任何操作。我们追踪您的航班，司机会根据实际到达时间调整，不额外收费。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">Is the price really fixed?</summary>
-        <div class="faq-a">Yes. The price you're quoted covers the vehicle, GST, tolls and airport pickup fee. It does not change with traffic or time of day, except for late-night/early-morning pickups which carry a small surcharge — we'll tell you upfront.</div>
+        <summary class="faq-q"><span class="lang-en">Is the price really fixed?</span><span class="lang-zh">价格真的是固定的吗？</span></summary>
+        <div class="faq-a"><span class="lang-en">Yes. The price you're quoted covers the vehicle, GST, tolls and airport pickup fee. It does not change with traffic or time of day, except for late-night/early-morning pickups which carry a small surcharge — we'll tell you upfront.</span><span class="lang-zh">是的。您获得的报价包含车辆、GST、过路费和机场接机费。不因交通或时段变化，深夜/凌晨接机有少量附加费——我们会提前告知。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">Do you provide child seats?</summary>
-        <div class="faq-a">Yes. The first child seat or booster is free; additional seats are $20 each. Let us know ages when booking.</div>
+        <summary class="faq-q"><span class="lang-en">Do you provide child seats?</span><span class="lang-zh">你们提供儿童座椅吗？</span></summary>
+        <div class="faq-a"><span class="lang-en">Yes. The first child seat or booster is free; additional seats are $20 each. Let us know ages when booking.</span><span class="lang-zh">提供。第一个儿童座椅或增高垫免费；额外每个$20。预订时请告知孩子年龄。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">Can I pay cash?</summary>
-        <div class="faq-a">Yes — bank transfer or cash to the driver. Cash bookings require a 50% deposit to secure the booking.</div>
+        <summary class="faq-q"><span class="lang-en">Can I pay cash?</span><span class="lang-zh">可以现金支付吗？</span></summary>
+        <div class="faq-a"><span class="lang-en">Yes — bank transfer or cash to the driver. Cash bookings require a 50% deposit to secure the booking.</span><span class="lang-zh">可以——银行转账或现金付司机。现金预订需支付50%订金以锁定订单。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">Do your drivers speak Mandarin?</summary>
-        <div class="faq-a">Yes, we have Mandarin- and Cantonese-speaking drivers — just mention your preference when booking. 我们有中文司机，预订时说明即可。</div>
+        <summary class="faq-q"><span class="lang-en">Do your drivers speak Mandarin?</span><span class="lang-zh">你们的司机说普通话吗？</span></summary>
+        <div class="faq-a"><span class="lang-en">Yes, we have Mandarin- and Cantonese-speaking drivers — just mention your preference when booking.</span><span class="lang-zh">有，我们有会讲普通话和粤语的司机——预订时说明您的偏好即可。</span></div>
       </details>
     </div>
   </div>
@@ -278,9 +310,12 @@ footer a:hover{color:var(--gold)}
 <!-- CTA -->
 <section class="cta-band">
   <div class="container">
-    <h2 class="section-title">Ready to book your transfer?</h2>
-    <p>Message us on WhatsApp and get an instant fixed quote — confirmed in writing, no surprises.</p>
-    <a class="btn btn-green" href="https://api.whatsapp.com/send?phone=61433935504" target="_blank">Book on WhatsApp</a>
+    <h2 class="section-title"><span class="lang-en">Ready to book your transfer?</span><span class="lang-zh">现在就预订您的行程</span></h2>
+    <p><span class="lang-en">Message us on WhatsApp and get an instant fixed quote — confirmed in writing, no surprises.</span><span class="lang-zh">在WhatsApp给我们发消息，立即获得固定报价——书面确认，无意外。</span></p>
+    <a class="btn btn-green" href="https://api.whatsapp.com/send?phone=61433935504" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right:.3rem"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span class="lang-en">Book on WhatsApp</span><span class="lang-zh">通过WhatsApp预订</span>
+    </a>
   </div>
 </section>
 
@@ -288,22 +323,22 @@ footer a:hover{color:var(--gold)}
   <div class="footer-grid">
     <div>
       <h4>ATG Airport Transfer</h4>
-      <p>Part of Australia Travelling GROUP</p>
-      <p style="margin-top:.5rem;color:rgba(255,255,255,.4);font-size:.75rem">Multilingual drivers: English, Mandarin, Cantonese, Malay and more</p>
+      <p><span class="lang-en">Part of Australia Travelling GROUP</span><span class="lang-zh">Australia Travelling GROUP 旗下品牌</span></p>
+      <p style="margin-top:.5rem;color:rgba(255,255,255,.4);font-size:.75rem"><span class="lang-en">Multilingual drivers: English, Mandarin, Cantonese, Malay and more</span><span class="lang-zh">多语言司机：英文、普通话、粤语、马来语等</span></p>
     </div>
     <div>
-      <h4>Contact</h4>
-      <p>📞 Call: <a href="tel:+61430595120">+61 430 595 120</a></p>
+      <h4><span class="lang-en">Contact</span><span class="lang-zh">联系我们</span></h4>
+      <p><span class="lang-en">📞 Call: </span><span class="lang-zh">📞 电话：</span><a href="tel:+61430595120">+61 430 595 120</a></p>
       <p>💬 <a href="https://api.whatsapp.com/send?phone=61433935504" target="_blank">WhatsApp</a></p>
       <p>📧 <a href="mailto:info@atgairporttransfer.com.au">info@atgairporttransfer.com.au</a></p>
     </div>
     <div>
-      <h4>Popular Routes</h4>
-      <p><a href="/melbourne-airport-to-box-hill">Melbourne Airport to Box Hill</a></p>
-      <p><a href="/">All Suburbs</a></p>
+      <h4><span class="lang-en">Popular Routes</span><span class="lang-zh">热门路线</span></h4>
+      <p><a href="/melbourne-airport-to-box-hill"><span class="lang-en">Melbourne Airport to Box Hill</span><span class="lang-zh">墨尔本机场到Box Hill</span></a></p>
+      <p><a href="/"><span class="lang-en">All Suburbs</span><span class="lang-zh">全部城区</span></a></p>
     </div>
   </div>
-  <div class="copyright">© <span id="year"></span> ATG Airport Transfer · Australia Travelling GROUP · All rights reserved</div>
+  <div class="copyright">© <span id="year"></span> ATG Airport Transfer · Australia Travelling GROUP · <span class="lang-en">All rights reserved</span><span class="lang-zh">版权所有</span></div>
 </footer>
 
 <a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=61433935504" target="_blank" aria-label="Chat on WhatsApp">
@@ -311,7 +346,6 @@ footer a:hover{color:var(--gold)}
 </a>
 
 <script>
-function toggleMobileMenu(){document.querySelector('.nav-links').classList.toggle('active')}
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
