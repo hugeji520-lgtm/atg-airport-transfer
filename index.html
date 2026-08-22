@@ -99,7 +99,7 @@ section{padding:5rem 0}
 
 /* ===== PRICING ===== */
 .pricing .container{max-width:1100px}
-.price-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.price-intro{display:flex;justify-content:space-between;align-items:center;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
 .price-intro-text{flex:1;min-width:280px}
 .price-highlight{background:var(--light);border-radius:16px;padding:1.5rem 2rem;border:1px solid var(--border)}
 .price-highlight .big{font-size:2.2rem;font-weight:800;color:var(--navy)}
@@ -176,6 +176,8 @@ footer a:hover{color:var(--gold)}
 .anim-d1{animation-delay:.1s}
 .anim-d2{animation-delay:.2s}
 .anim-d3{animation-delay:.3s}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:768px){
   .hero{min-height:auto!important;padding:5rem 1rem 2rem!important}
@@ -641,16 +643,6 @@ function submitWhatsApp(){
           <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Point Cook</span><strong>$100</strong></div>
           <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Frankston</span><strong>$160</strong></div>
         </div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>St Kilda</span><strong>$90</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Box Hill</span><strong>$100</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Glen Waverley</span><strong>$100</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Doncaster</span><strong>$100</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Brighton</span><strong>$100</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Point Cook</span><strong>$100</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Clayton</span><strong>$100</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Toorak</span><strong>$100</strong></div>
-          <div style="display:flex;justify-content:space-between;padding:.3rem .5rem;background:var(--light);border-radius:4px"><span>Frankston</span><strong>$160</strong></div>
-        </div>
       </div>
     </div>
 
@@ -1095,12 +1087,18 @@ function renderPrices(){
 }
 renderPrices();
 
-// Intersection Observer for fade-in
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.style.opacity='1';});
-},{threshold:.1});
-document.querySelectorAll('section').forEach(s=>{s.style.opacity='0';s.style.transition='opacity .6s ease';observer.observe(s);});
-document.querySelector('.hero').style.opacity='1';
+// Progressive enhancement: fade-in only when IntersectionObserver is available
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('is-visible'); observer.unobserve(e.target); }
+    });
+  },{threshold:.1});
+  document.querySelectorAll('section:not(.hero)').forEach(s=>{
+    s.classList.add('reveal');
+    observer.observe(s);
+  });
+}
 </script>
 </body>
 </html>
