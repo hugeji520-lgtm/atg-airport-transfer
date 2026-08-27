@@ -37,33 +37,43 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How long does the transfer from Melbourne Airport to Melbourne CBD take?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Around 25–35 minutes in normal traffic via CityLink and the Tullamarine Freeway. Allow extra time in weekday peak hours."}
+      "name": "How much is a transfer from Melbourne Airport to the CBD?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Our fixed price from Melbourne Airport to the CBD is from $80 for a sedan, including GST and tolls. The fare is confirmed at booking and does not change with traffic or time of day."}
     },
     {
       "@type": "Question",
-      "name": "What happens if my flight is delayed?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Nothing changes for you. We track your flight and your driver adjusts to the actual arrival time at no extra charge."}
+      "name": "How much is a taxi from the airport to the city?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Taxi fares run on the meter and vary with traffic, time of day and loadings. With ATG, the price is fixed at booking — one fare, including GST and tolls, with no surge pricing."}
     },
     {
       "@type": "Question",
-      "name": "Is the price really fixed?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Yes. The price you're quoted covers the vehicle, GST, tolls and airport pickup fee. It does not change with traffic or time of day, except for late-night/early-morning pickups which carry a small surcharge — we'll tell you upfront."}
+      "name": "How is this different from SkyBus?",
+      "acceptedAnswer": {"@type": "Answer", "text": "SkyBus runs on a fixed schedule between the airport and the city, so you wait for the bus and then need to reach your hotel from the station. ATG provides a private, door-to-door transfer with a driver waiting at arrivals, at one fixed price including GST and tolls."}
+    },
+    {
+      "@type": "Question",
+      "name": "Do you pick up from CBD hotels for airport trips?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. We collect passengers from hotels, serviced apartments and private residences across the CBD for departures, and drop off at any city address for arrivals."}
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take from Melbourne Airport to the CBD?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The drive is around 23 kilometres and typically takes about 30 minutes, depending on traffic and time of day. Allow extra time during peak periods."}
+    },
+    {
+      "@type": "Question",
+      "name": "Do you wait if my flight is delayed?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. We track your flight and provide complimentary waiting — 90 minutes for international arrivals and 45 minutes for domestic, counted from the actual landing time. For pick-up transfers, waiting is 15 minutes from the agreed time. After that, waiting is charged at $1 per minute."}
     },
     {
       "@type": "Question",
       "name": "Do you provide child seats?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Yes. The first child seat or booster is free; additional seats are $20 each. Let us know ages when booking."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. The first child seat is free of charge; each additional seat is $20. There is no limit on the number of seats — just let us know your requirements when booking."}
     },
     {
       "@type": "Question",
-      "name": "Can I pay cash?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Yes — bank transfer or cash to the driver. Cash bookings require a 50% deposit to secure the booking."}
-    },
-    {
-      "@type": "Question",
-      "name": "Do your drivers speak Mandarin?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Yes, we have Mandarin- and Cantonese-speaking drivers — just mention your preference when booking."}
+      "name": "How do I book?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Bookings are made directly on WhatsApp. Send us your flight details and address, and we will confirm your fixed price at booking."}
     }
   ]
 }
@@ -214,7 +224,7 @@ function toggleMobileMenu(){
   <div class="hero-content">
     <div class="hero-badge"><span class="lang-en">Melbourne Airport → Melbourne CBD</span><span class="lang-zh">墨尔本机场 → 墨尔本市中心</span></div>
     <h1><span class="lang-en">Melbourne Airport to Melbourne CBD — Fixed Price Private Transfer</span><span class="lang-zh">墨尔本机场到 墨尔本市中心 — 固定价格专车接送</span></h1>
-    <p><span class="lang-en">Travelling between Melbourne Airport (Tullamarine) and Melbourne CBD? ATG Airport Transfer offers private door-to-door transfers at a fixed price — what you book is what you pay. No surge pricing, no meter, no hidden fees. All prices include 10% GST and all tolls. The drive takes around 25–35 minutes depending on traffic, and we track your flight in real time so your driver is there when you land — even if your flight is delayed.</span><span class="lang-zh">往返于墨尔本机场（Tullamarine）和 墨尔本市中心 之间？ATG Airport Transfer 提供固定价格的私人门到门接送——预订多少就付多少。无动态加价、无计价器、无隐藏费用。所有价格已含 10% GST 和全部过路费。车程约 （视交通状况而定），我们实时追踪您的航班，即使航班延误，司机也会按实际落地时间等您，无需担心。</span></p>
+    <p><span class="lang-en">ATG provides private airport transfers between Melbourne Airport (Tullamarine) and Melbourne CBD at one fixed price — from $80 for a sedan, with GST and tolls included and no surge pricing. Whether you are arriving at the airport and heading to your CBD hotel, or need a transfer from the city back to the airport, our Mandarin-speaking drivers meet you at arrivals, track your flight and take you door to door. Book in minutes on WhatsApp.</span><span class="lang-zh">ATG 提供墨尔本机场（Tullamarine）与墨尔本市中心（CBD）之间的私人机场接送，统一一口价——轿车起价 $80，含 GST 与过路费，无临场加价。无论您是抵达机场前往 CBD 酒店，还是需要从市区返回机场，我们都安排中文司机在到达口等候接您、实时跟踪航班，并全程门到门接送。通过 WhatsApp 数分钟即可完成预订。</span></p>
   </div>
 </section>
 
@@ -275,34 +285,58 @@ function toggleMobileMenu(){
   </div>
 </section>
 
+<!-- CBD TO AIRPORT -->
+<section id="cbd-to-airport">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Melbourne CBD to the Airport</span><span class="lang-zh">Melbourne CBD 至机场</span></h2>
+    <p><span class="lang-en">For early departures, ATG arranges pick-ups from CBD hotels, serviced apartments and private residences. Your driver arrives at the agreed time, monitors traffic conditions, and ensures you reach the terminal with time to spare. The fixed rate applies in both directions — and unlike a taxi, there is no meter: the fare and any optional add-ons (such as meet-and-greet or early-hour pick-ups) are agreed and confirmed at booking, with no hidden charges.</span><span class="lang-zh">针对早班航班，ATG 提供从 CBD 酒店、服务式公寓及私人住处的接送。司机在约定时间到达，监控路况，确保您从容抵达航站楼。双向同价——与出租车不同，无计价器：费用及任何可选附加项（如举牌接机或清晨接送）在预订时一并确认，无隐藏费用。</span></p>
+  </div>
+</section>
+
+<!-- FIXED PRICE VS TAXI VS SKYBUS -->
+<section id="fixed-price-taxi-skybus" style="background:var(--light)">
+  <div class="container">
+    <h2 class="section-title"><span class="lang-en">Fixed Price, Taxi or SkyBus?</span><span class="lang-zh">一口价、出租车还是 SkyBus？</span></h2>
+    <p><span class="lang-en">Getting from Melbourne Airport to the CBD is where pricing differences are most visible. A taxi runs on the meter, so the fare moves with traffic, time of day and night or weekend loadings. SkyBus connects the airport and the city on a shared schedule — you wait for the bus, then still need transport from the station to your hotel. ATG offers a private, door-to-door transfer at one fixed price, including GST and tolls, with your driver waiting at arrivals. The fare is fixed at booking, so you always know what you pay.</span><span class="lang-zh">从墨尔本机场到 CBD 是价格差异最明显的一段。出租车按计价器收费，价格随交通、时段及夜间/周末附加费波动。SkyBus 按固定班次往返机场与市区——您需等车，到站后还需转乘前往酒店。ATG 提供私人门到门接送，一口价含 GST 与过路费，司机在到达口等候。价格在预订时锁定，您始终清楚要付多少。</span></p>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
     <h2 class="section-title"><span class="lang-en">Frequently Asked Questions</span><span class="lang-zh">常见问题</span></h2>
     <div class="faq-grid">
       <details class="faq-item">
-        <summary class="faq-q"><span class="lang-en">How long does the transfer from Melbourne Airport to Melbourne CBD take?</span><span class="lang-zh">从墨尔本机场到 墨尔本市中心 需要多长时间？</span></summary>
-        <div class="faq-a"><span class="lang-en">Around 25–35 minutes in normal traffic via CityLink and the Tullamarine Freeway. Allow extra time in weekday peak hours.</span><span class="lang-zh">正常交通情况下约25–35分钟，经 CityLink 和 Tullamarine Freeway。工作日高峰时段请预留更多时间。</span></div>
+        <summary class="faq-q"><span class="lang-en">How much is a transfer from Melbourne Airport to the CBD?</span><span class="lang-zh">从墨尔本机场到 CBD 的接送多少钱？</span></summary>
+        <div class="faq-a"><span class="lang-en">Our fixed price from Melbourne Airport to the CBD is from $80 for a sedan, including GST and tolls. The fare is confirmed at booking and does not change with traffic or time of day.</span><span class="lang-zh">从墨尔本机场到 CBD 我们固定价——轿车起价 $80，含 GST 与过路费。价格在预订时确认，不随交通或时段变动。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q"><span class="lang-en">What happens if my flight is delayed?</span><span class="lang-zh">航班延误了怎么办？</span></summary>
-        <div class="faq-a"><span class="lang-en">Nothing changes for you. We track your flight and your driver adjusts to the actual arrival time at no extra charge.</span><span class="lang-zh">您无需任何操作。我们追踪您的航班，司机会根据实际到达时间调整，不额外收费。</span></div>
+        <summary class="faq-q"><span class="lang-en">How much is a taxi from the airport to the city?</span><span class="lang-zh">从机场到市区的出租车多少钱？</span></summary>
+        <div class="faq-a"><span class="lang-en">Taxi fares run on the meter and vary with traffic, time of day and loadings. With ATG, the price is fixed at booking — one fare, including GST and tolls, with no surge pricing.</span><span class="lang-zh">出租车按计价器计费，随交通、时段及附加费浮动。选择 ATG，价格在预订时锁定——一口价，含 GST 与过路费，无临场加价。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q"><span class="lang-en">Is the price really fixed?</span><span class="lang-zh">价格真的是固定的吗？</span></summary>
-        <div class="faq-a"><span class="lang-en">Yes. The price you're quoted covers the vehicle, GST, tolls and airport pickup fee. It does not change with traffic or time of day, except for late-night/early-morning pickups which carry a small surcharge — we'll tell you upfront.</span><span class="lang-zh">是的。您获得的报价包含车辆、GST、过路费和机场接机费。不因交通或时段变化，深夜/凌晨接机有少量附加费——我们会提前告知。</span></div>
+        <summary class="faq-q"><span class="lang-en">How is this different from SkyBus?</span><span class="lang-zh">这和 SkyBus 有什么区别？</span></summary>
+        <div class="faq-a"><span class="lang-en">SkyBus runs on a fixed schedule between the airport and the city, so you wait for the bus and then need to reach your hotel from the station. ATG provides a private, door-to-door transfer with a driver waiting at arrivals, at one fixed price including GST and tolls.</span><span class="lang-zh">SkyBus 按固定班次往返机场与市区，您需等车，到站后再转乘前往酒店。ATG 提供私人门到门接送，司机在到达口等候，一口价含 GST 与过路费。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span class="lang-en">Do you pick up from CBD hotels for airport trips?</span><span class="lang-zh">你们从 CBD 酒店接客送机吗？</span></summary>
+        <div class="faq-a"><span class="lang-en">Yes. We collect passengers from hotels, serviced apartments and private residences across the CBD for departures, and drop off at any city address for arrivals.</span><span class="lang-zh">是的。出发航班我们从 CBD 各酒店、服务式公寓与私人住处接客；到达航班可送至市区任一地址。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span class="lang-en">How long does it take from Melbourne Airport to the CBD?</span><span class="lang-zh">从墨尔本机场到 CBD 需要多长时间？</span></summary>
+        <div class="faq-a"><span class="lang-en">The drive is around 23 kilometres and typically takes about 30 minutes, depending on traffic and time of day. Allow extra time during peak periods.</span><span class="lang-zh">路程约 23 公里，通常约 30 分钟，视交通与时段而定。高峰时段请预留更多时间。</span></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span class="lang-en">Do you wait if my flight is delayed?</span><span class="lang-zh">航班延误你们会等吗？</span></summary>
+        <div class="faq-a"><span class="lang-en">Yes. We track your flight and provide complimentary waiting — 90 minutes for international arrivals and 45 minutes for domestic, counted from the actual landing time. For pick-up transfers, waiting is 15 minutes from the agreed time. After that, waiting is charged at $1 per minute.</span><span class="lang-zh">会。我们实时跟踪您的航班并提供免费等待——国际到达 90 分钟、国内 45 分钟，自实际落地时间起算；送机接驳则为约定时间起 15 分钟。超出后按每分钟 $1 计费。</span></div>
       </details>
       <details class="faq-item">
         <summary class="faq-q"><span class="lang-en">Do you provide child seats?</span><span class="lang-zh">你们提供儿童座椅吗？</span></summary>
-        <div class="faq-a"><span class="lang-en">Yes. The first child seat or booster is free; additional seats are $20 each. Let us know ages when booking.</span><span class="lang-zh">提供。第一个儿童座椅或增高垫免费；额外每个$20。预订时请告知孩子年龄。</span></div>
+        <div class="faq-a"><span class="lang-en">Yes. The first child seat is free of charge; each additional seat is $20. There is no limit on the number of seats — just let us know your requirements when booking.</span><span class="lang-zh">提供。首个儿童座椅免费，额外每个 $20，数量不限——预订时告知需求即可。</span></div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q"><span class="lang-en">Can I pay cash?</span><span class="lang-zh">可以现金支付吗？</span></summary>
-        <div class="faq-a"><span class="lang-en">Yes — bank transfer or cash to the driver. Cash bookings require a 50% deposit to secure the booking.</span><span class="lang-zh">可以——银行转账或现金付司机。现金预订需支付50%订金以锁定订单。</span></div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q"><span class="lang-en">Do your drivers speak Mandarin?</span><span class="lang-zh">你们的司机说普通话吗？</span></summary>
-        <div class="faq-a"><span class="lang-en">Yes, we have Mandarin- and Cantonese-speaking drivers — just mention your preference when booking.</span><span class="lang-zh">有，我们有会讲普通话和粤语的司机——预订时说明您的偏好即可。</span></div>
+        <summary class="faq-q"><span class="lang-en">How do I book?</span><span class="lang-zh">如何预订？</span></summary>
+        <div class="faq-a"><span class="lang-en">Bookings are made directly on WhatsApp. Send us your flight details and address, and we will confirm your fixed price at booking.</span><span class="lang-zh">直接通过 WhatsApp 预订。发送航班信息与地址，我们在预订时确认固定价格。</span></div>
       </details>
     </div>
   </div>
