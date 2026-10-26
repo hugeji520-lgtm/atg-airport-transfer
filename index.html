@@ -462,7 +462,7 @@ function submitWhatsApp(){
   const child_info = child_qty > 0 && child_type ? child_type + ' x' + child_qty : '';
   const notes = document.getElementById('w_notes').value;
   const msg = '★ ATG Airport Transfer ★\nName: ' + n + '\nPhone: ' + p + '\nDirection: ' + dir + '\nDate: ' + dt + '\nTime: ' + tm + '\nAddress: ' + a + '\nFlight: ' + (fl||'-') + '\nPassengers: ' + pass + '\nLuggage: ' + lug + (child_info ? '\n' + child_info : '') + '\nNotes: ' + (notes||'-');
-  window.open('https://api.whatsapp.com/send?phone=61433935504?text='+encodeURIComponent(msg),'_blank');
+  window.open('https://api.whatsapp.com/send?phone=61433935504&text='+encodeURIComponent(msg),'_blank');
   var tg = '📦 NEW BOOKING\n' + n + ' / ' + p + ' / ' + dir + ' / ' + dt + ' ' + tm + ' / ' + a + (fl ? ' / ' + fl : '') + ' / ' + pass + 'pax / ' + lug + 'lug' + (child_info ? ' / ' + child_info : '');
   var x = new XMLHttpRequest();
   x.open('GET','https://api.telegram.org/bot8696278578:***/sendMessage?chat_id=7794747285&text='+encodeURIComponent(tg), true);
