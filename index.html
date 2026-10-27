@@ -463,14 +463,14 @@ function pickYear(){ return document.getElementById('w_year').offsetParent !== n
 
 function checkPhone(raw){
   const s = raw.replace(/[\s\-()]/g, '');
-  if(/^04\d{8}$/.test(s)) return true;
-  if(/^0[2378]\d{8}$/.test(s)) return true;
-  if(/^\+?614\d{8}$/.test(s)) return true;
-  if(/^\+/.test(s)){
-    const digits = s.replace(/\D/g, '');
-    return digits.length >= 8 && digits.length <= 15;
+  const d = s.replace(/\D/g, '');
+  if(d.length < 8 || d.length > 15) return false;
+  if(/^0/.test(s)){
+    if(/^0[23478]/.test(s)) return d.length === 10;
+    if(/^00/.test(s)) return true;
+    return false;
   }
-  return false;
+  return true;
 }
 
 function buildBooking(){
@@ -931,7 +931,8 @@ function submitEmail(){
           </div>
           <div class="form-group">
             <label><span class="lang-en">Phone *</span><span class="lang-zh">电话 *</span></label>
-            <input type="tel" id="w_phone" required placeholder="04XX XXX XXX">
+            <input type="tel" id="w_phone" required placeholder="e.g. 0412 345 678">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.5);margin-top:.3rem;line-height:1.5"><span class="lang-en">Overseas numbers: please include country code, e.g. +86</span><span class="lang-zh">外国号码请加国家区号，如 +86</span></div>
           </div>
         </div>
         <div class="form-row">
