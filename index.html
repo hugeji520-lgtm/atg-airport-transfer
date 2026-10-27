@@ -425,6 +425,8 @@ details.faq-item .faq-answer p{margin-bottom:0}
   }
 })();
 
+document.addEventListener('DOMContentLoaded', updateFormLang);
+
 function toggleLang(){
   const html = document.documentElement;
   const cur = html.getAttribute('data-lang');
@@ -432,6 +434,19 @@ function toggleLang(){
   html.setAttribute('data-lang', next);
   localStorage.setItem('atg_lang', next);
   document.getElementById('langBtn').textContent = next === 'zh' ? 'EN' : '中文';
+  updateFormLang();
+}
+
+function updateFormLang(){
+  const zh = document.documentElement.getAttribute('data-lang') === 'zh';
+  const hour = document.getElementById('w_time_hour');
+  const min = document.getElementById('w_time_min');
+  const ages = document.getElementById('w_child_ages');
+  const notes = document.getElementById('w_notes');
+  if(hour) hour.options[0].text = zh ? '时' : 'Hour';
+  if(min) min.options[0].text = zh ? '分' : 'Min';
+  if(ages) ages.placeholder = zh ? '例如：1, 4' : 'e.g. 1, 4';
+  if(notes) notes.placeholder = zh ? '例如：轮椅、大件行李...' : 'e.g. Wheelchair access, extra luggage...';
 }
 
 function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
@@ -479,14 +494,15 @@ function buildBooking(){
   const a = document.getElementById('w_address').value.trim();
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
   const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
+  const zh = document.documentElement.getAttribute('data-lang') === 'zh';
   const miss = [];
-  if(!n) miss.push('name 姓名');
-  if(!p) miss.push('phone 电话');
-  if(!a) miss.push('address 地址');
-  if(!tmHour || !tmMin) miss.push('time 时间');
-  if(!day || !month || !year) miss.push('date 日期');
-  if(miss.length){ alert('Please fill in / 请填写：' + miss.join(', ')); return null; }
-  if(!checkPhone(p)){ alert('Please check the phone number / 请检查电话号码'); return null; }
+  if(!n) miss.push(zh ? '姓名' : 'name');
+  if(!p) miss.push(zh ? '电话' : 'phone');
+  if(!a) miss.push(zh ? '地址' : 'address');
+  if(!tmHour || !tmMin) miss.push(zh ? '时间' : 'time');
+  if(!day || !month || !year) miss.push(zh ? '日期' : 'date');
+  if(miss.length){ alert(zh ? '请填写：' + miss.join('、') : 'Please fill in: ' + miss.join(', ')); return null; }
+  if(!checkPhone(p)){ alert(zh ? '请检查电话号码' : 'Please check the phone number'); return null; }
   const dt = year + '-' + month.padStart(2,'0') + '-' + day.padStart(2,'0');
   const tm = tmHour + ':' + tmMin;
   const dir = document.getElementById('w_dir').value;
@@ -990,11 +1006,11 @@ function submitEmail(){
             <label><span class="lang-en">Time *</span><span class="lang-zh">时间 *</span></label>
             <div style="display:flex;gap:.5rem">
               <select id="w_time_hour" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
-                <option value="">Hour / 时</option>
+                <option value="">Hour</option>
                 <option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
               </select>
               <select id="w_time_min" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
-                <option value="">Min / 分</option>
+                <option value="">Min</option>
                 <option value="00">00</option><option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option>
               </select>
             </div>
@@ -1016,12 +1032,11 @@ function submitEmail(){
         </div>
         <div class="form-group">
           <label><span class="lang-en">👶 Children's ages (if child seats needed)</span><span class="lang-zh">👶 孩子年龄（需要儿童座椅时填写）</span></label>
-          <input type="text" id="w_child_ages" placeholder="e.g. 1, 4 / 例如：1, 4">
+          <input type="text" id="w_child_ages" placeholder="e.g. 1, 4">
         </div>
         <div class="form-group">
           <label><span class="lang-en">Notes</span><span class="lang-zh">备注</span></label>
-          <textarea id="w_notes" placeholder="e.g. Wheelchair access, extra luggage..." class="lang-en-only" style="display:block"></textarea>
-          <textarea placeholder="例如：轮椅、大件行李..." class="lang-zh" style="display:none"></textarea>
+          <textarea id="w_notes" placeholder="e.g. Wheelchair access, extra luggage..."></textarea>
         </div>
         <div class="submit-row">
           <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Email</span><span class="lang-zh">邮件预订</span></button>
