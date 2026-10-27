@@ -161,6 +161,9 @@ section{padding:5rem 0}
 .submit-row .btn-wa{order:2}
 .submit-row .btn-sms{order:3}
 .submit-row .btn-call{order:4}
+@media(min-width:769px){
+  .submit-row .btn{flex:1 1 calc(50% - .4rem)!important;white-space:nowrap}
+}
 @media(max-width:768px){
   .submit-row .btn-wa{order:1}
   .submit-row .btn-sms{order:2}
@@ -1015,10 +1018,10 @@ function submitEmail(){
           <textarea placeholder="例如：轮椅、大件行李..." class="lang-zh" style="display:none"></textarea>
         </div>
         <div class="submit-row">
-          <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Send by Email</span><span class="lang-zh">邮件发送预订</span></button>
-          <button type="button" class="btn btn-green btn-wa" onclick="submitWhatsApp()" style="flex:1;justify-content:center"> WhatsApp <span class="lang-en">Send Booking</span><span class="lang-zh">发送预订</span></button>
-          <button type="button" class="btn btn-outline-light btn-sms" onclick="submitSMS()" style="flex:1;justify-content:center">📱 <span class="lang-en">Send by SMS</span><span class="lang-zh">短信发送预订</span></button>
-          <a class="btn btn-outline-light btn-call" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call Us</span><span class="lang-zh">联系我们</span></a>
+          <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Email</span><span class="lang-zh">邮件预订</span></button>
+          <button type="button" class="btn btn-green btn-wa" onclick="submitWhatsApp()" style="flex:1;justify-content:center"><span class="lang-en">WhatsApp</span><span class="lang-zh">WhatsApp 预订</span></button>
+          <button type="button" class="btn btn-outline-light btn-sms" onclick="submitSMS()" style="flex:1;justify-content:center">📱 <span class="lang-en">SMS</span><span class="lang-zh">短信预订</span></button>
+          <a class="btn btn-outline-light btn-call" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call</span><span class="lang-zh">电话</span></a>
         </div>
       </form>
     </div>
