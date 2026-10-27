@@ -461,27 +461,40 @@ function pickDay(){ return document.getElementById('w_day').offsetParent !== nul
 function pickMonth(){ return document.getElementById('w_month').offsetParent !== null ? document.getElementById('w_month') : document.getElementById('w_month_zh'); }
 function pickYear(){ return document.getElementById('w_year').offsetParent !== null ? document.getElementById('w_year') : document.getElementById('w_year_zh'); }
 
+function checkPhone(raw){
+  const s = raw.replace(/[\s\-()]/g, '');
+  if(/^04\d{8}$/.test(s)) return true;
+  if(/^0[2378]\d{8}$/.test(s)) return true;
+  if(/^\+?614\d{8}$/.test(s)) return true;
+  if(/^\+/.test(s)){
+    const digits = s.replace(/\D/g, '');
+    return digits.length >= 8 && digits.length <= 15;
+  }
+  return false;
+}
+
 function buildBooking(){
   const n = document.getElementById('w_name').value.trim();
   const p = document.getElementById('w_phone').value.trim();
   const a = document.getElementById('w_address').value.trim();
-  const tm = document.getElementById('w_time').value.trim();
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
+  const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
   const miss = [];
-  if(!n) miss.push('name');
-  if(!p) miss.push('phone');
-  if(!a) miss.push('address');
-  if(!tm) miss.push('time');
-  if(!day || !month || !year) miss.push('date');
-  if(miss.length){ alert('Please fill in: ' + miss.join(', ')); return null; }
+  if(!n) miss.push('name 姓名');
+  if(!p) miss.push('phone 电话');
+  if(!a) miss.push('address 地址');
+  if(!tmHour || !tmMin) miss.push('time 时间');
+  if(!day || !month || !year) miss.push('date 日期');
+  if(miss.length){ alert('Please fill in / 请填写：' + miss.join(', ')); return null; }
+  if(!checkPhone(p)){ alert('Please check the phone number / 请检查电话号码'); return null; }
   const dt = year + '-' + month.padStart(2,'0') + '-' + day.padStart(2,'0');
+  const tm = tmHour + ':' + tmMin;
   const dir = document.getElementById('w_dir').value;
   const fl = document.getElementById('w_flight').value;
   const pass = document.getElementById('w_pass').value;
   const lug = document.getElementById('w_lug').value;
-  const child_type = (document.getElementById('w_child_type').offsetParent !== null ? document.getElementById('w_child_type') : document.getElementById('w_child_type_zh')).value;
-  const child_qty = document.getElementById('w_child_qty').value;
-  const child_info = child_qty > 0 && child_type ? child_type + ' x' + child_qty : '';
+  const child_ages = document.getElementById('w_child_ages').value.trim();
+  const child_info = child_ages ? "Children's ages: " + child_ages : '';
   const notes = document.getElementById('w_notes').value;
   const msg = '★ ATG Airport Transfer ★\nName: ' + n + '\nPhone: ' + p + '\nDirection: ' + dir + '\nDate: ' + dt + '\nTime: ' + tm + '\nAddress: ' + a + '\nFlight: ' + (fl||'-') + '\nPassengers: ' + pass + '\nLuggage: ' + lug + (child_info ? '\n' + child_info : '') + '\nNotes: ' + (notes||'-');
   return { n:n, p:p, a:a, dt:dt, tm:tm, dir:dir, fl:fl, pass:pass, lug:lug, child_info:child_info, msg:msg };
@@ -974,7 +987,16 @@ function submitEmail(){
           </div>
           <div class="form-group">
             <label><span class="lang-en">Time *</span><span class="lang-zh">时间 *</span></label>
-            <input type="time" id="w_time" required>
+            <div style="display:flex;gap:.5rem">
+              <select id="w_time_hour" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">Hour / 时</option>
+                <option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
+              </select>
+              <select id="w_time_min" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
+                <option value="">Min / 分</option>
+                <option value="00">00</option><option value="05">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -991,26 +1013,9 @@ function submitEmail(){
             <select id="w_lug"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label><span class="lang-en">👶 Child Seats</span><span class="lang-zh">👶 儿童座椅</span></label>
-            <select id="w_child_type" class="lang-en-only">
-              <option value="">None</option>
-              <option value="Child Seat (1-4yrs)">Child Seat (1-4 yrs)</option>
-              <option value="Booster (4-7yrs)">Booster Seat (4-7 yrs)</option>
-              <option value="Both">Both types</option>
-            </select>
-            <select id="w_child_type_zh" class="lang-zh">
-              <option value="">不需要</option>
-              <option value="Child Seat (1-4yrs)">儿童座椅（1-4岁）</option>
-              <option value="Booster (4-7yrs)">增高垫（4-7岁）</option>
-              <option value="Both">两种都需要</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label><span class="lang-en">Qty</span><span class="lang-zh">数量</span></label>
-            <select id="w_child_qty"><option>0</option><option>1</option><option>2</option><option>3</option></select>
-          </div>
+        <div class="form-group">
+          <label><span class="lang-en">👶 Children's ages (if child seats needed)</span><span class="lang-zh">👶 孩子年龄（需要儿童座椅时填写）</span></label>
+          <input type="text" id="w_child_ages" placeholder="e.g. 1, 4 / 例如：1, 4">
         </div>
         <div class="form-group">
           <label><span class="lang-en">Notes</span><span class="lang-zh">备注</span></label>
