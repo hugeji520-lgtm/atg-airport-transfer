@@ -161,8 +161,11 @@ section{padding:5rem 0}
 .submit-row .btn-wa{order:2}
 .submit-row .btn-sms{order:3}
 .submit-row .btn-call{order:4}
-@media(min-width:769px){
-  .submit-row .btn{flex:1 1 calc(50% - .4rem)!important;white-space:nowrap}
+@media(min-width:1024px){
+  .submit-row .btn{flex:1 1 calc(50% - .4rem)!important;white-space:nowrap;padding-left:1.2rem;padding-right:1.2rem}
+}
+@media(min-width:769px) and (max-width:1023px){
+  .submit-row{flex-direction:column}
 }
 @media(max-width:768px){
   .submit-row .btn-wa{order:1}
@@ -1039,10 +1042,10 @@ function submitEmail(){
           <textarea id="w_notes" placeholder="e.g. Wheelchair access, extra luggage..."></textarea>
         </div>
         <div class="submit-row">
-          <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Email</span><span class="lang-zh">邮件预订</span></button>
-          <button type="button" class="btn btn-green btn-wa" onclick="submitWhatsApp()" style="flex:1;justify-content:center"><span class="lang-en">WhatsApp</span><span class="lang-zh">WhatsApp 预订</span></button>
-          <button type="button" class="btn btn-outline-light btn-sms" onclick="submitSMS()" style="flex:1;justify-content:center">📱 <span class="lang-en">SMS</span><span class="lang-zh">短信预订</span></button>
-          <a class="btn btn-outline-light btn-call" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call</span><span class="lang-zh">电话</span></a>
+          <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Book via Email</span><span class="lang-zh">邮件预订</span></button>
+          <button type="button" class="btn btn-green btn-wa" onclick="submitWhatsApp()" style="flex:1;justify-content:center"><span class="lang-en">Book via WhatsApp</span><span class="lang-zh">WhatsApp 预订</span></button>
+          <button type="button" class="btn btn-outline-light btn-sms" onclick="submitSMS()" style="flex:1;justify-content:center">📱 <span class="lang-en">Book via SMS</span><span class="lang-zh">短信预订</span></button>
+          <a class="btn btn-outline-light btn-call" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call Us</span><span class="lang-zh">电话</span></a>
         </div>
       </form>
     </div>
