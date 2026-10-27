@@ -156,6 +156,17 @@ section{padding:5rem 0}
 .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,168,67,.3)}
 .submit-row{display:flex;gap:.8rem;margin-top:.5rem;flex-wrap:wrap}
 .submit-row .btn{flex:1 1 140px;justify-content:center;min-width:0}
+/* 设备排序：桌面=邮件在左，手机=WhatsApp/短信在左 */
+.submit-row .btn-email{order:1}
+.submit-row .btn-wa{order:2}
+.submit-row .btn-sms{order:3}
+.submit-row .btn-call{order:4}
+@media(max-width:768px){
+  .submit-row .btn-wa{order:1}
+  .submit-row .btn-sms{order:2}
+  .submit-row .btn-email{order:3}
+  .submit-row .btn-call{order:4}
+}
 
 /* ===== FOOTER ===== */
 footer{background:#0a0f1a;color:rgba(255,255,255,.5);padding:3rem 1.5rem;text-align:center}
@@ -443,16 +454,24 @@ function toggleFullPrice(){
   };
 }
 
-function submitWhatsApp(){
-  const n = document.getElementById('w_name').value;
-  const p = document.getElementById('w_phone').value;
-  const a = document.getElementById('w_address').value;
-  if(!n||!p||!a){ alert('Please fill in name, phone and address'); return; }
-  const dayEl = document.getElementById('w_day').offsetParent !== null ? document.getElementById('w_day') : document.getElementById('w_day_zh');
-  const monthEl = document.getElementById('w_month').offsetParent !== null ? document.getElementById('w_month') : document.getElementById('w_month_zh');
-  const yearEl = document.getElementById('w_year').offsetParent !== null ? document.getElementById('w_year') : document.getElementById('w_year_zh');
-  const dt = yearEl.value + '-' + monthEl.value.padStart(2,'0') + '-' + dayEl.value.padStart(2,'0');
-  const tm = document.getElementById('w_time').value;
+function pickDay(){ return document.getElementById('w_day').offsetParent !== null ? document.getElementById('w_day') : document.getElementById('w_day_zh'); }
+function pickMonth(){ return document.getElementById('w_month').offsetParent !== null ? document.getElementById('w_month') : document.getElementById('w_month_zh'); }
+function pickYear(){ return document.getElementById('w_year').offsetParent !== null ? document.getElementById('w_year') : document.getElementById('w_year_zh'); }
+
+function buildBooking(){
+  const n = document.getElementById('w_name').value.trim();
+  const p = document.getElementById('w_phone').value.trim();
+  const a = document.getElementById('w_address').value.trim();
+  const tm = document.getElementById('w_time').value.trim();
+  const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
+  const miss = [];
+  if(!n) miss.push('name');
+  if(!p) miss.push('phone');
+  if(!a) miss.push('address');
+  if(!tm) miss.push('time');
+  if(!day || !month || !year) miss.push('date');
+  if(miss.length){ alert('Please fill in: ' + miss.join(', ')); return null; }
+  const dt = year + '-' + month.padStart(2,'0') + '-' + day.padStart(2,'0');
   const dir = document.getElementById('w_dir').value;
   const fl = document.getElementById('w_flight').value;
   const pass = document.getElementById('w_pass').value;
@@ -462,11 +481,28 @@ function submitWhatsApp(){
   const child_info = child_qty > 0 && child_type ? child_type + ' x' + child_qty : '';
   const notes = document.getElementById('w_notes').value;
   const msg = '★ ATG Airport Transfer ★\nName: ' + n + '\nPhone: ' + p + '\nDirection: ' + dir + '\nDate: ' + dt + '\nTime: ' + tm + '\nAddress: ' + a + '\nFlight: ' + (fl||'-') + '\nPassengers: ' + pass + '\nLuggage: ' + lug + (child_info ? '\n' + child_info : '') + '\nNotes: ' + (notes||'-');
-  window.open('https://api.whatsapp.com/send?phone=61433935504&text='+encodeURIComponent(msg),'_blank');
-  var tg = '📦 NEW BOOKING\n' + n + ' / ' + p + ' / ' + dir + ' / ' + dt + ' ' + tm + ' / ' + a + (fl ? ' / ' + fl : '') + ' / ' + pass + 'pax / ' + lug + 'lug' + (child_info ? ' / ' + child_info : '');
+  return { n:n, p:p, a:a, dt:dt, tm:tm, dir:dir, fl:fl, pass:pass, lug:lug, child_info:child_info, msg:msg };
+}
+
+function submitWhatsApp(){
+  const b = buildBooking(); if(!b) return;
+  window.open('https://api.whatsapp.com/send?phone=61433935504&text='+encodeURIComponent(b.msg),'_blank');
+  var tg = '📦 NEW BOOKING\n' + b.n + ' / ' + b.p + ' / ' + b.dir + ' / ' + b.dt + ' ' + b.tm + ' / ' + b.a + (b.fl ? ' / ' + b.fl : '') + ' / ' + b.pass + 'pax / ' + b.lug + 'lug' + (b.child_info ? ' / ' + b.child_info : '');
   var x = new XMLHttpRequest();
   x.open('GET','https://api.telegram.org/bot8696278578:***/sendMessage?chat_id=7794747285&text='+encodeURIComponent(tg), true);
   x.send();
+}
+
+function submitSMS(){
+  const b = buildBooking(); if(!b) return;
+  window.location.href = 'sms:+61430595120?&body='+encodeURIComponent(b.msg);
+}
+
+function submitEmail(){
+  const b = buildBooking(); if(!b) return;
+  const subject = 'ATG Booking - ' + b.n + ' - ' + b.dt;
+  const body = b.msg.split('\n').join('\r\n');
+  window.location.href = 'mailto:info@atgairporttransfer.com.au?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
 }
 </script>
 
@@ -979,8 +1015,10 @@ function submitWhatsApp(){
           <textarea placeholder="例如：轮椅、大件行李..." class="lang-zh" style="display:none"></textarea>
         </div>
         <div class="submit-row">
-          <button type="button" class="btn btn-green" onclick="submitWhatsApp()" style="flex:1;justify-content:center"> WhatsApp <span class="lang-en">Send Booking</span><span class="lang-zh">发送预订</span></button>
-          <a class="btn btn-outline-light" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call Us</span><span class="lang-zh">联系我们</span></a>
+          <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Send by Email</span><span class="lang-zh">邮件发送预订</span></button>
+          <button type="button" class="btn btn-green btn-wa" onclick="submitWhatsApp()" style="flex:1;justify-content:center"> WhatsApp <span class="lang-en">Send Booking</span><span class="lang-zh">发送预订</span></button>
+          <button type="button" class="btn btn-outline-light btn-sms" onclick="submitSMS()" style="flex:1;justify-content:center">📱 <span class="lang-en">Send by SMS</span><span class="lang-zh">短信发送预订</span></button>
+          <a class="btn btn-outline-light btn-call" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call Us</span><span class="lang-zh">联系我们</span></a>
         </div>
       </form>
     </div>
