@@ -157,6 +157,7 @@ section{padding:5rem 0}
 .submit-row{display:flex;gap:.8rem;margin-top:.5rem;flex-wrap:wrap}
 .submit-row .btn{flex:1 1 140px;justify-content:center;min-width:0}
 /* 设备排序：桌面=邮件在左，手机=WhatsApp/短信在左 */
+.submit-row .btn-direct{order:0}
 .submit-row .btn-email{order:1}
 .submit-row .btn-wa{order:2}
 .submit-row .btn-sms{order:3}
@@ -435,6 +436,7 @@ body.has-banner .hero{padding-top:7.5rem!important}
   ]
 }
 </script><link rel="canonical" href="https://atgairporttransfer.com.au" />
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <div id="chinaBanner" class="china-banner">
@@ -578,6 +580,70 @@ function submitEmail(){
   const subject = 'ATG Booking - ' + b.n + ' - ' + b.dt;
   const body = b.msg.split('\n').join('\r\n');
   window.location.href = 'mailto:info@atgairporttransfer.com.au?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+}
+const WORKER_URL = 'https://atg-booking.hugeji520.workers.dev';
+
+function submitMsg(zh, kind){
+  const el = document.getElementById('submitMsg');
+  let html, color, bg;
+  if(kind === 'verify'){
+    html = zh ? '请先完成人机验证' : 'Please complete the verification first.';
+    color = '#ffd27a'; bg = 'rgba(255,193,102,.16)';
+  } else if(kind === 'success'){
+    html = zh ? '已收到您的预订，Max 会用 +61 430 595 120 联系您确认价格和预订，请只认这个号码发来的付款信息。'
+              : 'We\'ve received your booking. Max will contact you from +61 430 595 120 to confirm the price and booking. Please only trust payment details sent from this number.';
+    color = '#a5e8b8'; bg = 'rgba(37,211,102,.16)';
+  } else {
+    html = zh ? '提交失败，请改用 WhatsApp 或拨打 0430 595 120'
+              : 'Submission failed. Please use WhatsApp instead, or call 0430 595 120.';
+    color = '#ffb4b4'; bg = 'rgba(255,99,99,.16)';
+  }
+  el.innerHTML = html;
+  el.style.display = 'block';
+  el.style.background = bg;
+  el.style.color = color;
+  el.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+async function submitDirect(){
+  const b = buildBooking(); if(!b) return;
+  const btn = document.getElementById('btnDirect');
+  const zh = document.documentElement.getAttribute('data-lang') === 'zh';
+  btn.disabled = true; btn.style.opacity = '.55'; btn.style.cursor = 'not-allowed';
+
+  const token = (window.turnstile && window.turnstile.getResponse) ? window.turnstile.getResponse() : '';
+  if(!token){
+    submitMsg(zh, 'verify');
+    btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
+    return;
+  }
+
+  try {
+    const payload = {
+      name: b.n, phone: b.p, direction: b.dir, date: b.dt, time: b.tm,
+      address: b.a, flight: b.fl, passengers: b.pass, luggage: b.lug,
+      child_ages: document.getElementById('w_child_ages').value.trim(),
+      vehicle: '', email: '',
+      notes: document.getElementById('w_notes').value,
+      turnstile: token,
+    };
+    const res = await fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    const j = await res.json();
+    if(j && j.ok){
+      submitMsg(zh, 'success');
+      btn.innerHTML = zh ? '✅ 已提交' : '✅ Submitted';
+      btn.style.opacity = '.8';
+      btn.style.cursor = 'default';
+    } else {
+      submitMsg(zh, 'fail');
+      btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
+      if(window.turnstile) window.turnstile.reset();
+    }
+  } catch(e) {
+    submitMsg(zh, 'fail');
+    btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
+    if(window.turnstile) window.turnstile.reset();
+  }
 }
 </script>
 
@@ -1082,12 +1148,15 @@ function submitEmail(){
           <label><span class="lang-en">Notes</span><span class="lang-zh">备注</span></label>
           <textarea id="w_notes" placeholder="e.g. Wheelchair access, extra luggage..."></textarea>
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFt5ekMag6C2AvDB" data-theme="dark" style="margin:0 0 1rem"></div>
         <div class="submit-row">
+          <button type="button" id="btnDirect" class="btn btn-primary btn-direct" onclick="submitDirect()" style="flex:1;justify-content:center">📤 <span class="lang-en">Submit Booking</span><span class="lang-zh">直接提交预订</span></button>
           <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Book via Email</span><span class="lang-zh">邮件预订</span></button>
           <button type="button" class="btn btn-green btn-wa" onclick="submitWhatsApp()" style="flex:1;justify-content:center"><span class="lang-en">Book via WhatsApp</span><span class="lang-zh">WhatsApp 预订</span></button>
           <button type="button" class="btn btn-outline-light btn-sms" onclick="submitSMS()" style="flex:1;justify-content:center">📱 <span class="lang-en">Book via SMS</span><span class="lang-zh">短信预订</span></button>
           <a class="btn btn-outline-light btn-call" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call Us</span><span class="lang-zh">电话</span></a>
         </div>
+        <div id="submitMsg" style="display:none;margin-top:1rem;padding:1rem 1.2rem;border-radius:10px;font-size:.95rem;line-height:1.6"></div>
       </form>
     </div>
   </div>
