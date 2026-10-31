@@ -556,6 +556,7 @@ function buildBooking(){
   const tm = tmHour + ':' + tmMin;
   const dir = document.getElementById('w_dir').value;
   const fl = document.getElementById('w_flight').value;
+  if(dir === 'Airport Pickup' && !fl.trim()){ alert(zh ? '接机请填写航班号' : 'Please enter your flight number for airport pickups'); return null; }
   const pass = document.getElementById('w_pass').value;
   const lug = document.getElementById('w_lug').value;
   const child_ages = document.getElementById('w_child_ages').value.trim();
