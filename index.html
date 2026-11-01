@@ -496,6 +496,17 @@ function updateFormLang(){
   if(min) min.options[0].text = zh ? '分' : 'Min';
   if(ages) ages.placeholder = zh ? '例如：1, 4' : 'e.g. 1, 4';
   if(notes) notes.placeholder = zh ? '例如：轮椅、大件行李...' : 'e.g. Wheelchair access, extra luggage...';
+  updateTimeLabel();
+}
+
+function updateTimeLabel(){
+  const dirEl = document.getElementById('w_dir');
+  const dir = dirEl ? dirEl.value : '';
+  const isPickup = dir === 'Airport Pickup';
+  const en = document.getElementById('w_time_label_en');
+  const zh = document.getElementById('w_time_label_zh');
+  if(en) en.textContent = isPickup ? 'Flight landing time *' : 'Pickup time *';
+  if(zh) zh.textContent = isPickup ? '航班落地时间 *' : '上车时间 *';
 }
 
 function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
@@ -1065,7 +1076,7 @@ async function submitDirect(){
         <div class="form-row">
           <div class="form-group">
             <label><span class="lang-en">Direction *</span><span class="lang-zh">方向 *</span></label>
-            <select id="w_dir">
+            <select id="w_dir" onchange="updateTimeLabel()">
               <option value="Airport Pickup" class="lang-en">Airport Pickup</option><option value="Airport Pickup" class="lang-zh">接机</option>
               <option value="Airport Drop-off" class="lang-en">Airport Drop-off</option><option value="Airport Drop-off" class="lang-zh">送机</option>
             </select>
@@ -1114,7 +1125,7 @@ async function submitDirect(){
             </div>
           </div>
           <div class="form-group">
-            <label><span class="lang-en">Time *</span><span class="lang-zh">时间 *</span></label>
+            <label><span class="lang-en" id="w_time_label_en">Time *</span><span class="lang-zh" id="w_time_label_zh">时间 *</span></label>
             <div style="display:flex;gap:.5rem">
               <select id="w_time_hour" required style="flex:1;padding:.7rem .9rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem">
                 <option value="">Hour</option>
