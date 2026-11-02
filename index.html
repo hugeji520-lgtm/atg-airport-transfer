@@ -637,6 +637,7 @@ async function submitDirect(){
       child_ages: document.getElementById('w_child_ages').value.trim(),
       vehicle: '', email: '',
       notes: document.getElementById('w_notes').value,
+      lang: zh ? 'zh' : 'en',
       turnstile: token,
     };
     const res = await fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
