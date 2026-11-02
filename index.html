@@ -546,6 +546,25 @@ function collectChildAges(){
   return ages.join(',');
 }
 
+function showFieldError(id, msg){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.style.borderColor = '#ff6b6b';
+  let err = document.getElementById('err_' + id);
+  if(!err){
+    err = document.createElement('div');
+    err.id = 'err_' + id;
+    err.style.cssText = 'color:#ff6b6b;font-size:.8rem;margin-top:.25rem;';
+    el.parentNode.appendChild(err);
+  }
+  err.textContent = msg;
+}
+
+function clearFieldErrors(){
+  document.querySelectorAll('[id^="err_"]').forEach(e => { e.textContent = ''; });
+  document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(e => { e.style.borderColor = ''; });
+}
+
 function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
 
 function toggleMobileMenu(){
@@ -592,30 +611,31 @@ function buildBooking(){
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
   const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
   const zh = document.documentElement.getAttribute('data-lang') === 'zh';
-  const miss = [];
-  if(!n) miss.push(zh ? '姓名' : 'name');
-  if(!p) miss.push(zh ? '电话' : 'phone');
-  if(!a) miss.push(zh ? '地址' : 'address');
-  if(!tmHour || !tmMin) miss.push(zh ? '时间' : 'time');
-  if(!day || !month || !year) miss.push(zh ? '日期' : 'date');
-  if(miss.length){ alert(zh ? '请填写：' + miss.join('、') : 'Please fill in: ' + miss.join(', ')); return null; }
-  if(!checkPhone(p)){ alert(zh ? '请检查电话号码' : 'Please check the phone number'); return null; }
-  const dt = year + '-' + month.padStart(2,'0') + '-' + day.padStart(2,'0');
-  const tm = tmHour + ':' + tmMin;
+  clearFieldErrors();
   const dir = document.getElementById('w_dir').value;
   const fl = document.getElementById('w_flight').value;
-  if(dir === 'Airport Pickup' && !fl.trim()){ alert(zh ? '接机请填写航班号' : 'Please enter your flight number for airport pickups'); return null; }
   const adults = parseInt(document.getElementById('w_adults').value) || 0;
   const children = parseInt(document.getElementById('w_children').value) || 0;
+  let ok = true;
+  if(!n){ showFieldError('w_name', zh ? '请填写姓名' : 'Please fill in name'); ok = false; }
+  if(!p){ showFieldError('w_phone', zh ? '请填写手机号' : 'Please fill in phone'); ok = false; }
+  else if(!checkPhone(p)){ showFieldError('w_phone', zh ? '请检查电话号码' : 'Please check the phone number'); ok = false; }
+  if(!a){ showFieldError('w_address', zh ? '请填写地址' : 'Please fill in address'); ok = false; }
+  if(!tmHour || !tmMin){ showFieldError('w_time_hour', zh ? '请选择时间' : 'Please select time'); ok = false; }
+  if(!day || !month || !year){ showFieldError('w_day', zh ? '请选择日期' : 'Please select date'); ok = false; }
+  if(dir === 'Airport Pickup' && !fl.trim()){ showFieldError('w_flight', zh ? '接机请填写航班号' : 'Please enter your flight number for airport pickups'); ok = false; }
+  if(children > 0){
+    let allOk = true;
+    document.querySelectorAll('#childAgesList select.child-age').forEach(sel => { if(sel.value === '') allOk = false; });
+    if(!allOk){ showFieldError('childAgesList', zh ? '请为每个儿童选择年龄' : 'Please select an age for each child'); ok = false; }
+  }
+  if(!ok) return null;
+  const dt = year + '-' + month.padStart(2,'0') + '-' + day.padStart(2,'0');
+  const tm = tmHour + ':' + tmMin;
   const pass = String(adults + children);
   const lug = document.getElementById('w_lug').value;
   const child_ages = collectChildAges();
   const child_info = child_ages ? "Children's ages: " + child_ages : '';
-  if(children > 0){
-    let allOk = true;
-    document.querySelectorAll('#childAgesList select.child-age').forEach(sel => { if(sel.value === '') allOk = false; });
-    if(!allOk){ alert(zh ? '请为每个儿童选择年龄' : 'Please select an age for each child'); return null; }
-  }
   const notes = document.getElementById('w_notes').value;
   const msg = '★ ATG Airport Transfer ★\nName: ' + n + '\nPhone: ' + p + '\nDirection: ' + dir + '\nDate: ' + dt + '\nTime: ' + tm + '\nAddress: ' + a + '\nFlight: ' + (fl||'-') + '\nPassengers: ' + pass + '\nLuggage: ' + lug + (child_info ? '\n' + child_info : '') + '\nNotes: ' + (notes||'-');
   return { n:n, p:p, a:a, dt:dt, tm:tm, dir:dir, fl:fl, pass:pass, lug:lug, child_info:child_info, msg:msg };
@@ -639,7 +659,7 @@ function submitEmail(){
 }
 const WORKER_URL = 'https://atg-booking.hugeji520.workers.dev';
 
-function submitMsg(zh, kind){
+function submitMsg(zh, kind, errCode){
   const el = document.getElementById('submitMsg');
   let html, color, bg;
   if(kind === 'verify'){
@@ -650,8 +670,19 @@ function submitMsg(zh, kind){
               : 'We\'ve received your booking. Max will contact you from +61 430 595 120 to confirm the price and booking. Please only trust payment details sent from this number.';
     color = '#a5e8b8'; bg = 'rgba(37,211,102,.16)';
   } else {
-    html = zh ? '提交失败，请改用 WhatsApp 或拨打 0430 595 120'
-              : 'Submission failed. Please use WhatsApp instead, or call 0430 595 120.';
+    const m = {
+      'rate':      ['提交太频繁，请 1 分钟后再试', 'Too many submissions, please try again in 1 minute'],
+      'turnstile': ['人机验证已过期，请刷新页面后重试', 'Verification expired, please refresh the page and try again'],
+      'phone':     ['手机号格式不对，请检查后重试', 'Invalid phone number, please check and try again'],
+      'missing':   ['请填写所有必填项', 'Please fill in all required fields'],
+      'json':      ['提交数据格式错误，请重试', 'Invalid submission data, please try again'],
+      'origin':    ['请求来源错误，请刷新页面重试', 'Request origin error, please refresh the page'],
+      'method':    ['请求方式错误，请刷新页面重试', 'Request method error, please refresh the page'],
+      'telegram':  ['系统暂时不可用，请改用 WhatsApp 或拨打电话', 'System temporarily unavailable, please use WhatsApp or call'],
+      'network':   ['网络错误，请检查网络后重试', 'Network error, please check your connection and try again'],
+    };
+    const hit = m[errCode || ''];
+    html = hit ? hit[zh ? 0 : 1] : (zh ? '提交失败，请改用 WhatsApp 或拨打 0430 595 120' : 'Submission failed. Please use WhatsApp instead, or call 0430 595 120.');
     color = '#ffb4b4'; bg = 'rgba(255,99,99,.16)';
   }
   el.innerHTML = html;
@@ -692,12 +723,13 @@ async function submitDirect(){
       btn.style.opacity = '.8';
       btn.style.cursor = 'default';
     } else {
-      submitMsg(zh, 'fail');
+      const err = (j && j.error) ? j.error : '';
+      submitMsg(zh, 'fail', err);
       btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
       if(window.turnstile) window.turnstile.reset();
     }
   } catch(e) {
-    submitMsg(zh, 'fail');
+    submitMsg(zh, 'fail', 'network');
     btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
     if(window.turnstile) window.turnstile.reset();
   }
