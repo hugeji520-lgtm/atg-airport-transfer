@@ -470,11 +470,16 @@ function closeChinaBanner(){
   const saved = localStorage.getItem('atg_lang');
   if(saved === 'zh') {
     document.documentElement.setAttribute('data-lang','zh');
-    document.getElementById('langBtn').textContent = 'EN';
   }
 })();
 
-document.addEventListener('DOMContentLoaded', updateFormLang);
+document.addEventListener('DOMContentLoaded', function(){
+  updateFormLang();
+  if((localStorage.getItem('atg_lang') || '') === 'zh'){
+    const b = document.getElementById('langBtn');
+    if(b) b.textContent = 'EN';
+  }
+});
 
 function toggleLang(){
   const html = document.documentElement;
