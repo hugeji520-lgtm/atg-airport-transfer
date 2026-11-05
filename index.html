@@ -680,6 +680,8 @@ function submitMsg(zh, kind, errCode){
       'method':    ['请求方式错误，请刷新页面重试', 'Request method error, please refresh the page'],
       'telegram':  ['系统暂时不可用，请改用 WhatsApp 或拨打电话', 'System temporarily unavailable, please use WhatsApp or call'],
       'network':   ['网络错误，请检查网络后重试', 'Network error, please check your connection and try again'],
+      'vehicle':   ['请先选择车型', 'Please select a vehicle first'],
+      'terms':     ['请先勾选订金条款', 'Please accept the deposit terms first'],
     };
     const hit = m[errCode || ''];
     html = hit ? hit[zh ? 0 : 1] : (zh ? '提交失败，请改用 WhatsApp 或拨打 0430 595 120' : 'Submission failed. Please use WhatsApp instead, or call 0430 595 120.');
@@ -722,6 +724,130 @@ async function submitDirect(){
       btn.innerHTML = zh ? '✅ 已提交' : '✅ Submitted';
       btn.style.opacity = '.8';
       btn.style.cursor = 'default';
+    } else {
+      const err = (j && j.error) ? j.error : '';
+      submitMsg(zh, 'fail', err);
+      btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
+      if(window.turnstile) window.turnstile.reset();
+    }
+  } catch(e) {
+    submitMsg(zh, 'fail', 'network');
+    btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
+    if(window.turnstile) window.turnstile.reset();
+  }
+}
+
+async function quotePrice(){
+  const zh = document.documentElement.getAttribute('data-lang') === 'zh';
+  const a = document.getElementById('w_address').value.trim();
+  const dir = document.getElementById('w_dir').value;
+  const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
+  const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
+  if(!a){ showFieldError('w_address', zh ? '请填写地址' : 'Please fill in address'); return; }
+  if(!day || !month || !year){ showFieldError('w_day', zh ? '请选择日期' : 'Please select date'); return; }
+  if(!tmHour || !tmMin){ showFieldError('w_time_hour', zh ? '请选择时间' : 'Please select time'); return; }
+  clearFieldErrors();
+  const adults = parseInt(document.getElementById('w_adults').value) || 0;
+  const children = parseInt(document.getElementById('w_children').value) || 0;
+  const dt = year + '-' + month.padStart(2,'0') + '-' + day.padStart(2,'0');
+  const tm = tmHour + ':' + tmMin;
+  const payload = {
+    address: a, direction: dir, date: dt, time: tm,
+    passengers: String(adults + children), luggage: document.getElementById('w_lug').value,
+    child_ages: collectChildAges(), notes: document.getElementById('w_notes').value,
+  };
+  const box = document.getElementById('quoteBox');
+  box.style.display = 'block';
+  box.innerHTML = '<p style="text-align:center;color:rgba(255,255,255,.7)">' + (zh ? '正在查询价格…' : 'Checking price…') + '</p>';
+  try {
+    const res = await fetch(WORKER_URL + '/quote', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    const j = await res.json();
+    renderQuote(j, zh);
+  } catch(e) {
+    box.innerHTML = '<p style="text-align:center;color:#ffb4b4">' + (zh ? '查询失败，请稍后重试，或直接点下方提交预订' : 'Failed to get quote. Please try again, or submit your booking below') + '</p>';
+  }
+}
+
+let selectedVehicle = null;
+
+function renderQuote(j, zh){
+  const box = document.getElementById('quoteBox');
+  selectedVehicle = null;
+  if(j.auto_quote && j.options && j.options.length){
+    let html = '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:1rem 1rem .5rem">';
+    html += '<p style="color:var(--gold);font-weight:600;margin-bottom:.6rem">' + (zh ? '请选择车型（含订金）' : 'Select a vehicle (deposit shown)') + '</p>';
+    j.options.forEach(o => {
+      html += '<div class="vehicle-opt" onclick="selectVehicle(this)" data-vehicle="' + o.vehicle + '" data-total="' + o.total + '" data-deposit="' + o.deposit + '" style="display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border:1px solid rgba(255,255,255,.12);border-radius:8px;margin-bottom:.4rem;cursor:pointer">' +
+        '<span style="color:#fff;font-weight:600">' + (zh ? o.name_zh : o.name_en) + '</span>' +
+        '<span style="color:#fff;text-align:right">$' + o.total + ' &nbsp;<span style="color:rgba(255,255,255,.55);font-size:.82rem">' + (zh ? '订金 $' : 'deposit $') + o.deposit + '</span></span>' +
+        '</div>';
+    });
+    html += '<p style="margin-top:.5rem;color:rgba(255,255,255,.55);font-size:.78rem">' + (zh ? '价格按整车计，含 GST 和过路费。' : 'Prices are per vehicle, GST and tolls included.') + '</p>';
+    html += '<label style="display:flex;align-items:flex-start;gap:.5rem;margin-top:.6rem;color:rgba(255,255,255,.8);font-size:.82rem;cursor:pointer;line-height:1.5"><input type="checkbox" id="termsChk" style="margin-top:.25rem;flex:none"><span>' +
+      (zh ? '订金为总价的 30%，余款当天付司机（可刷卡或现金）；上车前 48 小时以外取消订金全退，48 小时以内取消订金不退。' : 'The deposit is 30% of the total; the balance is paid to the driver on the day (card or cash). Cancel more than 48 hours before pickup for a full refund; within 48 hours the deposit is non-refundable.') +
+      '</span></label>';
+    html += urgentNote(zh);
+    html += '<button type="button" id="btnVehicleBook" class="btn btn-primary" onclick="submitWithVehicle()" style="width:100%;justify-content:center;margin-top:.8rem">📤 ' + (zh ? '确认选车并提交预订' : 'Confirm & Submit Booking') + '</button>';
+    html += '</div>';
+    box.innerHTML = html;
+  } else {
+    box.innerHTML = '<div style="background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:10px;padding:1rem;text-align:center;color:#ffd27a">' +
+      (zh ? '这个行程我们需要人工确认价格，请直接点下方「直接提交预订」，Max 会尽快联系您报价。' : 'We need to confirm this trip manually. Please submit your booking below and Max will contact you with a price.') +
+      '</div>';
+  }
+}
+
+function selectVehicle(el){
+  document.querySelectorAll('.vehicle-opt').forEach(x => { x.style.borderColor = 'rgba(255,255,255,.12)'; x.style.background = 'transparent'; });
+  el.style.borderColor = 'var(--gold)';
+  el.style.background = 'rgba(212,168,67,.12)';
+  selectedVehicle = { vehicle: el.dataset.vehicle, total: el.dataset.total, deposit: el.dataset.deposit };
+}
+
+function urgentNote(zh){
+  const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
+  const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
+  if(!day || !month || !year || !tmHour || !tmMin) return '';
+  const target = new Date(parseInt(year), parseInt(month)-1, parseInt(day), parseInt(tmHour), parseInt(tmMin));
+  const diffMs = target - new Date();
+  if(diffMs < 0 || diffMs >= 24*3600*1000) return '';
+  const hh = parseInt(tmHour);
+  let msg;
+  if(hh >= 22 || hh < 6){
+    msg = zh ? '这是 24 小时内的急单，请直接致电 0430 595 120 预订。' : 'This is a last-minute booking (within 24 hours). Please call 0430 595 120 to book.';
+  } else {
+    msg = zh ? '这是 24 小时内的急单，可能会有额外费用，具体由 Max 确认；订金暂不自动收取。' : 'This is a last-minute booking (within 24 hours) — extra charges may apply and will be confirmed by Max. The deposit is not charged automatically.';
+  }
+  return '<div style="margin-top:.6rem;padding:.6rem .8rem;background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:8px;color:#ffd27a;font-size:.82rem;line-height:1.5">' + msg + '</div>';
+}
+
+async function submitWithVehicle(){
+  const zh = document.documentElement.getAttribute('data-lang') === 'zh';
+  const b = buildBooking(); if(!b) return;
+  if(!selectedVehicle){ submitMsg(zh, 'vehicle'); return; }
+  const terms = document.getElementById('termsChk');
+  if(!terms || !terms.checked){ submitMsg(zh, 'terms'); return; }
+  const btn = document.getElementById('btnVehicleBook');
+  btn.disabled = true; btn.style.opacity = '.55'; btn.style.cursor = 'not-allowed';
+  const token = (window.turnstile && window.turnstile.getResponse) ? window.turnstile.getResponse() : '';
+  if(!token){ submitMsg(zh, 'verify'); btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = ''; return; }
+  try {
+    const payload = {
+      name: b.n, phone: b.p, direction: b.dir, date: b.dt, time: b.tm,
+      address: b.a, flight: b.fl, passengers: b.pass, luggage: b.lug,
+      child_ages: collectChildAges(),
+      vehicle: selectedVehicle.vehicle,
+      email: '',
+      notes: document.getElementById('w_notes').value,
+      lang: zh ? 'zh' : 'en',
+      turnstile: token,
+    };
+    const res = await fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    const j = await res.json();
+    if(j && j.ok){
+      submitMsg(zh, 'success');
+      btn.innerHTML = zh ? '✅ 已提交' : '✅ Submitted';
+      btn.style.opacity = '.8'; btn.style.cursor = 'default';
     } else {
       const err = (j && j.error) ? j.error : '';
       submitMsg(zh, 'fail', err);
@@ -1247,6 +1373,10 @@ async function submitDirect(){
           <label><span class="lang-en">Notes</span><span class="lang-zh">备注</span></label>
           <textarea id="w_notes" placeholder="e.g. Wheelchair access, extra luggage..."></textarea>
         </div>
+        <div class="form-group" style="text-align:center">
+          <button type="button" id="btnQuote" class="btn btn-primary" onclick="quotePrice()" style="flex:none;justify-content:center;padding:.8rem 2.5rem">🔍 <span class="lang-en">Check Price</span><span class="lang-zh">查看价格</span></button>
+        </div>
+        <div id="quoteBox" style="display:none;margin:0 0 1.2rem"></div>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAAFt5ekMag6C2AvDB" data-theme="dark" style="margin:0 0 1rem"></div>
         <div class="submit-row">
           <button type="button" id="btnDirect" class="btn btn-primary btn-direct" onclick="submitDirect()" style="flex:1;justify-content:center">📤 <span class="lang-en">Submit Booking</span><span class="lang-zh">直接提交预订</span></button>
