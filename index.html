@@ -775,14 +775,44 @@ async function quotePrice(){
 
 let selectedVehicle = null;
 
+function hideBtnDirect(){
+  const b = document.getElementById('btnDirect');
+  if(b) b.style.display = 'none';
+}
+function showBtnDirectManual(){
+  const b = document.getElementById('btnDirect');
+  if(!b) return;
+  b.style.display = '';
+  const en = b.querySelector('.lang-en');
+  const zh = b.querySelector('.lang-zh');
+  if(en) en.textContent = 'Submit & wait for manual quote';
+  if(zh) zh.textContent = '提交预订，等待人工报价';
+}
+function resetBtnDirect(){
+  const b = document.getElementById('btnDirect');
+  if(!b) return;
+  b.style.display = '';
+  const en = b.querySelector('.lang-en');
+  const zh = b.querySelector('.lang-zh');
+  if(en) en.textContent = 'Submit Booking';
+  if(zh) zh.textContent = '直接提交预订';
+}
+function invalidateQuote(){
+  selectedVehicle = null;
+  const box = document.getElementById('quoteBox');
+  if(box){ box.style.display = 'none'; box.innerHTML = ''; }
+  resetBtnDirect();
+}
+
 function renderQuote(j, zh){
   const box = document.getElementById('quoteBox');
   selectedVehicle = null;
   if(j.auto_quote && j.options && j.options.length){
+    hideBtnDirect();
     let html = '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:1rem 1rem .5rem">';
     html += '<p style="color:var(--gold);font-weight:600;margin-bottom:.6rem">' + (zh ? '请选择车型（含订金）' : 'Select a vehicle (deposit shown)') + '</p>';
     j.options.forEach(o => {
-      html += '<div class="vehicle-opt" onclick="selectVehicle(this)" data-vehicle="' + o.vehicle + '" data-total="' + o.total + '" data-deposit="' + o.deposit + '" style="display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border:1px solid rgba(255,255,255,.12);border-radius:8px;margin-bottom:.4rem;cursor:pointer">' +
+      html += '<div class="vehicle-opt" onclick="selectVehicle(this)" data-vehicle="' + o.vehicle + '" data-total="' + o.total + '" data-deposit="' + o.deposit + '" data-name-en="' + o.name_en + '" data-name-zh="' + o.name_zh + '" style="display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border:1px solid rgba(255,255,255,.12);border-radius:8px;margin-bottom:.4rem;cursor:pointer">' +
         '<span style="color:#fff;font-weight:600">' + (zh ? o.name_zh : o.name_en) + '</span>' +
         '<span style="color:#fff;text-align:right">$' + o.total + ' &nbsp;<span style="color:rgba(255,255,255,.55);font-size:.82rem">' + (zh ? '订金 $' : 'deposit $') + o.deposit + '</span></span>' +
         '</div>';
@@ -796,8 +826,9 @@ function renderQuote(j, zh){
     html += '</div>';
     box.innerHTML = html;
   } else {
+    showBtnDirectManual();
     box.innerHTML = '<div style="background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:10px;padding:1rem;text-align:center;color:#ffd27a">' +
-      (zh ? '这个行程我们需要人工确认价格，请直接点下方「直接提交预订」，Max 会尽快联系您报价。' : 'We need to confirm this trip manually. Please submit your booking below and Max will contact you with a price.') +
+      (zh ? '这个行程我们需要人工确认价格，请直接点下方「提交预订，等待人工报价」，Max 会尽快联系您报价。' : 'We need to confirm this trip manually. Please submit your booking below and Max will contact you with a price.') +
       '</div>';
   }
 }
@@ -806,7 +837,35 @@ function selectVehicle(el){
   document.querySelectorAll('.vehicle-opt').forEach(x => { x.style.borderColor = 'rgba(255,255,255,.12)'; x.style.background = 'transparent'; });
   el.style.borderColor = 'var(--gold)';
   el.style.background = 'rgba(212,168,67,.12)';
-  selectedVehicle = { vehicle: el.dataset.vehicle, total: el.dataset.total, deposit: el.dataset.deposit };
+  selectedVehicle = { vehicle: el.dataset.vehicle, total: el.dataset.total, deposit: el.dataset.deposit, name_en: el.dataset.nameEn, name_zh: el.dataset.nameZh };
+}
+
+// 报价字段变化 → 报价失效，需重新查价（避免用旧价格下单）
+(function(){
+  const quoteIds = ['w_dir','w_day','w_day_zh','w_month','w_month_zh','w_year','w_year_zh',
+                     'w_time_hour','w_time_min','w_address','w_adults','w_children','w_lug','w_notes'];
+  document.addEventListener('change', function(e){
+    if(quoteIds.indexOf(e.target.id) !== -1 || (e.target.className || '').indexOf('child-age') !== -1){
+      invalidateQuote();
+    }
+  });
+  document.addEventListener('input', function(e){
+    if(e.target.id === 'w_address' || e.target.id === 'w_notes'){
+      invalidateQuote();
+    }
+  });
+})();
+
+function submitVehicleSuccess(zh, name, total, deposit){
+  const el = document.getElementById('submitMsg');
+  const html = zh
+    ? '已收到您的预订（' + name + ' $' + total + '，订金 $' + deposit + '），Max 确认后会发付款信息。'
+    : "We've received your booking (" + name + ' $' + total + ', deposit $' + deposit + '). Max will confirm and send payment details.';
+  el.innerHTML = html;
+  el.style.display = 'block';
+  el.style.background = 'rgba(37,211,102,.16)';
+  el.style.color = '#a5e8b8';
+  el.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
 function urgentNote(zh){
@@ -850,7 +909,7 @@ async function submitWithVehicle(){
     const res = await fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
     const j = await res.json();
     if(j && j.ok){
-      submitMsg(zh, 'success');
+      submitVehicleSuccess(zh, zh ? selectedVehicle.name_zh : selectedVehicle.name_en, selectedVehicle.total, selectedVehicle.deposit);
       btn.innerHTML = zh ? '✅ 已提交' : '✅ Submitted';
       btn.style.opacity = '.8'; btn.style.cursor = 'default';
     } else {
