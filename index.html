@@ -819,7 +819,7 @@ function renderQuote(j, zh){
     });
     html += '<p style="margin-top:.5rem;color:rgba(255,255,255,.55);font-size:.78rem">' + (zh ? '价格按整车计，含 GST 和过路费。' : 'Prices are per vehicle, GST and tolls included.') + '</p>';
     html += '<label style="display:flex;align-items:flex-start;gap:.5rem;margin-top:.6rem;color:rgba(255,255,255,.8);font-size:.82rem;cursor:pointer;line-height:1.5"><input type="checkbox" id="termsChk" style="margin-top:.25rem;flex:none"><span>' +
-      (zh ? '订金为总价的 30%，余款当天付司机（可刷卡或现金）；上车前 48 小时以外取消订金全退，48 小时以内取消订金不退。' : 'The deposit is 30% of the total; the balance is paid to the driver on the day (card or cash). Cancel more than 48 hours before pickup for a full refund; within 48 hours the deposit is non-refundable.') +
+      (zh ? '订金为总价的 30%，余款当天付司机（可刷卡或现金），也可付全款。取消：付全款——上车前 48 小时以外取消全退，48 小时以内扣总价 30%、其余退还；付订金——48 小时以外订金全退，48 小时以内订金不退。' : 'The deposit is 30% of the total; the balance is paid to the driver on the day (card or cash), or you may pay the full amount upfront. Cancellation — full payment: cancel more than 48 hours before pickup for a full refund; within 48 hours we deduct 30% of the total and refund the rest. Deposit: cancel more than 48 hours before pickup for a full refund; within 48 hours the deposit is non-refundable.') +
       '</span></label>';
     html += urgentNote(zh);
     html += '<button type="button" id="btnVehicleBook" class="btn btn-primary" onclick="submitWithVehicle()" style="width:100%;justify-content:center;margin-top:.8rem">📤 ' + (zh ? '确认选车并提交预订' : 'Confirm & Submit Booking') + '</button>';
