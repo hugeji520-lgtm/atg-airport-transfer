@@ -691,7 +691,7 @@ async function submitDirect(){
       address: b.a, flight: b.fl, passengers: b.pass, luggage: b.lug,
       child_ages: collectChildAges(),
       vehicle: '', email: '',
-      notes: document.getElementById('w_notes').value,
+      notes: getNotesWithExtraStop(),
       lang: zh ? 'zh' : 'en',
       turnstile: token,
     };
@@ -732,7 +732,7 @@ async function quotePrice(){
   const payload = {
     address: a, direction: dir, date: dt, time: tm,
     passengers: String(adults + children), luggage: document.getElementById('w_lug').value,
-    child_ages: collectChildAges(), notes: document.getElementById('w_notes').value,
+    child_ages: collectChildAges(), notes: getNotesWithExtraStop(),
   };
   const box = document.getElementById('quoteBox');
   box.style.display = 'block';
@@ -829,11 +829,38 @@ function selectVehicle(el){
   });
 })();
 
+const NOTE_MANUAL_KEYWORDS = ['停靠','经停','中途停','中途接','顺路接','多接一个','再接一个','多一个地址','第二个地址','两个地址','多个地址','多一个地点','等待','等候','返程','往返','回程','stop','stopover','stop over','extra stop','pick up another','pickup another','detour','second address','multiple stop','multiple address','extra address','wait','return','round trip','roundtrip'];
+
+function noteManualReason(){
+  // 勾选框 → 手动
+  const cb = document.getElementById('w_extra_stop');
+  if(cb && cb.checked) return '中途停靠(勾选)';
+  const notesEl = document.getElementById('w_notes');
+  const notes = (notesEl && notesEl.value || '').trim().toLowerCase();
+  if(!notes) return null;
+  for(const kw of NOTE_MANUAL_KEYWORDS){
+    if(kw && notes.indexOf(kw.toLowerCase()) >= 0) return kw;
+  }
+  // 儿童座椅：儿童数 ≤1 且备注提座椅/seat/booster
+  if(collectChildAges().length <= 1){
+    if(notes.indexOf('座椅') >= 0 || notes.indexOf('seat') >= 0 || notes.indexOf('booster') >= 0) return '儿童座椅';
+  }
+  return null;
+}
+
+function getNotesWithExtraStop(){
+  let n = document.getElementById('w_notes').value || '';
+  const cb = document.getElementById('w_extra_stop');
+  if(cb && cb.checked){
+    n = (n.trim() ? n.trim() + '；' : '') + '需要中途停靠';
+  }
+  return n;
+}
+
 function isAutoConfirmEligible(){
-  // 自动确认条件：选了车型 + 非急单(≥24h) + 备注为空（auto_confirm 开关由后端判定）
+  // 自动确认条件：选了车型 + 非急单(≥24h) + 备注无加价词/勾选框未勾（auto_confirm 开关由后端判定）
   if(!selectedVehicle) return false;
-  const n = document.getElementById('w_notes');
-  if(n && (n.value || '').trim()) return false;
+  if(noteManualReason()) return false;
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
   const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
   if(!day || !month || !year || !tmHour || !tmMin) return false;
@@ -856,14 +883,13 @@ function superUrgentMsg(zh){
 
 function submitVehicleSuccess(zh, name, total, deposit, autoConfirmed){
   const el = document.getElementById('submitMsg');
-  const notesEl = document.getElementById('w_notes');
-  const hasNotes = notesEl && (notesEl.value || '').trim();
+  const nmr = noteManualReason();
   let html;
   if(autoConfirmed){
     html = zh
       ? '预订已确认（' + name + ' $' + total + '），付款信息已通过短信发送到您的手机。'
       : 'Your booking is confirmed (' + name + ' $' + total + '). Payment details have been sent by SMS to your phone.';
-  } else if(hasNotes){
+  } else if(nmr){
     html = zh
       ? '已收到您的预订和备注，Max 会核对特殊要求（如有额外费用会先告知）后确认并发付款信息。'
       : "We've received your booking and notes. Max will review your special requests (and let you know first if any extra charges apply) before confirming and sending payment details.";
@@ -911,7 +937,7 @@ async function submitWithVehicle(){
       child_ages: collectChildAges(),
       vehicle: selectedVehicle.vehicle,
       email: '',
-      notes: document.getElementById('w_notes').value,
+      notes: getNotesWithExtraStop(),
       lang: zh ? 'zh' : 'en',
       turnstile: token,
     };
@@ -1445,6 +1471,12 @@ async function submitWithVehicle(){
         <div class="form-group">
           <label><span class="lang-en">Notes</span><span class="lang-zh">备注</span></label>
           <textarea id="w_notes" maxlength="500" placeholder="e.g. Wheelchair access, extra luggage..."></textarea>
+        </div>
+        <div class="form-group" style="margin-top:-.2rem">
+          <label style="display:flex;align-items:flex-start;gap:.5rem;cursor:pointer;font-size:.9rem">
+            <input type="checkbox" id="w_extra_stop" style="width:auto;margin-top:.2rem">
+            <span><span class="lang-en">Extra stop / additional address needed</span><span class="lang-zh">需要中途停靠 / 多一个地址</span></span>
+          </label>
         </div>
         <div class="form-group" style="text-align:center">
           <button type="button" id="btnQuote" class="btn btn-primary" onclick="quotePrice()" style="flex:none;justify-content:center;padding:.8rem 2.5rem">🔍 <span class="lang-en">Check Price</span><span class="lang-zh">查看价格</span></button>
