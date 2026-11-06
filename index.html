@@ -830,8 +830,10 @@ function selectVehicle(el){
 })();
 
 function isAutoConfirmEligible(){
-  // 自动确认条件：选了车型 + 非急单(≥24h)（auto_confirm 开关由后端判定）
+  // 自动确认条件：选了车型 + 非急单(≥24h) + 备注为空（auto_confirm 开关由后端判定）
   if(!selectedVehicle) return false;
+  const n = document.getElementById('w_notes');
+  if(n && (n.value || '').trim()) return false;
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
   const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
   if(!day || !month || !year || !tmHour || !tmMin) return false;
@@ -854,13 +856,22 @@ function superUrgentMsg(zh){
 
 function submitVehicleSuccess(zh, name, total, deposit, autoConfirmed){
   const el = document.getElementById('submitMsg');
-  let html = autoConfirmed
-    ? (zh
-        ? '预订已确认（' + name + ' $' + total + '），付款信息已通过短信发送到您的手机。'
-        : 'Your booking is confirmed (' + name + ' $' + total + '). Payment details have been sent by SMS to your phone.')
-    : (zh
-        ? '已收到您的预订（' + name + ' $' + total + '，订金 $' + deposit + '），Max 确认后会发付款信息。'
-        : "We've received your booking (" + name + ' $' + total + ', deposit $' + deposit + '). Max will confirm and send payment details.');
+  const notesEl = document.getElementById('w_notes');
+  const hasNotes = notesEl && (notesEl.value || '').trim();
+  let html;
+  if(autoConfirmed){
+    html = zh
+      ? '预订已确认（' + name + ' $' + total + '），付款信息已通过短信发送到您的手机。'
+      : 'Your booking is confirmed (' + name + ' $' + total + '). Payment details have been sent by SMS to your phone.';
+  } else if(hasNotes){
+    html = zh
+      ? '已收到您的预订和备注，Max 会核对特殊要求（如有额外费用会先告知）后确认并发付款信息。'
+      : "We've received your booking and notes. Max will review your special requests (and let you know first if any extra charges apply) before confirming and sending payment details.";
+  } else {
+    html = zh
+      ? '已收到您的预订（' + name + ' $' + total + '，订金 $' + deposit + '），Max 确认后会发付款信息。'
+      : "We've received your booking (" + name + ' $' + total + ', deposit $' + deposit + '). Max will confirm and send payment details.';
+  }
   const su = superUrgentMsg(zh);
   if(su){ html += '<br><br>' + su; }
   el.innerHTML = html;
