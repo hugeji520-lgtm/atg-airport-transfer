@@ -156,23 +156,13 @@ section{padding:5rem 0}
 .form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,168,67,.3)}
 .submit-row{display:flex;gap:.8rem;margin-top:.5rem;flex-wrap:wrap}
 .submit-row .btn{flex:1 1 140px;justify-content:center;min-width:0}
-/* 设备排序：桌面=邮件在左，手机=WhatsApp/短信在左 */
 .submit-row .btn-direct{order:0}
-.submit-row .btn-email{order:1}
-.submit-row .btn-wa{order:2}
-.submit-row .btn-sms{order:3}
-.submit-row .btn-call{order:4}
+.submit-row .btn-call{order:1}
 @media(min-width:1024px){
   .submit-row .btn{flex:1 1 calc(50% - .4rem)!important;white-space:nowrap;padding-left:1.2rem;padding-right:1.2rem}
 }
 @media(min-width:769px) and (max-width:1023px){
   .submit-row{flex-direction:column}
-}
-@media(max-width:768px){
-  .submit-row .btn-wa{order:1}
-  .submit-row .btn-sms{order:2}
-  .submit-row .btn-email{order:3}
-  .submit-row .btn-call{order:4}
 }
 
 /* ===== FOOTER ===== */
@@ -639,28 +629,7 @@ function buildBooking(){
   const tm = tmHour + ':' + tmMin;
   const pass = String(adults + children);
   const lug = document.getElementById('w_lug').value;
-  const child_ages = collectChildAges();
-  const child_info = child_ages ? "Children's ages: " + child_ages : '';
-  const notes = document.getElementById('w_notes').value;
-  const msg = '★ ATG Airport Transfer ★\nName: ' + n + '\nPhone: ' + p + '\nDirection: ' + dir + '\nDate: ' + dt + '\nTime: ' + tm + '\nAddress: ' + a + '\nFlight: ' + (fl||'-') + '\nPassengers: ' + pass + '\nLuggage: ' + lug + (child_info ? '\n' + child_info : '') + '\nNotes: ' + (notes||'-');
-  return { n:n, p:p, a:a, dt:dt, tm:tm, dir:dir, fl:fl, pass:pass, lug:lug, child_info:child_info, msg:msg };
-}
-
-function submitWhatsApp(){
-  const b = buildBooking(); if(!b) return;
-  window.open('https://api.whatsapp.com/send?phone=61433935504&text='+encodeURIComponent(b.msg),'_blank');
-}
-
-function submitSMS(){
-  const b = buildBooking(); if(!b) return;
-  window.location.href = 'sms:+61430595120?&body='+encodeURIComponent(b.msg);
-}
-
-function submitEmail(){
-  const b = buildBooking(); if(!b) return;
-  const subject = 'ATG Booking - ' + b.n + ' - ' + b.dt;
-  const body = b.msg.split('\n').join('\r\n');
-  window.location.href = 'mailto:info@atgairporttransfer.com.au?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  return { n:n, p:p, a:a, dt:dt, tm:tm, dir:dir, fl:fl, pass:pass, lug:lug };
 }
 const WORKER_URL = 'https://atg-booking.hugeji520.workers.dev';
 
@@ -683,13 +652,13 @@ function submitMsg(zh, kind, errCode){
       'json':      ['提交数据格式错误，请重试', 'Invalid submission data, please try again'],
       'origin':    ['请求来源错误，请刷新页面重试', 'Request origin error, please refresh the page'],
       'method':    ['请求方式错误，请刷新页面重试', 'Request method error, please refresh the page'],
-      'telegram':  ['系统暂时不可用，请改用 WhatsApp 或拨打电话', 'System temporarily unavailable, please use WhatsApp or call'],
+      'telegram':  ['系统暂时不可用，请稍后重试，或直接致电 0430 595 120／点右下角 WhatsApp 联系我们', 'System temporarily unavailable, please try again later, or call 0430 595 120 / use the WhatsApp icon at the bottom right.'],
       'network':   ['网络错误，请检查网络后重试', 'Network error, please check your connection and try again'],
       'vehicle':   ['请先选择车型', 'Please select a vehicle first'],
       'terms':     ['请先勾选订金条款', 'Please accept the deposit terms first'],
     };
     const hit = m[errCode || ''];
-    html = hit ? hit[zh ? 0 : 1] : (zh ? '提交失败，请改用 WhatsApp 或拨打 0430 595 120' : 'Submission failed. Please use WhatsApp instead, or call 0430 595 120.');
+    html = hit ? hit[zh ? 0 : 1] : (zh ? '提交失败，请稍后重试，或直接致电 0430 595 120／点右下角 WhatsApp 联系我们' : 'Submission failed. Please try again later, or call 0430 595 120 / use the WhatsApp icon at the bottom right.');
     color = '#ffb4b4'; bg = 'rgba(255,99,99,.16)';
   }
   el.innerHTML = html;
@@ -1471,9 +1440,6 @@ async function submitWithVehicle(){
         <div class="cf-turnstile" data-sitekey="0x4AAAAAAFt5ekMag6C2AvDB" data-theme="dark" style="margin:0 0 1rem"></div>
         <div class="submit-row">
           <button type="button" id="btnDirect" class="btn btn-primary btn-direct" onclick="submitDirect()" style="flex:1;justify-content:center">📤 <span class="lang-en">Submit Booking</span><span class="lang-zh">直接提交预订</span></button>
-          <button type="button" class="btn btn-outline-light btn-email" onclick="submitEmail()" style="flex:1;justify-content:center">✉️ <span class="lang-en">Book via Email</span><span class="lang-zh">邮件预订</span></button>
-          <button type="button" class="btn btn-green btn-wa" onclick="submitWhatsApp()" style="flex:1;justify-content:center"><span class="lang-en">Book via WhatsApp</span><span class="lang-zh">WhatsApp 预订</span></button>
-          <button type="button" class="btn btn-outline-light btn-sms" onclick="submitSMS()" style="flex:1;justify-content:center">📱 <span class="lang-en">Book via SMS</span><span class="lang-zh">短信预订</span></button>
           <a class="btn btn-outline-light btn-call" href="tel:+61430595120" style="flex:1;justify-content:center">📞 <span class="lang-en">Call Us</span><span class="lang-zh">电话</span></a>
         </div>
         <div id="submitMsg" style="display:none;margin-top:1rem;padding:1rem 1.2rem;border-radius:10px;font-size:.95rem;line-height:1.6"></div>
