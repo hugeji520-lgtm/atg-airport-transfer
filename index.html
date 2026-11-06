@@ -870,15 +870,28 @@ function isAutoConfirmEligible(){
   return true;
 }
 
+function superUrgentMsg(zh){
+  // <6h 超急单提示；非超急单返回 ''
+  const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
+  const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
+  if(!day || !month || !year || !tmHour || !tmMin) return '';
+  const target = new Date(parseInt(year), parseInt(month)-1, parseInt(day), parseInt(tmHour), parseInt(tmMin));
+  const diffMs = target - new Date();
+  if(diffMs < 0 || diffMs >= 6*3600*1000) return '';
+  return zh ? '由于时间紧急，我们无法 100% 保证能安排到司机，Max 会尽快联系您确认。如果紧急，请直接致电 0430 595 120。' : "Due to the short notice, we can't guarantee a driver will be available. Max will contact you as soon as possible to confirm. For urgent help, please call 0430 595 120.";
+}
+
 function submitVehicleSuccess(zh, name, total, deposit, autoConfirmed){
   const el = document.getElementById('submitMsg');
-  const html = autoConfirmed
+  let html = autoConfirmed
     ? (zh
         ? '预订已确认（' + name + ' $' + total + '），付款信息已通过短信发送到您的手机。'
         : 'Your booking is confirmed (' + name + ' $' + total + '). Payment details have been sent by SMS to your phone.')
     : (zh
         ? '已收到您的预订（' + name + ' $' + total + '，订金 $' + deposit + '），Max 确认后会发付款信息。'
         : "We've received your booking (" + name + ' $' + total + ', deposit $' + deposit + '). Max will confirm and send payment details.');
+  const su = superUrgentMsg(zh);
+  if(su){ html += '<br><br>' + su; }
   el.innerHTML = html;
   el.style.display = 'block';
   el.style.background = 'rgba(37,211,102,.16)';
@@ -887,19 +900,15 @@ function submitVehicleSuccess(zh, name, total, deposit, autoConfirmed){
 }
 
 function urgentNote(zh){
+  const su = superUrgentMsg(zh);
+  if(su) return '<div style="margin-top:.6rem;padding:.6rem .8rem;background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:8px;color:#ffd27a;font-size:.82rem;line-height:1.5">' + su + '</div>';
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
   const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
   if(!day || !month || !year || !tmHour || !tmMin) return '';
   const target = new Date(parseInt(year), parseInt(month)-1, parseInt(day), parseInt(tmHour), parseInt(tmMin));
   const diffMs = target - new Date();
   if(diffMs < 0 || diffMs >= 24*3600*1000) return '';
-  const hh = parseInt(tmHour);
-  let msg;
-  if(hh >= 22 || hh < 6){
-    msg = zh ? '这是 24 小时内的急单，请直接致电 0430 595 120 预订。' : 'This is a last-minute booking (within 24 hours). Please call 0430 595 120 to book.';
-  } else {
-    msg = zh ? '这是 24 小时内的急单，可能会有额外费用，具体由 Max 确认；订金暂不自动收取。' : 'This is a last-minute booking (within 24 hours) — extra charges may apply and will be confirmed by Max. The deposit is not charged automatically.';
-  }
+  const msg = zh ? '这是 24 小时内的急单，可能会有额外费用，具体由 Max 确认；订金暂不自动收取。' : 'This is a last-minute booking (within 24 hours) — extra charges may apply and will be confirmed by Max. The deposit is not charged automatically.';
   return '<div style="margin-top:.6rem;padding:.6rem .8rem;background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:8px;color:#ffd27a;font-size:.82rem;line-height:1.5">' + msg + '</div>';
 }
 
