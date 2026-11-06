@@ -856,11 +856,29 @@ function selectVehicle(el){
   });
 })();
 
-function submitVehicleSuccess(zh, name, total, deposit){
+function isAutoConfirmEligible(){
+  // 自动确认条件：选了车型 + 非急单(≥24h) + 备注为空（auto_confirm 开关由后端判定）
+  if(!selectedVehicle) return false;
+  const n = document.getElementById('w_notes');
+  if(n && (n.value || '').trim()) return false;
+  const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
+  const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
+  if(!day || !month || !year || !tmHour || !tmMin) return false;
+  const target = new Date(parseInt(year), parseInt(month)-1, parseInt(day), parseInt(tmHour), parseInt(tmMin));
+  const diffMs = target - new Date();
+  if(diffMs < 24*3600*1000) return false;
+  return true;
+}
+
+function submitVehicleSuccess(zh, name, total, deposit, autoConfirmed){
   const el = document.getElementById('submitMsg');
-  const html = zh
-    ? '已收到您的预订（' + name + ' $' + total + '，订金 $' + deposit + '），Max 确认后会发付款信息。'
-    : "We've received your booking (" + name + ' $' + total + ', deposit $' + deposit + '). Max will confirm and send payment details.';
+  const html = autoConfirmed
+    ? (zh
+        ? '预订已确认（' + name + ' $' + total + '），付款信息已通过短信发送到您的手机。'
+        : 'Your booking is confirmed (' + name + ' $' + total + '). Payment details have been sent by SMS to your phone.')
+    : (zh
+        ? '已收到您的预订（' + name + ' $' + total + '，订金 $' + deposit + '），Max 确认后会发付款信息。'
+        : "We've received your booking (" + name + ' $' + total + ', deposit $' + deposit + '). Max will confirm and send payment details.');
   el.innerHTML = html;
   el.style.display = 'block';
   el.style.background = 'rgba(37,211,102,.16)';
@@ -909,7 +927,7 @@ async function submitWithVehicle(){
     const res = await fetch(WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
     const j = await res.json();
     if(j && j.ok){
-      submitVehicleSuccess(zh, zh ? selectedVehicle.name_zh : selectedVehicle.name_en, selectedVehicle.total, selectedVehicle.deposit);
+      submitVehicleSuccess(zh, zh ? selectedVehicle.name_zh : selectedVehicle.name_en, selectedVehicle.total, selectedVehicle.deposit, isAutoConfirmEligible());
       btn.innerHTML = zh ? '✅ 已提交' : '✅ Submitted';
       btn.style.opacity = '.8'; btn.style.cursor = 'default';
     } else {
