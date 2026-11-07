@@ -505,6 +505,19 @@ function updateTimeLabel(){
   const zh = document.getElementById('w_time_label_zh');
   if(en) en.textContent = isPickup ? 'Flight landing time *' : 'Pickup time *';
   if(zh) zh.textContent = isPickup ? '航班落地时间 *' : '上车时间 *';
+  const meetWrap = document.getElementById('meetWrap');
+  if(meetWrap){
+    meetWrap.style.display = isPickup ? '' : 'none';
+    if(!isPickup){
+      const mc = document.getElementById('w_meet');
+      if(mc) mc.checked = false;
+    }
+  }
+}
+
+function meetFlag(){
+  const c = document.getElementById('w_meet');
+  return (c && c.checked) ? '1' : '';
 }
 
 function renderChildAges(){
@@ -692,6 +705,7 @@ async function submitDirect(){
       child_ages: collectChildAges(),
       vehicle: '', email: '',
       notes: getNotesWithExtraStop(),
+      meet_greet: meetFlag(),
       lang: zh ? 'zh' : 'en',
       turnstile: token,
     };
@@ -734,6 +748,7 @@ async function quotePrice(){
     address: a, direction: dir, date: dt, time: tm,
     passengers: String(adults + children), luggage: document.getElementById('w_lug').value,
     child_ages: collectChildAges(), notes: getNotesWithExtraStop(),
+    meet_greet: meetFlag(),
   };
   const box = document.getElementById('quoteBox');
   box.style.display = 'block';
@@ -945,6 +960,7 @@ async function submitWithVehicle(){
       vehicle: selectedVehicle.vehicle,
       email: '',
       notes: getNotesWithExtraStop(),
+      meet_greet: meetFlag(),
       lang: zh ? 'zh' : 'en',
       turnstile: token,
     };
@@ -1394,6 +1410,12 @@ async function submitWithVehicle(){
             <label><span class="lang-en">Flight No.</span><span class="lang-zh">航班号</span></label>
             <input type="text" id="w_flight" placeholder="e.g. CA 177">
           </div>
+        </div>
+        <div class="form-group" id="meetWrap" style="display:none">
+          <label style="display:flex;align-items:flex-start;gap:.5rem;cursor:pointer;font-size:.9rem">
+            <input type="checkbox" id="w_meet" style="width:auto;margin-top:.2rem">
+            <span><span class="lang-en">Meet &amp; Greet with name sign (+$30)</span><span class="lang-zh">举牌接机（+$30）</span></span>
+          </label>
         </div>
         <div class="form-row">
           <div class="form-group">
