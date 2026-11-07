@@ -721,12 +721,13 @@ async function quotePrice(){
   const dir = document.getElementById('w_dir').value;
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
   const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
-  if(!a){ showFieldError('w_address', zh ? '请填写地址' : 'Please fill in address'); return; }
-  if(!day || !month || !year){ showFieldError('w_day', zh ? '请选择日期' : 'Please select date'); return; }
-  if(!tmHour || !tmMin){ showFieldError('w_time_hour', zh ? '请选择时间' : 'Please select time'); return; }
-  clearFieldErrors();
   const adults = parseInt(document.getElementById('w_adults').value) || 0;
   const children = parseInt(document.getElementById('w_children').value) || 0;
+  if(!a){ showFieldError('w_address', zh ? '请填写地址' : 'Please fill in address'); scrollTo('w_address'); return; }
+  if(!day || !month || !year){ showFieldError('w_day', zh ? '请选择日期' : 'Please select date'); scrollTo('w_day'); return; }
+  if(!tmHour || !tmMin){ showFieldError('w_time_hour', zh ? '请选择时间' : 'Please select time'); scrollTo('w_time_hour'); return; }
+  if(adults + children < 1){ showFieldError('w_adults', zh ? '请填写人数' : 'Please fill in passengers'); scrollTo('w_adults'); return; }
+  clearFieldErrors();
   const dt = year + '-' + month.padStart(2,'0') + '-' + day.padStart(2,'0');
   const tm = tmHour + ':' + tmMin;
   const payload = {
@@ -800,9 +801,15 @@ function renderQuote(j, zh){
     box.innerHTML = html;
   } else {
     showBtnDirectManual();
-    box.innerHTML = '<div style="background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:10px;padding:1rem;text-align:center;color:#ffd27a">' +
-      (zh ? '这个行程我们需要人工确认价格，请直接点下方「提交预订，等待人工报价」，Max 会尽快联系您报价。' : 'We need to confirm this trip manually. Please submit your booking below and Max will contact you with a price.') +
-      '</div>';
+    let reasonMsg;
+    if(j.reason === 'missing_address'){
+      reasonMsg = zh ? '请先填写接送地址。' : 'Please fill in the pickup/drop-off address first.';
+    } else if(j.reason === 'suburb_not_found'){
+      reasonMsg = zh ? '地址里没识别出 suburb/区域名，请确认（如 Box Hill、CBD、Glen Waverley）；若该区域不在墨尔本接送范围，请提交预订，Max 会人工报价。' : 'We couldn\'t recognise a suburb in your address — please confirm the suburb (e.g. Box Hill, CBD, Glen Waverley). If your area is outside our service zone, please submit your booking and Max will quote you manually.';
+    } else {
+      reasonMsg = zh ? '这个行程我们需要人工确认价格，请直接点下方「提交预订，等待人工报价」，Max 会尽快联系您报价。' : 'We need to confirm this trip manually. Please submit your booking below and Max will contact you with a price.';
+    }
+    box.innerHTML = '<div style="background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:10px;padding:1rem;text-align:center;color:#ffd27a">' + reasonMsg + '</div>';
   }
 }
 
