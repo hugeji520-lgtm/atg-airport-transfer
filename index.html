@@ -487,9 +487,11 @@ function toggleLang(){
 
 function updateFormLang(){
   const zh = document.documentElement.getAttribute('data-lang') === 'zh';
+  const dir = document.getElementById('w_dir');
   const hour = document.getElementById('w_time_hour');
   const min = document.getElementById('w_time_min');
   const notes = document.getElementById('w_notes');
+  if(dir && dir.options.length >= 2){ dir.options[0].text = zh ? '接机' : 'Airport Pickup'; dir.options[1].text = zh ? '送机' : 'Airport Drop-off'; }
   if(hour) hour.options[0].text = zh ? '时' : 'Hour';
   if(min) min.options[0].text = zh ? '分' : 'Min';
   if(notes) notes.placeholder = zh ? '例如：轮椅、大件行李...' : 'e.g. Wheelchair access, extra luggage...';
@@ -1402,8 +1404,8 @@ async function submitWithVehicle(){
           <div class="form-group">
             <label><span class="lang-en">Direction *</span><span class="lang-zh">方向 *</span></label>
             <select id="w_dir" onchange="updateTimeLabel()">
-              <option value="Airport Pickup" class="lang-en">Airport Pickup</option><option value="Airport Pickup" class="lang-zh">接机</option>
-              <option value="Airport Drop-off" class="lang-en">Airport Drop-off</option><option value="Airport Drop-off" class="lang-zh">送机</option>
+              <option value="Airport Pickup">Airport Pickup</option>
+              <option value="Airport Drop-off">Airport Drop-off</option>
             </select>
           </div>
           <div class="form-group">
