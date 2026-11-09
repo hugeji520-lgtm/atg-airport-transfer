@@ -882,15 +882,12 @@ function getNotesWithExtraStop(){
 }
 
 function isAutoConfirmEligible(){
-  // 自动确认条件：选了车型 + 非急单(≥24h) + 备注无加价词/勾选框未勾（auto_confirm 开关由后端判定）
+  // 自动确认条件：选了车型 + 备注无加价词/勾选框未勾（急单也自动确认，auto_confirm 开关由后端判定）
   if(!selectedVehicle) return false;
   if(noteManualReason()) return false;
   const day = pickDay().value, month = pickMonth().value, year = pickYear().value;
   const tmHour = document.getElementById('w_time_hour').value, tmMin = document.getElementById('w_time_min').value;
   if(!day || !month || !year || !tmHour || !tmMin) return false;
-  const target = new Date(parseInt(year), parseInt(month)-1, parseInt(day), parseInt(tmHour), parseInt(tmMin));
-  const diffMs = target - new Date();
-  if(diffMs < 24*3600*1000) return false;
   return true;
 }
 
@@ -902,7 +899,7 @@ function superUrgentMsg(zh){
   const target = new Date(parseInt(year), parseInt(month)-1, parseInt(day), parseInt(tmHour), parseInt(tmMin));
   const diffMs = target - new Date();
   if(diffMs < 0 || diffMs >= 6*3600*1000) return '';
-  return zh ? '由于时间紧急，我们无法 100% 保证能安排到司机，Max 会尽快联系您确认。如果紧急，请直接致电 0430 595 120。' : "Due to the short notice, we can't guarantee a driver will be available. Max will contact you as soon as possible to confirm. For urgent help, please call 0430 595 120.";
+  return zh ? '急单加收 $20，已含在价格里。由于时间紧急，我们无法 100% 保证能安排到司机，Max 会尽快确认；如未能安排司机，全额退款。如有特别紧急的情况可直接致电 0430 595 120。' : "A $20 urgent surcharge applies and is included in the price. Due to the short notice, we can't guarantee 100% that a driver will be available — Max will confirm as soon as possible, and if we can't arrange a driver you'll get a full refund. For anything very urgent, call 0430 595 120.";
 }
 
 function submitVehicleSuccess(zh, name, total, deposit, autoConfirmed){
@@ -940,7 +937,7 @@ function urgentNote(zh){
   const target = new Date(parseInt(year), parseInt(month)-1, parseInt(day), parseInt(tmHour), parseInt(tmMin));
   const diffMs = target - new Date();
   if(diffMs < 0 || diffMs >= 24*3600*1000) return '';
-  const msg = zh ? '这是 24 小时内的急单，可能会有额外费用，具体由 Max 确认；订金暂不自动收取。' : 'This is a last-minute booking (within 24 hours) — extra charges may apply and will be confirmed by Max. The deposit is not charged automatically.';
+  const msg = zh ? '急单加收 $10，已含在价格里。' : 'A $10 urgent surcharge applies and is included in the price.';
   return '<div style="margin-top:.6rem;padding:.6rem .8rem;background:rgba(255,193,102,.12);border:1px solid rgba(255,193,102,.35);border-radius:8px;color:#ffd27a;font-size:.82rem;line-height:1.5">' + msg + '</div>';
 }
 
