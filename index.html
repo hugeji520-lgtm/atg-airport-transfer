@@ -908,7 +908,7 @@ function submitVehicleSuccess(zh, name, total, deposit, autoConfirmed){
   let html;
   if(autoConfirmed){
     html = zh
-      ? '预订已确认（' + name + ' $' + total + '），付款信息已通过短信发送到您的手机。'
+      ? '预订已确认（' + name + ' $' + total + '），付款信息会尽快发送到您的手机。'
       : 'Your booking is confirmed (' + name + ' $' + total + '). Payment details have been sent by SMS to your phone.';
   } else if(nmr){
     html = zh
