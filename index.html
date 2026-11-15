@@ -606,6 +606,22 @@ function pickDay(){ return document.getElementById('w_day').offsetParent !== nul
 function pickMonth(){ return document.getElementById('w_month').offsetParent !== null ? document.getElementById('w_month') : document.getElementById('w_month_zh'); }
 function pickYear(){ return document.getElementById('w_year').offsetParent !== null ? document.getElementById('w_year') : document.getElementById('w_year_zh'); }
 
+function addrDetailed(a){
+  const segs = String(a||'').replace(/→|->|—|–/g,'|').split('|')
+    .map(x=>x.trim().replace(/^[,\s]+|[,\s]+$/g,'')).filter(Boolean);
+  if(!segs.length) return false;
+  const nonAir = segs.filter(x=>!/airport|tullamarine|avalon|\bmel\b/i.test(x));
+  const part = nonAir[0] || (segs.length===1 ? segs[0] : '');
+  if(!part) return false;
+  if(!/\d/.test(part)) return false;
+  const words = ['st','street','rd','road','ave','avenue','dr','drive','ct','court','pl','place',
+    'tce','terrace','pde','parade','hwy','highway','cres','crescent','ln','lane','cl','close','way',
+    'bvd','boulevard','gdns','gardens','espl','esplanade','sq','cct','circuit','gr','grove','rise',
+    'view','walk','mews','loop','track','grn','green','hts','heights'];
+  const low = part.toLowerCase();
+  return words.some(w => new RegExp('\\b'+w+'\\b').test(low));
+}
+
 function checkPhone(raw){
   const s = raw.replace(/[\s\-()]/g, '');
   const d = s.replace(/\D/g, '');
@@ -635,6 +651,7 @@ function buildBooking(){
   if(!p){ showFieldError('w_phone', zh ? '请填写手机号' : 'Please fill in phone'); ok = false; }
   else if(!checkPhone(p)){ showFieldError('w_phone', zh ? '请检查电话号码' : 'Please check the phone number'); ok = false; }
   if(!a){ showFieldError('w_address', zh ? '请填写地址' : 'Please fill in address'); ok = false; }
+  else if(!addrDetailed(a)){ showFieldError('w_address', zh ? '请填写详细地址：门牌号 + 街道 + 区（不能只写区名）' : 'Please enter the full address: street number, street name and suburb'); ok = false; }
   if(!tmHour || !tmMin){ showFieldError('w_time_hour', zh ? '请选择时间' : 'Please select time'); ok = false; }
   if(!day || !month || !year){ showFieldError('w_day', zh ? '请选择日期' : 'Please select date'); ok = false; }
   if(dir === 'Airport Pickup' && !fl.trim()){ showFieldError('w_flight', zh ? '接机请填写航班号' : 'Please enter your flight number for airport pickups'); ok = false; }
@@ -740,6 +757,7 @@ async function quotePrice(){
   const adults = parseInt(document.getElementById('w_adults').value) || 0;
   const children = parseInt(document.getElementById('w_children').value) || 0;
   if(!a){ showFieldError('w_address', zh ? '请填写地址' : 'Please fill in address'); scrollTo('w_address'); return; }
+  if(!addrDetailed(a)){ showFieldError('w_address', zh ? '请填写详细地址：门牌号 + 街道 + 区（不能只写区名）' : 'Please enter the full address: street number, street name and suburb'); scrollTo('w_address'); return; }
   if(!day || !month || !year){ showFieldError('w_day', zh ? '请选择日期' : 'Please select date'); scrollTo('w_day'); return; }
   if(!tmHour || !tmMin){ showFieldError('w_time_hour', zh ? '请选择时间' : 'Please select time'); scrollTo('w_time_hour'); return; }
   if(adults + children < 1){ showFieldError('w_adults', zh ? '请填写人数' : 'Please fill in passengers'); scrollTo('w_adults'); return; }
@@ -1470,7 +1488,7 @@ async function submitWithVehicle(){
         </div>
         <div class="form-group">
           <label><span class="lang-en">Pickup / Address *</span><span class="lang-zh">接送地址 *</span></label>
-          <input type="text" id="w_address" required placeholder="Street address / Suburb">
+          <input type="text" id="w_address" required placeholder="e.g. 29/325 Station St, Box Hill South">
         </div>
         <div class="form-row">
           <div class="form-group">
