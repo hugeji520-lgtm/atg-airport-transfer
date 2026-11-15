@@ -606,6 +606,31 @@ function pickDay(){ return document.getElementById('w_day').offsetParent !== nul
 function pickMonth(){ return document.getElementById('w_month').offsetParent !== null ? document.getElementById('w_month') : document.getElementById('w_month_zh'); }
 function pickYear(){ return document.getElementById('w_year').offsetParent !== null ? document.getElementById('w_year') : document.getElementById('w_year_zh'); }
 
+const SUBURBS = new Set(["abbotsford", "albert park", "alphington", "altona", "armadale", "ascot vale", "ashburton", "ashwood", "aspendale", "avalon airport", "balwyn", "bayswater", "bentleigh", "berwick", "blackburn", "box hill", "brighton", "bulleen", "bundoora", "burwood", "camberwell", "canterbury", "carnegie", "caulfield", "caulfield north", "caulfield south", "cbd", "chadstone", "cheltenham", "clayton", "clifton hill", "collingwood", "cranbourne", "croydon", "dandenong", "deepdene", "diamond creek", "dingley village", "docklands", "doncaster", "doncaster east", "donvale", "doreen", "dromana", "eaglemont", "east melbourne", "edithvale", "elsternwick", "eltham", "elwood", "emerald", "endeavour hills", "epping", "essendon", "fawkner", "ferntree gully", "ferny creek", "fitzroy", "flagstaff", "flemington", "flinders", "footscray", "forest hill", "frankston", "gardenvale", "geelong", "gisborne", "glen huntly", "glen iris", "glen waverley", "glenroy", "grantville", "greensborough", "greenvale", "hampton", "hampton park", "hastings", "hawthorn", "heatherton", "heathmont", "heidelberg", "highett", "hoppers crossing", "hughesdale", "huntingdale", "ivanhoe", "keilor", "kensington", "kew", "keysborough", "kilmore", "kingsbury", "knoxfield", "kooyong", "lalor", "lancefield", "langwarrin", "laverton", "lilydale", "lorne", "lower plenty", "lynbrook", "lyndhurst", "lysterfield", "malvern", "mckinnon", "melbourne cbd", "mentone", "mont albert", "montmorency", "moorabbin", "mooroolbark", "mordialloc", "mornington", "mount martha", "mount waverley", "mt eliza", "mulgrave", "murrumbeena", "narre warren", "newport", "niddrie", "noble park", "north melbourne", "north richmond", "north warrandyte", "northcote", "notting hill", "nunawading", "oak park", "oaklands junction", "oakleigh", "oakleigh east", "oakleigh south", "ocean grove", "officer", "olinda", "ormond", "pakenham", "park orchards", "parkdale", "parkville", "patterson lakes", "point cook", "port melbourne", "portsea", "prahran", "preston", "ravenhall", "red hill", "research", "reservoir", "richmond", "ringwood", "rockbank", "rosanna", "rosebud", "rowville", "sandringham", "south melbourne", "south morang", "south yarra", "southbank", "springvale", "st albans", "st kilda", "sunshine", "surrey hills", "tarneit", "taylors lakes", "templestowe", "the basin", "thornbury", "toorak", "tooronga", "truganina", "tullamarine", "tynong", "vermont", "vermont south", "viewbank", "warrandyte", "watsonia", "werribee", "west melbourne", "wheelers hill", "whittlesea", "williams landing", "williamstown", "windsor", "wollert", "yallambie", "yarra glen", "yarra junction", "yarraville"]);
+const DIR_WORDS = new Set(['north','south','east','west','upper','lower','central','cbd']);
+function normAddr(s){
+  return String(s||'').toLowerCase()
+    .replace(/\b(vic|victoria|australia|nsw|qld|sa|wa|tas|act|nt)\b/g,' ')
+    .replace(/\b\d{4}\b/g,' ')
+    .replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
+}
+function pureSuburb(part){
+  const n = normAddr(part);
+  if(!n) return true;
+  if(n.includes('airport')) return false;
+  if(SUBURBS.has(n)) return true;
+  const w = n.split(' ');
+  for(let i=0;i<w.length;i++){
+    for(let j=w.length;j>i;j--){
+      if(SUBURBS.has(w.slice(i,j).join(' '))){
+        const rest = w.slice(0,i).concat(w.slice(j)).filter(x=>!DIR_WORDS.has(x));
+        return rest.length === 0;
+      }
+    }
+  }
+  return false;
+}
+// 只写区名 → 不合格；门牌地址 / 酒店 / 地标 / 公司名 / 机场 → 合格
 function addrDetailed(a){
   const segs = String(a||'').replace(/→|->|—|–/g,'|').split('|')
     .map(x=>x.trim().replace(/^[,\s]+|[,\s]+$/g,'')).filter(Boolean);
@@ -613,13 +638,7 @@ function addrDetailed(a){
   const nonAir = segs.filter(x=>!/airport|tullamarine|avalon|\bmel\b/i.test(x));
   const part = nonAir[0] || (segs.length===1 ? segs[0] : '');
   if(!part) return false;
-  if(!/\d/.test(part)) return false;
-  const words = ['st','street','rd','road','ave','avenue','dr','drive','ct','court','pl','place',
-    'tce','terrace','pde','parade','hwy','highway','cres','crescent','ln','lane','cl','close','way',
-    'bvd','boulevard','gdns','gardens','espl','esplanade','sq','cct','circuit','gr','grove','rise',
-    'view','walk','mews','loop','track','grn','green','hts','heights'];
-  const low = part.toLowerCase();
-  return words.some(w => new RegExp('\\b'+w+'\\b').test(low));
+  return !pureSuburb(part);
 }
 
 function checkPhone(raw){
