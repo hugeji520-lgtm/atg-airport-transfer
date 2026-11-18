@@ -103,6 +103,7 @@ section{padding:5rem 0}
 .fleet-card.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,168,67,.15)}
 .fleet-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.08)}
 .fleet-icon{font-size:2.5rem;margin-bottom:.8rem}
+.fleet-icon picture{display:block}
 .fleet-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:.3rem}
 .fleet-card .capacity{color:var(--gray);font-size:.85rem;margin-bottom:.5rem}
 .fleet-card .fleet-price{font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:.3rem}
@@ -1126,42 +1127,42 @@ async function submitWithVehicle(){
     <p class="section-sub"><span class="lang-en">Choose the perfect vehicle for your journey</span><span class="lang-zh">为您的旅程选择最合适的车型</span></p>
     <div class="fleet-grid">
       <div class="fleet-card featured">
-        <div class="fleet-icon"><img src="sedan.png" alt="Sedan" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+        <div class="fleet-icon"><picture><source srcset="sedan.webp" type="image/webp"><img src="sedan.png" alt="Sedan" width="400" height="712" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
         <h3><span class="lang-en">Sedan</span><span class="lang-zh">轿车</span></h3>
         <p class="capacity"><span class="lang-en">Up to 3 passengers &bull; 2 suitcases</span><span class="lang-zh">3座 &bull; 2件行李</span></p>
         <div class="fleet-price">$80 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Perfect for solo travellers and couples. Comfortable, efficient.</span><span class="lang-zh">适合单人或情侣出行，舒适快捷。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><img src="suv.png" alt="SUV" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+        <div class="fleet-icon"><picture><source srcset="suv.webp" type="image/webp"><img src="suv.png" alt="SUV" width="400" height="712" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
         <h3><span class="lang-en">SUV</span><span class="lang-zh">SUV</span></h3>
         <p class="capacity"><span class="lang-en">Up to 4 passengers &bull; 3 suitcases</span><span class="lang-zh">4座 &bull; 3件行李</span></p>
         <div class="fleet-price">$90 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Spacious and comfortable. Great for extra luggage.</span><span class="lang-zh">空间宽敞，适合行李较多的旅客。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><img src="luxury-sedan.png" alt="Luxury Sedan" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+        <div class="fleet-icon"><picture><source srcset="luxury-sedan.webp" type="image/webp"><img src="luxury-sedan.png" alt="Luxury Sedan" width="400" height="712" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
         <h3><span class="lang-en">Luxury Sedan</span><span class="lang-zh">豪华轿车</span></h3>
         <p class="capacity"><span class="lang-en">Up to 3 passengers &bull; 2 suitcases</span><span class="lang-zh">3座 &bull; 2件行李</span></p>
         <div class="fleet-price">$100 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Premium vehicles for business travel and special occasions.</span><span class="lang-zh">商务出行和特殊场合的首选，高端体验。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><img src="luxury-suv.png" alt="Luxury SUV" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+        <div class="fleet-icon"><picture><source srcset="luxury-suv.webp" type="image/webp"><img src="luxury-suv.png" alt="Luxury SUV" width="400" height="712" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
         <h3><span class="lang-en">Luxury SUV</span><span class="lang-zh">豪华SUV</span></h3>
         <p class="capacity"><span class="lang-en">Up to 4 passengers &bull; 3 suitcases</span><span class="lang-zh">4座 &bull; 3件行李</span></p>
         <div class="fleet-price">$105 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Premium SUV with executive comfort and extra luggage space.</span><span class="lang-zh">豪华SUV，行政级舒适，行李空间充足。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><img src="van.png" alt="Van" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+        <div class="fleet-icon"><picture><source srcset="van.webp" type="image/webp"><img src="van.png" alt="Van" width="400" height="712" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
         <h3><span class="lang-en">Van</span><span class="lang-zh">商务车 Van</span></h3>
         <p class="capacity"><span class="lang-en">Up to 7 passengers &bull; 5-6 suitcases</span><span class="lang-zh">7座 &bull; 5-6件行李</span></p>
         <div class="fleet-price">$100 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
         <p><span class="lang-en">Ideal for groups, sports teams, and large families.</span><span class="lang-zh">适合团体出游、运动队和大家庭。</span></p>
       </div>
       <div class="fleet-card">
-        <div class="fleet-icon"><img src="luxury-van.png" alt="Luxury Van" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+        <div class="fleet-icon"><picture><source srcset="luxury-van.webp" type="image/webp"><img src="luxury-van.png" alt="Luxury Van" width="400" height="712" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
         <h3><span class="lang-en">Luxury Van</span><span class="lang-zh">豪华 Van</span></h3>
         <p class="capacity"><span class="lang-en">Up to 7 passengers &bull; 5-6 suitcases</span><span class="lang-zh">7座 &bull; 5-6件行李</span></p>
         <div class="fleet-price">$110 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
@@ -1169,7 +1170,7 @@ async function submitWithVehicle(){
       </div>
       <div class="fleet-last-row">
         <div class="fleet-card">
-          <div class="fleet-icon"><img src="alphard.png" alt="Toyota Alphard or similar" onerror="this.src='luxury-van.png'" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+          <div class="fleet-icon"><picture><source srcset="alphard.webp" type="image/webp"><img src="alphard.png" alt="Toyota Alphard or similar" width="400" height="712" loading="lazy" decoding="async" onerror="this.src='luxury-van.png'" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
           <h3><span class="lang-en">First Class Captain Seat MPV</span><span class="lang-zh">航空座椅商务车</span></h3>
           <p class="capacity"><span class="lang-en">Up to 6 passengers &bull; 5 suitcases (fewer with more passengers)</span><span class="lang-zh">最多6人 &bull; 5件行李（人多递减）</span></p>
           <div class="fleet-price">$120 <small><span class="lang-en">from</span><span class="lang-zh">起</span></small></div>
@@ -1177,7 +1178,7 @@ async function submitWithVehicle(){
           <p style="margin-top:.35rem;font-size:.78rem;color:var(--muted,#777);letter-spacing:.01em"><span class="lang-en">Toyota Alphard or similar</span><span class="lang-zh">丰田埃尔法或同级</span></p>
         </div>
         <div class="fleet-card">
-          <div class="fleet-icon"><img src="bus.png" alt="Bus" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></div>
+          <div class="fleet-icon"><picture><source srcset="bus.webp" type="image/webp"><img src="bus.png" alt="Bus" width="400" height="712" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:contain;border-radius:8px;background:#fff"></picture></div>
           <h3><span class="lang-en">Bus (12/24/54 Seats)</span><span class="lang-zh">巴士（12/24/54座）</span></h3>
           <p><span class="lang-en">Need a bus for your group? Contact us for a custom quote.</span><span class="lang-zh">需要巴士？请联系我们获取定制报价。</span></p>
           <a class="contact-cta" href="https://api.whatsapp.com/send?phone=61433935504" target="_blank" rel="noopener"><span class="lang-en">Contact us →</span><span class="lang-zh">联系我们 →</span></a>
@@ -1587,7 +1588,7 @@ async function submitWithVehicle(){
   <div class="china-card">
     <picture class="china-card-bg">
       <source srcset="china-card.webp" type="image/webp">
-      <img src="china-card.jpg" alt="Terracotta Warriors — private China tours">
+      <picture><source srcset="china-card.webp" type="image/webp"><img src="china-card.jpg" alt="Terracotta Warriors — private China tours" width="1200" height="781" loading="lazy" decoding="async"></picture>
     </picture>
     <div class="china-card-overlay"></div>
     <div class="china-card-content">
